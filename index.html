@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Greta James</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─────────────────────────────────────────────────────────────
+       DESIGN TOKENS — parchment palette
+    ───────────────────────────────────────────────────────────── */
+    :root {
+      --parchment:  #FAF6EE;   /* page background              */
+      --cream:      #E8D9B5;   /* surface / card background    */
+      --amber:      #C8A96A;   /* accent / highlight           */
+      --deep-brown: #7A5C2E;   /* primary text / borders       */
+      --green:      #4A6B4A;   /* CTA / active accent          */
+      --ink:        #2C1F0E;   /* body text / headings         */
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       RESET & BASE
+    ───────────────────────────────────────────────────────────── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: var(--parchment);
+      color: var(--ink);
+      line-height: 1.75;
+    }
+
+    a {
+      color: var(--deep-brown);
+      transition: color 0.2s;
+    }
+    a:hover { color: var(--green); }
+
+    /* ─────────────────────────────────────────────────────────────
+       LAYOUT CONTAINER
+    ───────────────────────────────────────────────────────────── */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 1.75rem;
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       NAVBAR
+    ───────────────────────────────────────────────────────────── */
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--parchment);
+      border-bottom: 1px solid var(--cream);
+      padding: 1rem 1.75rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-brand {
+      font-family: Georgia, serif;
+      font-size: 1.05rem;
+      font-weight: bold;
+      color: var(--ink);
+      text-decoration: none;
+      margin-right: auto;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2.25rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.95rem;
+      color: var(--deep-brown);
+    }
+    .nav-links a:hover { color: var(--green); }
+
+    /* "About" — static current-page indicator, not a link */
+    .nav-current {
+      font-size: 0.95rem;
+      color: var(--ink);
+      font-weight: bold;
+      border-bottom: 2px solid var(--amber);
+      padding-bottom: 2px;
+      cursor: default;
+      user-select: none;
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       ABOUT SECTION
+       Left column: photo stacked above belief callout (260px)
+       Right column: name + bio paragraphs (flexible)
+    ───────────────────────────────────────────────────────────── */
+    .about-section {
+      padding: 4rem 0 3rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    /* Left column — wraps photo and blockquote together */
+    .about-left {
+      display: flex;
+      flex-direction: column;
+      gap: 1.3rem;
+    }
+
+    .about-photo img {
+      width: 100%;
+      display: block;
+      border-radius: 4px;
+      border: 3px solid var(--cream);
+      box-shadow: 4px 6px 22px rgba(44, 31, 14, 0.13);
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       BLOCKQUOTE CALLOUT — positioned under photo, Patrick Hand font
+       Background (faint green tint) and left border retained from
+       original design. Font changed to Patrick Hand.
+    ───────────────────────────────────────────────────────────── */
+    .belief-callout {
+      font-family: 'Patrick Hand', cursive;
+      font-size: 1rem;
+      line-height: 1.72;
+      border-left: 4px solid var(--green);
+      background: rgba(74, 107, 74, 0.045);
+      padding: 1rem 1rem 1rem 1.15rem;
+      color: var(--ink);
+      font-style: normal;
+    }
+
+    .belief-callout p { margin: 0; }
+
+    /* Bio text — right column */
+    .about-text h1 {
+      font-size: 1.85rem;
+      font-weight: normal;
+      color: var(--ink);
+      margin-bottom: 1.4rem;
+      letter-spacing: 0.01em;
+    }
+
+    .about-text p {
+      font-size: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       PROJECTS SECTION — heading
+    ───────────────────────────────────────────────────────────── */
+    .projects-section {
+      padding: 3.5rem 0 5rem;
+    }
+
+    .projects-section h2 {
+      font-size: 0.85rem;
+      font-weight: normal;
+      color: var(--deep-brown);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       NOTEBOOK GRAPHIC — desktop (1.5× scale from original)
+
+       Dimensions scaled from original design:
+         wrapper:  480 × 320  →  580 × 475px (width trimmed to content)
+         cover:    185 × 290  →  278 × 435px
+         spine:    20px       →  30px
+         cards:    220 × 268  →  330 × 402px
+         card left: 130       →  195px
+
+       card-2 raised to top: -35px so its title tab is visible above
+       card-1's top edge (~50px of clearance at the visible right edge).
+       The 50px top padding on .notebook-scene provides visual space for
+       the tab so it does not appear clipped.
+    ───────────────────────────────────────────────────────────── */
+    .notebook-scene {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 50px 0 2rem;   /* 50px top → room for card-2 title tab */
+    }
+
+    .notebook-wrapper {
+      position: relative;
+      width: 580px;
+      height: 475px;
+    }
+
+    /* ── Notebook cover ───────────────────────────────────────── */
+    .notebook-cover {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 278px;
+      height: 435px;
+      background: linear-gradient(155deg, #4E3012 0%, #2C1A06 50%, #3D2208 100%);
+      border-radius: 4px 10px 10px 4px;
+      box-shadow: 6px 6px 28px rgba(44, 31, 14, 0.45);
+      z-index: 10;
+      overflow: hidden;
+    }
+
+    /* Spine — darker left strip */
+    .notebook-cover::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 30px;
+      background: linear-gradient(90deg, #140A02 70%, #2C1A08 100%);
+      box-shadow: inset -3px 0 8px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Label rectangle on cover face (cream block behind text) */
+    .notebook-cover::after {
+      content: '';
+      position: absolute;
+      top: 39px;
+      left: 42px; right: 21px;
+      height: 99px;
+      background: var(--cream);
+      border-radius: 3px;
+      opacity: 0.86;
+    }
+
+    /* Text sitting inside the cover label */
+    .notebook-label-text {
+      position: absolute;
+      top: 51px;
+      left: 48px; right: 27px;
+      z-index: 12;
+      pointer-events: none;
+      font-family: 'Patrick Hand', cursive;
+      line-height: 1.35;
+    }
+    .notebook-label-text .label-name {
+      display: block;
+      font-size: 1.3rem;
+      color: var(--ink);
+    }
+    .notebook-label-text .label-sub {
+      display: block;
+      font-size: 1.1rem;
+      color: var(--deep-brown);
+      margin-top: 3px;
+    }
+
+    /* Decorative ruled lines near the bottom of the cover */
+    .notebook-rules {
+      position: absolute;
+      bottom: 42px;
+      left: 42px; right: 21px;
+      z-index: 12;
+      pointer-events: none;
+    }
+    .notebook-rules span {
+      display: block;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.06);
+      margin-bottom: 14px;
+      border-radius: 1px;
+    }
+
+    /* ── Project cards ────────────────────────────────────────── */
+    /*
+     * Both cards anchor at left: 195px — ~83px is hidden behind the
+     * notebook cover, the remaining ~247px fans visibly to the right.
+     * transform-origin: left center → rotation pivots from the tucked edge,
+     * like pages opening from a binding.
+     *
+     * Card 1 (Beyond Surveys)    — front,  -4°, top: 27px
+     * Card 2 (Granter's Academy) — behind, -9°, top: -35px (raised for tab)
+     *
+     * FUTURE EXPANSION: when a third project is ready, uncomment .card-3
+     * and add its HTML element before .card-2.
+     */
+    .project-card {
+      position: absolute;
+      left: 195px;
+      width: 330px;
+      height: 402px;
+      padding: 1.8rem 1.6rem 1.5rem 2rem;
+      border-radius: 3px 8px 8px 3px;
+      box-shadow: 3px 4px 16px rgba(44, 31, 14, 0.18);
+      text-decoration: none;
+      color: var(--ink);
+      display: flex;
+      flex-direction: column;
+      transform-origin: left center;
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+      border-top: 4px solid var(--amber);
+    }
+
+    /* Card 1 — Beyond Surveys Consulting (frontmost) */
+    .card-1 {
+      top: 27px;
+      background: var(--parchment);
+      transform: rotate(-4deg);
+      z-index: 8;
+    }
+    .card-1:hover {
+      transform: rotate(-4deg) translateX(15px);
+      box-shadow: 6px 5px 22px rgba(44, 31, 14, 0.28);
+    }
+
+    /* Card 2 — Granter's Academy (behind, title tab visible above card-1) */
+    .card-2 {
+      top: -35px;
+      background: #F4EDE0;
+      transform: rotate(-9deg);
+      z-index: 7;
+    }
+    .card-2:hover {
+      transform: rotate(-9deg) translateX(15px);
+      box-shadow: 6px 5px 22px rgba(44, 31, 14, 0.28);
+    }
+
+    /* FUTURE: Card 3 — third project (behind card 2)
+    .card-3 {
+      top: -35px;
+      background: #EDE4D3;
+      transform: rotate(-16deg);
+      z-index: 6;
+    }
+    .card-3:hover {
+      transform: rotate(-16deg) translateX(15px);
+      box-shadow: 6px 5px 22px rgba(44, 31, 14, 0.28);
+    }
+    */
+
+    .card-title {
+      font-family: 'Patrick Hand', cursive;
+      font-size: 1.47rem;
+      color: var(--deep-brown);
+      line-height: 1.35;
+      margin-bottom: 0.8rem;
+    }
+
+    .card-description {
+      font-size: 1.1rem;
+      line-height: 1.55;
+      color: var(--ink);
+      flex: 1;
+    }
+
+    .card-link {
+      display: block;
+      font-family: 'Patrick Hand', cursive;
+      font-size: 1.1rem;
+      color: var(--green);
+      margin-top: 0.85rem;
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       MOBILE — tap-to-reveal drawer
+    ───────────────────────────────────────────────────────────── */
+    .mobile-projects {
+      display: none;
+      text-align: center;
+    }
+
+    .mobile-drawer-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      font-family: Georgia, serif;
+    }
+
+    .mobile-notebook-icon {
+      width: 68px;
+      height: 96px;
+      background: linear-gradient(155deg, #4E3012 0%, #2C1A06 50%, #3D2208 100%);
+      border-radius: 2px 5px 5px 2px;
+      position: relative;
+      box-shadow: 3px 3px 12px rgba(44, 31, 14, 0.42);
+      flex-shrink: 0;
+    }
+    .mobile-notebook-icon::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 12px;
+      background: #140A02;
+      border-radius: 2px 0 0 2px;
+    }
+
+    .mobile-tap-hint {
+      font-family: 'Patrick Hand', cursive;
+      font-size: 0.95rem;
+      color: var(--deep-brown);
+      text-align: left;
+      line-height: 1.4;
+    }
+
+    .mobile-drawer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .mobile-drawer.open {
+      max-height: 600px;
+      margin-top: 1.5rem;
+    }
+
+    .mobile-card {
+      display: block;
+      background: var(--parchment);
+      border-left: 4px solid var(--amber);
+      border-radius: 3px;
+      padding: 1rem 1.25rem;
+      text-decoration: none;
+      color: var(--ink);
+      text-align: left;
+      margin-bottom: 1rem;
+      box-shadow: 2px 2px 8px rgba(44, 31, 14, 0.1);
+    }
+    .mobile-card:hover { background: var(--cream); }
+
+    .mobile-card-title {
+      font-family: 'Patrick Hand', cursive;
+      font-size: 1rem;
+      color: var(--deep-brown);
+      margin-bottom: 0.4rem;
+    }
+    .mobile-card-desc {
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+    .mobile-card-link {
+      display: block;
+      font-family: 'Patrick Hand', cursive;
+      font-size: 0.82rem;
+      color: var(--green);
+      margin-top: 0.5rem;
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────────────────────────── */
+    .site-footer {
+      padding: 2.25rem 0 2rem;
+      border-top: 1px solid var(--cream);
+      text-align: center;
+      font-size: 0.87rem;
+      color: var(--deep-brown);
+    }
+    .site-footer a { color: var(--deep-brown); }
+    .site-footer a:hover { color: var(--green); }
+
+    /* ─────────────────────────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────────────────────────── */
+    @media (max-width: 660px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .about-left {
+        max-width: 250px;
+        margin: 0 auto;
+      }
+      .about-section { padding: 2.5rem 0 2rem; }
+      .projects-section { padding: 2.5rem 0 3.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      .nav-links { gap: 1rem; }
+      .nav-links a, .nav-current { font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ────────────────────────────────────────────────────────────
+       NAVBAR
+       "About" is static text (current page indicator), not a link.
+       Three destinations: About (here), Beyond Surveys, Granter's Academy.
+  ─────────────────────────────────────────────────────────────── -->
+  <nav class="site-nav" aria-label="Main navigation">
+    <a href="/" class="nav-brand">Greta James</a>
+    <ul class="nav-links">
+      <li>
+        <span class="nav-current" aria-current="page">About</span>
+      </li>
+      <li>
+        <a href="beyondsurveys/">Beyond Surveys Consulting</a>
+      </li>
+      <li>
+        <a href="grantersacademy/">Granter's Academy</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- ────────────────────────────────────────────────────────────
+       ABOUT
+       Left column: photo + belief callout stacked vertically (260px)
+       Right column: name heading + three bio paragraphs
+  ─────────────────────────────────────────────────────────────── -->
+  <section class="about-section" id="about">
+    <div class="container">
+      <div class="about-grid">
+
+        <!-- Left column: photo stacked above belief callout -->
+        <div class="about-left">
+
+          <div class="about-photo">
+            <img
+              src="assets/Professional head shot.jpg"
+              alt="Greta James — researcher and monitoring and evaluation consultant"
+            />
+          </div>
+
+          <!-- TODO: link belief paragraph to article on social service sector incentives when ready -->
+          <blockquote class="belief-callout">
+            <p>A well-functioning social service sector needs two things: affordable measurement and evaluation supports so organizations can learn from what they do, and financial incentives that reward innovation and honest learning rather than punishing uncertainty. That's what I'm working toward.</p>
+          </blockquote>
+
+        </div>
+
+        <!-- Right column: bio -->
+        <div class="about-text">
+          <h1>Greta James</h1>
+
+          <p>I'm Greta James — a researcher and monitoring and evaluation consultant based in Southern Ontario. I've spent the last several years applying that research background to helping social service organizations use data and empirical research to make better decisions and grow their impact. But I never expected to end up here.</p>
+
+          <p>I have always consumed ideas like candy — I devoured anthropology and psychology, cognitive science and biology in my undergraduate before completing a PhD in cognitive psychology at the University of Waterloo in 2018, where I specialized in judgment and decision-making. Then an unexpected thing happened: a short-term contract helping a local family shelter evaluate and redesign their programming showed me that I didn't just want to study how things work — I wanted to turn that knowledge into action. That contract turned into five years of frontline work evaluating programs and eventually into co-founding Measurement 4 Change. In that time, I've learned that very little of what researchers know about social change makes it to the front line — and very few of the questions on the front line make it back to researchers. Closing that gap is what this work is for.</p>
+
+          <p>Social problems are complex and difficult — but we give social service organizations almost no resources to experiment, innovate, or adapt. We expect them to deploy perfectly effective programming and make accurate decisions without the funding or support to probe the critical questions that inform their work. And we don't culturally accept failure or risk-taking — we certainly don't fund it.</p>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────────────────────────────────────────────────────────────
+       CURRENT PROJECTS — notebook graphic
+  ─────────────────────────────────────────────────────────────── -->
+  <section class="projects-section" id="projects">
+    <div class="container">
+
+      <h2>Current Projects</h2>
+
+      <!-- Desktop: fanning notebook graphic, centered in container -->
+      <div class="notebook-scene" id="notebookScene" aria-label="Current projects">
+        <div class="notebook-wrapper">
+
+          <!--
+            Cards rendered BEFORE the cover so the cover's z-index sits on top.
+            Fan order (back to front): card-2, card-1.
+
+            FUTURE EXPANSION — when a third project is ready:
+              1. Add <a class="project-card card-3"> here, before card-2
+              2. Uncomment the .card-3 CSS rule above
+              3. No other layout changes needed
+          -->
+
+          <!-- Card 2: Granter's Academy — behind, raised so title tab is visible -->
+          <a href="grantersacademy/" class="project-card card-2">
+            <span class="card-title">Granter's Academy</span>
+            <p class="card-description">Coming soon.</p>
+            <span class="card-link">Learn more →</span>
+          </a>
+
+          <!-- Card 1: Beyond Surveys Consulting — front -->
+          <a href="beyondsurveys/" class="project-card card-1">
+            <span class="card-title">Beyond Surveys Consulting</span>
+            <p class="card-description">Affordable monitoring and evaluation support for small social service organizations in Southern Ontario, with a focus on building internal measurement capacity that doesn't rely on surveys.</p>
+            <span class="card-link">Learn more →</span>
+          </a>
+
+          <!-- Notebook cover — highest z-index, sits on top of cards -->
+          <div class="notebook-cover" aria-hidden="true">
+            <div class="notebook-label-text">
+              <span class="label-name">Greta James</span>
+              <span class="label-sub">Projects</span>
+            </div>
+            <div class="notebook-rules" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Mobile: tap-to-reveal drawer (JS swaps in at ≤ 660px) -->
+      <div class="mobile-projects" id="mobileProjects">
+        <button
+          class="mobile-drawer-trigger"
+          id="drawerTrigger"
+          aria-expanded="false"
+          aria-controls="mobileDrawer"
+        >
+          <div class="mobile-notebook-icon" aria-hidden="true"></div>
+          <span class="mobile-tap-hint">Tap to explore<br>current projects</span>
+        </button>
+
+        <div class="mobile-drawer" id="mobileDrawer" role="list">
+
+          <a href="beyondsurveys/" class="mobile-card" role="listitem">
+            <div class="mobile-card-title">Beyond Surveys Consulting</div>
+            <p class="mobile-card-desc">Affordable monitoring and evaluation support for small social service organizations in Southern Ontario.</p>
+            <span class="mobile-card-link">Learn more →</span>
+          </a>
+
+          <a href="grantersacademy/" class="mobile-card" role="listitem">
+            <div class="mobile-card-title">Granter's Academy</div>
+            <p class="mobile-card-desc">Coming soon.</p>
+            <span class="mobile-card-link">Learn more →</span>
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ────────────────────────────────────────────────────────────
+       FOOTER
+  ─────────────────────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>
+        Get in touch:
+        <a href="mailto:greta@gretajames.ca">greta@gretajames.ca</a>
+        or visit
+        <a href="https://www.linkedin.com/in/greta-james/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- ────────────────────────────────────────────────────────────
+       JAVASCRIPT — mobile notebook drawer
+  ─────────────────────────────────────────────────────────────── -->
+  <script>
+    (function () {
+      var MOBILE_BREAKPOINT = 660;
+
+      var scene   = document.getElementById('notebookScene');
+      var mobile  = document.getElementById('mobileProjects');
+      var trigger = document.getElementById('drawerTrigger');
+      var drawer  = document.getElementById('mobileDrawer');
+
+      function applyLayout() {
+        if (window.innerWidth <= MOBILE_BREAKPOINT) {
+          scene.style.display  = 'none';
+          mobile.style.display = 'block';
+        } else {
+          scene.style.display  = 'flex';
+          mobile.style.display = 'none';
+          drawer.classList.remove('open');
+          trigger.setAttribute('aria-expanded', 'false');
+        }
+      }
+
+      trigger.addEventListener('click', function () {
+        var isOpen = drawer.classList.contains('open');
+        drawer.classList.toggle('open', !isOpen);
+        trigger.setAttribute('aria-expanded', String(!isOpen));
+      });
+
+      applyLayout();
+      window.addEventListener('resize', applyLayout);
+    }());
+  </script>
+
+</body>
+</html>
