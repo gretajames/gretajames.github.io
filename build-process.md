@@ -122,28 +122,31 @@ The centrepiece of the hub page. Built entirely with HTML and CSS — no image f
 
 **How it works on desktop:**
 
-All notebook elements live inside a `580 × 475px` wrapper div using `position: absolute` to place them precisely.
-
-The notebook scene has `50px` of top padding, which provides visual breathing room for the back card's title tab to appear above the notebook cover without being clipped.
+All notebook elements live inside a `640 × 520px` wrapper div using `position: absolute` to place them precisely.
 
 Three layers (back to front):
 
 1. **Card 2 — Granter's Academy** (rendered first in HTML, lowest z-index)
-   - `top: -35px` — raised 62px above card-1's resting position, so its title area sits visibly above card-1's top edge at the right side of the notebook
-   - `transform: rotate(-9deg)` — more angled, appears behind and above
+   - `top: -55px` — positioned above card-1 so its title is clearly visible
+   - `transform: rotate(14deg)` — more rotation, fans further to the right
    - Slightly warmer background colour than card-1 to visually distinguish the two pages
 
 2. **Card 1 — Beyond Surveys Consulting** (in front of card-2)
-   - `top: 27px`
-   - `transform: rotate(-4deg)` — nearly upright, closest to the viewer
-   - Both cards use `transform-origin: left center`, meaning they rotate from their left edge — the point where they tuck into the notebook cover. This creates the look of pages opening from a binding
+   - `top: 25px`
+   - `transform: rotate(8deg)` — less rotation, sits in front
 
 3. **Notebook cover** (rendered last, highest z-index — sits on top of both cards)
    - `278 × 435px` dark brown rectangle with rounded right corners
    - Left strip (spine) is a darker shade with an inset shadow
    - A cream label rectangle sits near the top of the cover face (CSS `::after` pseudo-element)
-   - "Greta James / Projects" in Patrick Hand sits over the label
+   - "Greta James / Projects" in Patrick Hand sits centred over the label
    - Faint horizontal lines near the bottom suggest a worn ruled page
+
+**How the card rotation works:**
+
+Both cards use `transform-origin: left bottom`. This means rotation pivots from the card's bottom-left corner — the point tucked behind the notebook cover. A positive rotation angle (e.g. `rotate(8deg)`) tips the top of the card away from the book to the right, while the bottom stays anchored behind the cover. This creates the visual of pages fanning out from a binding.
+
+The cover has the highest z-index, so it always sits on top of the cards and naturally hides the bottom-left corner of each card. The visible portion of each card — the part sticking out to the upper right — is what the reader sees.
 
 On hover, each card slides 15px to the right while holding its rotation angle, giving a "pulling out" effect.
 
@@ -168,6 +171,59 @@ A single centred line with a quiet email link and a LinkedIn link. No prominent 
 
 ---
 
+---
+
+## Beyond Surveys Consulting site — component by component
+
+The Beyond Surveys site lives in the `beyondsurveys/` subfolder. Each page is a self-contained HTML file that shares the same design tokens (colours, fonts) as the hub page but has its own navbar and layout.
+
+### How the consulting site differs from the hub page
+
+| | Hub page (`index.html`) | Consulting site (`beyondsurveys/`) |
+|---|---|---|
+| Audience | General visitors, curious about Greta | Potential clients evaluating a specific service |
+| Navbar | About · Beyond Surveys · Granter's Academy | ← Greta James · Home · Services · Learning Resources · Portfolio · Work With Me |
+| Tone | Personal, introductory | Professional, service-focused |
+| Palette use | Expressive (notebook graphic) | More restrained |
+
+### Beyond Surveys navbar
+
+Every consulting page has the same navbar structure:
+
+- **← Greta James** (far left) — a subtle back-link to the hub page (`../`). It is intentionally muted (lower opacity, smaller font) so it doesn't compete with the main navigation. It is hidden on screens narrower than 760px to prevent crowding, since the five-item consulting nav already fills the bar at tablet widths.
+- **Home · Services · Learning Resources · Portfolio · Work With Me** (right side) — the five consulting pages. The current page is shown as static bold text with an amber underline (same pattern as "About" on the hub page).
+
+### Beyond Surveys home page (`beyondsurveys/index.html`)
+
+Three visually distinct sections, plus a mini bio card and footer.
+
+**1 — Intro section**
+
+- A small all-caps brand label ("Beyond Surveys Consulting") in Patrick Hand sits above the main heading — acts as a visual anchor so visitors who land directly at this URL know where they are
+- The `h1` heading ("Build measurement capacity your organization actually owns") is the primary SEO heading for the page
+- The tagline "Measure. Learn. Grow." is in Patrick Hand italic — same hand-drawn quality as the hub page's belief callout
+- Two paragraphs of positioning copy follow; "free resources" links to `learning.html`
+
+**2 — Pricing / CTA block**
+
+- Cream background with amber borders top and bottom — visually separates it from the sections above and below
+- Italic surrounding text with bold green links draws the eye to the two actions: see pricing (→ `services.html`) and book a consultation call
+- The consultation booking link currently uses `mailto:greta@gretajames.ca` as a placeholder. There is an HTML comment directly on this link marking where a calendar booking link should replace it when one is set up
+
+**3 — Our Approach section**
+
+- Four paragraphs explaining the theory-of-change approach and the limits of survey-only measurement
+- Followed by a **lifecycle graphic placeholder** — a dashed amber box marking where the SVG diagram will go (to be built in a future session). The placeholder contains an HTML comment with the full diagram spec so the next developer can build it without hunting through the project notes
+- Two resource links at the bottom ("Common survey design mistakes →" and "Other ways to measure your impact →") use `href="#"` as placeholders until the corresponding learning module pages exist
+
+**Mini bio card**
+
+- Sits below the main content, above the footer, separated by a hairline rule
+- Circular-cropped headshot (72×72px), two lines of bio text, and a "Learn more about Greta →" link back to the hub page
+- Uses a cream card background with a subtle shadow — the same card treatment used elsewhere in the consulting site
+
+---
+
 ## How to make common changes
 
 ### Update the bio text
@@ -186,10 +242,22 @@ Find `<a class="project-card card-1">` (or `card-2`). The title is in `<span cla
 Find the card's `<a>` opening tag and update the `href="..."` attribute.
 
 ### Update the footer contact details
-Find `<footer class="site-footer">` near the bottom of `index.html` and edit the text and link targets inside it.
+Find `<footer class="site-footer">` near the bottom of any page and edit the text and link targets inside it.
 
-### Change a colour globally
-Open `index.html`, find the `:root {` block near the top of the `<style>` section, and change the hex value next to the token name (e.g. `--green: #4A6B4A;`).
+### Change a colour globally on one page
+Open the relevant `.html` file, find the `:root {` block near the top of the `<style>` section, and change the hex value next to the token name (e.g. `--green: #4A6B4A;`). Note: because each page has its own `<style>` block, you would need to make the same change in every file to update the whole site. If you find yourself doing that often, it may be worth asking a developer to extract the shared CSS into a separate file.
+
+### Update the Beyond Surveys intro text
+Open `beyondsurveys/index.html`, find `<section class="intro-section">`. The two paragraphs of copy are in `<p>` tags. Edit the text directly. The tagline is in `<p class="intro-tagline">`.
+
+### Replace the consultation booking link
+In `beyondsurveys/index.html`, find the comment `<!-- TODO: replace with booking link when calendar integration is ready -->`. The `<a>` tag immediately after it is the "book a free consultation call" link. Replace the `href="mailto:..."` value with your calendar booking URL.
+
+### Update the mini bio card text
+In `beyondsurveys/index.html`, find `<div class="bio-card-text">`. Edit the `<p>` tag content for the bio text.
+
+### Add a new nav link to the consulting site
+Open the relevant consulting page, find `<ul class="nav-links">`, and add `<li><a href="newpage.html">Page Name</a></li>`. Remember to add the same link to every consulting page so the navbar stays consistent across the site.
 
 ---
 
@@ -224,3 +292,4 @@ Before the site goes live, you will need to:
 |---|---|---|
 | 1 | 2026-04-01 | Hub page (`index.html`) — navbar, about section, blockquote callout, notebook graphic |
 | 2 | 2026-04-01 | Hub page revisions: Granter's Academy added to navbar; back card raised to show title tab; belief callout moved under photo and set in Patrick Hand; notebook scaled 50% larger; build docs updated |
+| 3 | 2026-04-02 | Notebook graphic redesigned (new rotation scheme, cards fan from bottom pivot); belief callout stretches to match bio height; `beyondsurveys/index.html` built (navbar, intro, CTA block, Our Approach, mini bio card); SVG lifecycle graphic deferred to next session |
