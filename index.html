@@ -116,7 +116,7 @@
       display: grid;
       grid-template-columns: 260px 1fr;
       gap: 3rem;
-      align-items: start;
+      align-items: stretch;
     }
 
     /* Left column — wraps photo and blockquote together */
@@ -141,13 +141,14 @@
     ───────────────────────────────────────────────────────────── */
     .belief-callout {
       font-family: 'Patrick Hand', cursive;
-      font-size: 1rem;
-      line-height: 1.72;
+      font-size: 1.2rem;
+      line-height: 1.85;
       border-left: 4px solid var(--green);
       background: rgba(74, 107, 74, 0.045);
       padding: 1rem 1rem 1rem 1.15rem;
       color: var(--ink);
       font-style: normal;
+      flex: 1;                /* stretch to fill remaining left-column height */
     }
 
     .belief-callout p { margin: 0; }
@@ -187,28 +188,27 @@
        NOTEBOOK GRAPHIC — desktop (1.5× scale from original)
 
        Dimensions scaled from original design:
-         wrapper:  480 × 320  →  580 × 475px (width trimmed to content)
+         wrapper:  480 × 320  →  640 × 520px
          cover:    185 × 290  →  278 × 435px
          spine:    20px       →  30px
          cards:    220 × 268  →  330 × 402px
-         card left: 130       →  195px
+         card left: 130       →  205px
 
-       card-2 raised to top: -35px so its title tab is visible above
-       card-1's top edge (~50px of clearance at the visible right edge).
-       The 50px top padding on .notebook-scene provides visual space for
-       the tab so it does not appear clipped.
+       Cards pivot from left bottom — tops fan to the right, bottoms
+       stay tucked behind the notebook cover. Both cards share the same
+       top: 25px; different rotation angles separate the titles.
     ───────────────────────────────────────────────────────────── */
     .notebook-scene {
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      padding: 50px 0 2rem;   /* 50px top → room for card-2 title tab */
+      padding: 20px 0 2rem;   /* cards no longer extend above wrapper top */
     }
 
     .notebook-wrapper {
       position: relative;
-      width: 580px;
-      height: 475px;
+      width: 640px;
+      height: 520px;
     }
 
     /* ── Notebook cover ───────────────────────────────────────── */
@@ -256,6 +256,7 @@
       pointer-events: none;
       font-family: 'Patrick Hand', cursive;
       line-height: 1.35;
+      text-align: center;
     }
     .notebook-label-text .label-name {
       display: block;
@@ -287,20 +288,21 @@
 
     /* ── Project cards ────────────────────────────────────────── */
     /*
-     * Both cards anchor at left: 195px — ~83px is hidden behind the
-     * notebook cover, the remaining ~247px fans visibly to the right.
-     * transform-origin: left center → rotation pivots from the tucked edge,
-     * like pages opening from a binding.
+     * Both cards anchor at left: 205px — ~73px is hidden behind the
+     * notebook cover at the bottom; the top fans away to the right.
+     * transform-origin: left bottom → pivot is the bottom-left corner,
+     * so positive rotation tips the top away from the book while the
+     * bottom stays tucked behind the cover.
      *
-     * Card 1 (Beyond Surveys)    — front,  -4°, top: 27px
-     * Card 2 (Granter's Academy) — behind, -9°, top: -35px (raised for tab)
+     * Card 1 (Beyond Surveys)    — front,  +8°,  top:  25px
+     * Card 2 (Granter's Academy) — behind, +14°, top: -12px (raised so title clears card-1)
      *
      * FUTURE EXPANSION: when a third project is ready, uncomment .card-3
      * and add its HTML element before .card-2.
      */
     .project-card {
       position: absolute;
-      left: 195px;
+      left: 205px;
       width: 330px;
       height: 402px;
       padding: 1.8rem 1.6rem 1.5rem 2rem;
@@ -310,44 +312,49 @@
       color: var(--ink);
       display: flex;
       flex-direction: column;
-      transform-origin: left center;
+      transform-origin: left bottom;  /* bottom tucks into book, top fans away */
       transition: transform 0.22s ease, box-shadow 0.22s ease;
       border-top: 4px solid var(--amber);
     }
 
     /* Card 1 — Beyond Surveys Consulting (frontmost) */
     .card-1 {
-      top: 27px;
+      top: 25px;
       background: var(--parchment);
-      transform: rotate(-4deg);
+      transform: rotate(8deg);
       z-index: 8;
     }
     .card-1:hover {
-      transform: rotate(-4deg) translateX(15px);
+      transform: rotate(8deg) translateX(15px);
       box-shadow: 6px 5px 22px rgba(44, 31, 14, 0.28);
     }
 
-    /* Card 2 — Granter's Academy (behind, title tab visible above card-1) */
+    /* Card 2 — Granter's Academy (behind, raised so title clears card-1's top edge) */
     .card-2 {
-      top: -35px;
+      top: -55px;
       background: #F4EDE0;
-      transform: rotate(-9deg);
+      transform: rotate(14deg);
       z-index: 7;
     }
     .card-2:hover {
-      transform: rotate(-9deg) translateX(15px);
+      transform: rotate(14deg) translateX(15px);
       box-shadow: 6px 5px 22px rgba(44, 31, 14, 0.28);
+    }
+
+    /* "Learn more →" on the front card pushed to bottom-right */
+    .card-1 .card-link {
+      align-self: flex-end;
     }
 
     /* FUTURE: Card 3 — third project (behind card 2)
     .card-3 {
-      top: -35px;
+      top: 25px;
       background: #EDE4D3;
-      transform: rotate(-16deg);
+      transform: rotate(20deg);
       z-index: 6;
     }
     .card-3:hover {
-      transform: rotate(-16deg) translateX(15px);
+      transform: rotate(20deg) translateX(15px);
       box-shadow: 6px 5px 22px rgba(44, 31, 14, 0.28);
     }
     */

@@ -4,6 +4,80 @@
 
 \---
 
+## BUILD LOG
+
+### Session 3 — 2026-04-02
+
+**Completed**
+
+* `index.html` — notebook graphic redesigned and belief callout revised:
+  * Cards now pivot from `transform-origin: left bottom` — tops fan away from the book, bottoms stay tucked behind the cover
+  * Card positions changed from negative rotation (top leaning in) to positive rotation: card-1 (Beyond Surveys) at `rotate(8deg) top: 25px`, card-2 (Granter's Academy) at `rotate(14deg) top: -55px` (user adjusted to -55px)
+  * "Learn more →" on card-1 pushed to bottom-right with `align-self: flex-end`
+  * Notebook wrapper expanded to 640×520px to accommodate wider fan footprint
+  * Label text on cover ("Greta James / Projects") centred with `text-align: center`
+  * Belief callout stretched to bottom-align with bio column: `align-items: stretch` on grid, `flex: 1` on callout
+  * Belief callout font size increased to `1.2rem`, line-height to `1.85` to fill the box
+* `beyondsurveys/index.html` — Beyond Surveys home page built:
+  * Beyond Surveys navbar: `← Greta James` back-link (left, secondary) + `Home | Services | Learning Resources | Portfolio | Work With Me` (right); back-link hides on screens ≤ 760px to save space
+  * Intro section: brand eyebrow, h1 heading, Patrick Hand tagline, two positioning paragraphs; "free resources" links to `learning.html`
+  * Pricing/CTA block: cream background, amber top and bottom borders, italic text with bold green links; consultation link uses `mailto:` for now with TODO comment
+  * Our Approach section: four paragraphs of prose followed by lifecycle graphic placeholder (clearly labelled, dashed amber border) and two resource links (placeholder `href="#"` pending learning module pages)
+  * Mini bio card: circular headshot, two-line bio, "Learn more about Greta →" back-link; cream card with amber circle border and subtle shadow
+
+**Design decisions made (not previously in spec)**
+
+* Back-link "← Greta James" hidden at ≤ 760px (not ≤ 660px) — the 5-item consulting nav already crowds at tablet widths; the hub is still reachable via direct navigation
+* Consultation call CTA on home page links to `mailto:` (not `workwithme.html`) — the Work With Me page form isn't built yet; TODO comment marks where the booking link goes
+* Resource links (Common survey design mistakes, Other ways to measure your impact) use `href="#"` placeholder — will link to learning module anchors once `learning.html` is built
+* Mini bio card uses circular crop (border-radius: 50%) rather than the rectangular headshot on the hub page — suits the smaller card format
+
+**Still in progress / needs attention**
+
+* `beyondsurveys/index.html` — SVG lifecycle graphic (two circular diagrams, "The usual story" / "A better way") deferred to next session; placeholder div in place with full spec reference
+* `grantersacademy/index.html` — coming-soon stub still not built; spec not yet written (discussed: needs more content planning before building)
+* All remaining `/beyondsurveys/` pages not yet built: `services.html`, `learning.html`, `portfolio.html`, `workwithme.html`
+* All pre-go-live checklist items remain open (see Section 12)
+
+---
+
+### Session 2 — 2026-04-01
+
+**Completed**
+
+* `index.html` — full hub page built and revised:
+  * Sticky navbar with About (static, amber underline), Beyond Surveys Consulting, and Granter's Academy
+  * Two-column about section: left column holds headshot + belief callout stacked; right column holds name heading + three bio paragraphs
+  * Belief callout styled with Patrick Hand font, quiet green left border, faint green-tinted background — positioned directly below photo
+  * CSS-only notebook graphic (no image files) scaled to 1.5× original design: 278×435px cover with spine and label, two 330×402px fanning project cards. Back card (Granter's Academy) raised to `top: -35px` so its title tab is visible above the front card. Third card slot reserved in commented HTML and CSS for future use.
+  * Hover interaction: each card slides 15px outward while holding rotation angle
+  * Mobile tap-to-reveal drawer (JS swap at ≤ 660px breakpoint)
+  * Quiet footer with email and LinkedIn links
+* `build-process.md` — new plain-English documentation covering site architecture, tech choices, component descriptions, and a how-to-change guide for common edits
+* `project-notes.md` — hub page styling notes and navbar spec updated to reflect all design decisions made during build
+
+**Design decisions made (not previously in spec)**
+
+* Belief callout repositioned from bottom of bio text to left column below photo — keeps the left column visually balanced and creates a natural pause between photo and bio
+* Belief callout font set to Patrick Hand — distinguishes it from the Georgia body text and gives it a personal, handwritten quality consistent with the notebook aesthetic
+* Notebook scaled to 1.5× for visual impact at desktop viewport widths; rotation angle on back card reduced from −12° to −9° to compensate for the wider card size (otherwise the tilt would be too steep)
+* Back card raised with 50px top padding on the notebook scene (rather than clipping) so the title tab appears clearly above the cover without overflow issues
+* Granter's Academy added to navbar (in addition to the notebook card) so it is accessible via direct navigation, not only through the notebook graphic
+
+**Still in progress / needs attention**
+
+* `grantersacademy/index.html` — coming-soon stub page not yet built; Granter's Academy links in navbar and notebook card currently 404
+* All `/beyondsurveys/` pages not yet built
+* All pre-go-live checklist items remain open (Formspree, domain, email, Food Bank permission, calendar links — see Section 12)
+
+---
+
+### Session 1 — 2026-04-01
+
+Initial project setup. `project-notes.md` written as handoff spec. Repository created at `gretajames.github.io`. No HTML files built.
+
+\---
+
 ## 1\. PROJECT OVERVIEW
 
 This document contains all content, structure, styling guidance, and technical notes needed to build the Beyond Surveys Consulting website. Read this document fully before writing any code.

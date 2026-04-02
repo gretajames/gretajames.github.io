@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beyond Surveys Consulting — Measure. Learn. Grow.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─────────────────────────────────────────────────────────────
+       DESIGN TOKENS — parchment palette (matches hub page)
+    ───────────────────────────────────────────────────────────── */
+    :root {
+      --parchment:  #FAF6EE;
+      --cream:      #E8D9B5;
+      --amber:      #C8A96A;
+      --deep-brown: #7A5C2E;
+      --green:      #4A6B4A;
+      --ink:        #2C1F0E;
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       RESET & BASE
+    ───────────────────────────────────────────────────────────── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: var(--parchment);
+      color: var(--ink);
+      line-height: 1.75;
+    }
+
+    a {
+      color: var(--deep-brown);
+      transition: color 0.2s;
+    }
+    a:hover { color: var(--green); }
+
+    /* ─────────────────────────────────────────────────────────────
+       LAYOUT CONTAINER
+    ───────────────────────────────────────────────────────────── */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 1.75rem;
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       NAVBAR
+       Left:  ← Greta James (subtle back-link to hub)
+       Right: Home | Services | Learning Resources | Portfolio | Work With Me
+    ───────────────────────────────────────────────────────────── */
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--parchment);
+      border-bottom: 1px solid var(--cream);
+      padding: 0.9rem 1.75rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    /* Back-link — secondary, muted, does not compete with main nav */
+    .nav-back {
+      font-size: 0.88rem;
+      color: var(--deep-brown);
+      text-decoration: none;
+      white-space: nowrap;
+      opacity: 0.65;
+      margin-right: auto;
+      letter-spacing: 0.01em;
+    }
+    .nav-back:hover {
+      color: var(--green);
+      opacity: 1;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.75rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.95rem;
+      color: var(--deep-brown);
+      white-space: nowrap;
+    }
+    .nav-links a:hover { color: var(--green); }
+
+    /* "Home" — static current-page indicator */
+    .nav-current {
+      font-size: 0.95rem;
+      color: var(--ink);
+      font-weight: bold;
+      border-bottom: 2px solid var(--amber);
+      padding-bottom: 2px;
+      cursor: default;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       INTRO SECTION
+       Brand name, tagline, two paragraphs of positioning copy.
+    ───────────────────────────────────────────────────────────── */
+    .intro-section {
+      padding: 4rem 0 3.5rem;
+    }
+
+    .intro-brand {
+      font-family: 'Patrick Hand', cursive;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      color: var(--deep-brown);
+      margin-bottom: 0.75rem;
+    }
+
+    .intro-section h1 {
+      font-size: 1.9rem;
+      font-weight: normal;
+      color: var(--ink);
+      line-height: 1.3;
+      margin-bottom: 0.6rem;
+    }
+
+    .intro-tagline {
+      font-family: 'Patrick Hand', cursive;
+      font-size: 1.1rem;
+      color: var(--deep-brown);
+      font-style: italic;
+      margin-bottom: 2rem;
+    }
+
+    .intro-section p {
+      font-size: 1rem;
+      margin-bottom: 1.2rem;
+      max-width: 680px;
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       PRICING / CTA BLOCK
+       Visually separated above and below with amber borders.
+       Cream background lifts it off the page background.
+    ───────────────────────────────────────────────────────────── */
+    .cta-block {
+      background: var(--cream);
+      border-top: 2px solid var(--amber);
+      border-bottom: 2px solid var(--amber);
+      padding: 1.75rem 0;
+      text-align: center;
+    }
+
+    .cta-block p {
+      font-size: 1.05rem;
+      color: var(--ink);
+      font-style: italic;
+    }
+
+    .cta-block a {
+      color: var(--green);
+      font-style: normal;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .cta-block a:hover { color: var(--deep-brown); }
+
+    /* ─────────────────────────────────────────────────────────────
+       OUR APPROACH SECTION
+    ───────────────────────────────────────────────────────────── */
+    .approach-section {
+      padding: 3.5rem 0 1.5rem;
+    }
+
+    .approach-section h2 {
+      font-size: 1.45rem;
+      font-weight: normal;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+
+    .approach-section p {
+      font-size: 1rem;
+      margin-bottom: 1.2rem;
+      max-width: 680px;
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       LIFECYCLE GRAPHIC PLACEHOLDER
+       Visible, clearly labelled — to be replaced with SVG next session.
+    ───────────────────────────────────────────────────────────── */
+    .lifecycle-placeholder {
+      margin: 2.5rem 0 1rem;
+      padding: 2.5rem 2rem;
+      border: 2px dashed var(--amber);
+      border-radius: 4px;
+      background: rgba(200, 169, 106, 0.06);
+      text-align: center;
+    }
+
+    .lifecycle-placeholder p {
+      font-family: 'Patrick Hand', cursive;
+      font-size: 1rem;
+      color: var(--deep-brown);
+      margin: 0;
+      max-width: none;
+    }
+
+    /* Resource links row — sits below the lifecycle graphic */
+    .resource-links {
+      margin: 1.5rem 0 3.5rem;
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      font-size: 0.97rem;
+    }
+
+    .resource-links a { color: var(--green); }
+    .resource-links a:hover { color: var(--deep-brown); }
+
+    /* ─────────────────────────────────────────────────────────────
+       MINI BIO CARD
+       Small headshot + two-line bio + back-link to hub page.
+       Visual treatment matches a content card (cream background,
+       consistent padding) — will align with portfolio card style.
+    ───────────────────────────────────────────────────────────── */
+    .bio-card-section {
+      border-top: 1px solid var(--cream);
+      padding: 2.5rem 0 3.5rem;
+    }
+
+    .bio-card {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      background: var(--cream);
+      border-radius: 4px;
+      padding: 1.5rem 1.75rem;
+      max-width: 560px;
+      box-shadow: 2px 3px 12px rgba(44, 31, 14, 0.08);
+    }
+
+    .bio-card-photo {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--amber);
+      flex-shrink: 0;
+    }
+
+    .bio-card-text p {
+      font-size: 0.93rem;
+      color: var(--ink);
+      line-height: 1.6;
+      margin-bottom: 0.55rem;
+      margin-top: 0;
+    }
+
+    .bio-card-text a {
+      font-size: 0.92rem;
+      color: var(--green);
+      text-decoration: none;
+    }
+    .bio-card-text a:hover { color: var(--deep-brown); }
+
+    /* ─────────────────────────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────────────────────────── */
+    .site-footer {
+      padding: 2rem 0;
+      border-top: 1px solid var(--cream);
+      text-align: center;
+      font-size: 0.87rem;
+      color: var(--deep-brown);
+    }
+
+    .site-footer a { color: var(--deep-brown); }
+    .site-footer a:hover { color: var(--green); }
+
+    /* ─────────────────────────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────────────────────────── */
+    @media (max-width: 760px) {
+      .nav-back { display: none; } /* back-link is reachable via hub page; saves nav space */
+      .nav-links { gap: 1.1rem; }
+      .nav-links a, .nav-current { font-size: 0.88rem; }
+    }
+
+    @media (max-width: 560px) {
+      .nav-links { gap: 0.75rem; }
+      .nav-links a, .nav-current { font-size: 0.8rem; }
+      .intro-section { padding: 2.5rem 0 2rem; }
+      .intro-section h1 { font-size: 1.55rem; }
+      .approach-section { padding: 2.5rem 0 1rem; }
+      .bio-card { flex-direction: column; text-align: center; max-width: 100%; }
+      .resource-links { flex-direction: column; gap: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ────────────────────────────────────────────────────────────
+       NAVBAR
+       ← Greta James  (back-link, secondary)
+       Home | Services | Learning Resources | Portfolio | Work With Me
+  ─────────────────────────────────────────────────────────────── -->
+  <nav class="site-nav" aria-label="Beyond Surveys navigation">
+    <a href="../" class="nav-back">← Greta James</a>
+    <ul class="nav-links">
+      <li>
+        <span class="nav-current" aria-current="page">Home</span>
+      </li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="learning.html">Learning Resources</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="workwithme.html">Work With Me</a></li>
+    </ul>
+  </nav>
+
+  <!-- ────────────────────────────────────────────────────────────
+       INTRO SECTION
+  ─────────────────────────────────────────────────────────────── -->
+  <section class="intro-section">
+    <div class="container">
+
+      <p class="intro-brand">Beyond Surveys Consulting</p>
+      <h1>Build measurement capacity<br>your organization actually owns</h1>
+      <p class="intro-tagline">Measure. Learn. Grow.</p>
+
+      <p>Impact measurement matters. It helps you make better daily programming decisions, strengthens your grant applications, and keeps your organization growing. But for small organizations, accessing quality support has historically meant expensive consultants or going it alone.</p>
+
+      <p>I work specifically with small social service organizations in Southern Ontario — housing, mental health, harm reduction, food services, trauma-informed care, and basic needs — to build practical, affordable impact measurement systems. My goal isn't to make you dependent on me. It's to build your internal capacity so you can do this work yourselves. In fact, you can start for free right now by checking out my <a href="learning.html">free resources</a>.</p>
+
+    </div>
+  </section>
+
+  <!-- ────────────────────────────────────────────────────────────
+       PRICING / CTA BLOCK
+  ─────────────────────────────────────────────────────────────── -->
+  <div class="cta-block">
+    <div class="container">
+      <p>
+        <a href="services.html">See my pricing tiers</a>
+        &nbsp;—&nbsp; or &nbsp;
+        <!-- TODO: replace with booking link when calendar integration is ready -->
+        <a href="mailto:greta@gretajames.ca?subject=Free%20Consultation%20Request">book a free consultation call</a>
+        to figure out where to start.
+      </p>
+    </div>
+  </div>
+
+  <!-- ────────────────────────────────────────────────────────────
+       OUR APPROACH
+  ─────────────────────────────────────────────────────────────── -->
+  <section class="approach-section">
+    <div class="container">
+
+      <h2>Our approach</h2>
+
+      <p>I help organizations build measurement around a program-focused theory of change: starting with what your program is actually trying to do, identifying the key questions you need to answer to know if it's working, and then choosing the right tools to answer those questions.</p>
+
+      <p>Most organizations default to surveys when they think about impact measurement — and surveys have their place. But they're only one tool, and often not the most useful one. Poorly designed surveys produce data that looks useful but isn't. Survey fatigue is real: many people choose not to finish — or not to start. And the rise of online bots makes it increasingly difficult to tell valid responses from fake ones.</p>
+
+      <p>The good news is that most organizations are already sitting on rich sources of data they aren't fully using. Program records, attendance patterns, referral rates, case notes, service milestones — these can tell you a great deal about your operations and impact, often with less burden on the people you serve.</p>
+
+      <p>The goal is a measurement system you understand, you own, and you can grow without me.</p>
+
+      <!-- ── LIFECYCLE GRAPHIC ──────────────────────────────────
+           TODO: Replace this placeholder with the SVG lifecycle
+           graphic (two circular diagrams) in the next session.
+           Full spec in project-notes.md Section 5:
+             Left circle  — "The usual story" (6 steps, #B06040 arcs)
+             Right circle — "A better way"    (5 steps, #5A8A5A arcs)
+             Divider: vertical dashed line (#C8B48A)
+             Captions: "familiar, exhausting, useless" /
+                       "grounded, light, and yours"
+             Font: Patrick Hand throughout; no boxes around labels
+      ─────────────────────────────────────────────────────────── -->
+      <div class="lifecycle-placeholder" aria-hidden="true">
+        <p>[ Lifecycle graphic — to be built next session ]</p>
+      </div>
+
+      <div class="resource-links">
+        <a href="#">Common survey design mistakes →</a>
+        <a href="#">Other ways to measure your impact →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ────────────────────────────────────────────────────────────
+       MINI BIO CARD
+  ─────────────────────────────────────────────────────────────── -->
+  <div class="bio-card-section">
+    <div class="container">
+      <div class="bio-card">
+        <img
+          src="../assets/Professional head shot.jpg"
+          alt="Greta James"
+          class="bio-card-photo"
+        />
+        <div class="bio-card-text">
+          <p>Greta James is a researcher and monitoring and evaluation consultant based in Southern Ontario, with a PhD in cognitive psychology from the University of Waterloo.</p>
+          <a href="../">Learn more about Greta →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ────────────────────────────────────────────────────────────
+       FOOTER
+  ─────────────────────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>
+        Get in touch:
+        <a href="mailto:greta@gretajames.ca">greta@gretajames.ca</a>
+        &nbsp;·&nbsp;
+        <a href="https://www.linkedin.com/in/greta-james/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
