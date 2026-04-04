@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Learning Resources — Beyond Surveys Consulting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet" />
+  <!-- Shared Beyond Surveys stylesheet: tokens, reset, nav, bio card, footer -->
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* ─────────────────────────────────────────────────────────────
+       LEARNING RESOURCES PAGE — page-specific styles
+    ───────────────────────────────────────────────────────────── */
+
+    /* ─────────────────────────────────────────────────────────────
+       PAGE INTRO
+    ───────────────────────────────────────────────────────────── */
+    .page-intro {
+      padding: 4rem 0 0;
+    }
+
+    .page-intro h1 {
+      font-size: 1.9rem;
+      font-weight: normal;
+      color: var(--ink);
+      margin-bottom: 2rem;
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       FRAMING SECTION
+       Left border accent signals philosophy/context rather than
+       a clickable resource — visually distinct from the cards below.
+    ───────────────────────────────────────────────────────────── */
+    .framing-section {
+      border-left: 3px solid var(--green);
+      padding-left: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .framing-section p {
+      font-size: 1rem;
+      color: var(--ink);
+      margin-bottom: 1.1rem;
+      max-width: 680px;
+      line-height: 1.8;
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       FOUR-STEP TOC FLOW
+       Subtle horizontal progression showing where you might be.
+       Numbered steps with labels; light visual weight.
+    ───────────────────────────────────────────────────────────── */
+    .toc-flow {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      margin: 2rem 0 2.5rem;
+      overflow-x: auto;
+    }
+
+    .toc-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      min-width: 120px;
+      position: relative;
+      text-align: center;
+    }
+
+    /* Connecting line between steps */
+    .toc-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 14px;
+      left: 50%;
+      width: 100%;
+      height: 1px;
+      background: var(--amber);
+      opacity: 0.5;
+    }
+
+    .toc-step-number {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--parchment);
+      border: 1px solid var(--amber);
+      color: var(--deep-brown);
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      flex-shrink: 0;
+    }
+
+    .toc-step-label {
+      font-size: 0.82rem;
+      color: var(--deep-brown);
+      margin-top: 0.5rem;
+      line-height: 1.35;
+      padding: 0 0.25rem;
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       NOTIFICATIONS + QUIET CALLOUT
+    ───────────────────────────────────────────────────────────── */
+    .notify-line {
+      font-size: 0.97rem;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+    }
+
+    .notify-line a {
+      color: var(--green);
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .notify-line a:hover { color: var(--deep-brown); }
+
+    /* Quiet callout — inline italic, not a banner */
+    .quiet-callout {
+      font-size: 0.93rem;
+      font-style: italic;
+      color: var(--deep-brown);
+      margin-bottom: 3rem;
+    }
+
+    .quiet-callout a {
+      color: var(--green);
+      font-style: normal;
+      text-decoration: none;
+    }
+    .quiet-callout a:hover { color: var(--deep-brown); }
+
+    /* ─────────────────────────────────────────────────────────────
+       RESOURCE CARDS
+       Existing content: full card, active links.
+       Coming soon: muted card, "Coming soon" badge in place of link.
+    ───────────────────────────────────────────────────────────── */
+    .resources-section {
+      padding-bottom: 4rem;
+    }
+
+    /* Parent card — wraps the two-part series */
+    .resource-card {
+      background: var(--cream);
+      border-radius: 4px;
+      border-left: 3px solid var(--amber);
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .resource-card h2 {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: var(--ink);
+      margin-bottom: 0.3rem;
+    }
+
+    .resource-card .card-attribution {
+      font-size: 0.88rem;
+      font-style: italic;
+      color: var(--deep-brown);
+      margin-bottom: 1rem;
+    }
+
+    .resource-card .card-description {
+      font-size: 0.95rem;
+      color: var(--ink);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+      max-width: 620px;
+    }
+
+    /* Sub-items within a parent card (individual sessions) */
+    .session-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      border-top: 1px solid rgba(200, 169, 106, 0.4);
+      padding-top: 1.25rem;
+    }
+
+    .session-item h3 {
+      font-size: 0.97rem;
+      font-weight: bold;
+      color: var(--ink);
+      margin-bottom: 0.25rem;
+    }
+
+    .session-item p {
+      font-size: 0.92rem;
+      color: var(--ink);
+      line-height: 1.65;
+      margin-bottom: 0.5rem;
+      max-width: 580px;
+    }
+
+    .session-item a {
+      font-size: 0.92rem;
+      color: var(--green);
+      text-decoration: none;
+    }
+    .session-item a:hover { color: var(--deep-brown); }
+
+    /* Coming soon card — same shape, muted */
+    .resource-card-soon {
+      background: var(--cream);
+      border-radius: 4px;
+      border-left: 3px solid var(--amber);
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+      opacity: 0.65;
+    }
+
+    .resource-card-soon h2 {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    /* "Coming soon" badge */
+    .badge-soon {
+      font-size: 0.75rem;
+      font-weight: normal;
+      font-family: 'Patrick Hand', cursive;
+      color: var(--deep-brown);
+      background: var(--parchment);
+      border: 1px solid var(--amber);
+      border-radius: 3px;
+      padding: 0.15rem 0.5rem;
+      letter-spacing: 0.03em;
+    }
+
+    .resource-card-soon p {
+      font-size: 0.95rem;
+      color: var(--ink);
+      line-height: 1.7;
+      max-width: 620px;
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────────────────────────── */
+    @media (max-width: 620px) {
+      .page-intro { padding: 2.5rem 0 0; }
+      .page-intro h1 { font-size: 1.55rem; }
+      .toc-flow {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+      .toc-step {
+        flex-direction: row;
+        align-items: center;
+        gap: 0.75rem;
+        text-align: left;
+        min-width: unset;
+      }
+      .toc-step:not(:last-child)::after { display: none; }
+      .toc-step-label { margin-top: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ────────────────────────────────────────────────────────────
+       NAVBAR
+       ← Greta James  (back-link, secondary)
+       Home | Services | Learning Resources | Portfolio | Work With Me
+  ─────────────────────────────────────────────────────────────── -->
+  <nav class="site-nav" aria-label="Beyond Surveys navigation">
+    <a href="../" class="nav-back">← Greta James</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li>
+        <span class="nav-current" aria-current="page">Learning Resources</span>
+      </li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="workwithme.html">Work With Me</a></li>
+    </ul>
+  </nav>
+
+  <!-- ────────────────────────────────────────────────────────────
+       PAGE INTRO + FRAMING
+  ─────────────────────────────────────────────────────────────── -->
+  <section class="page-intro">
+    <div class="container">
+      <h1>Learning Resources</h1>
+
+      <div class="framing-section">
+        <p>Every program starts with a theory of change — an idea about what problem you're solving, why your approach will work, and what success looks like. A program is only as strong as its theory of change, but most programs don't have them or they go unused.</p>
+
+        <p>These resources are designed to help you build a theory of change and understand how it shapes the measurement work you do. From there we start building measurement tools — without defaulting to surveys.</p>
+
+        <p>Good measurement follows the program — not the other way around. These resources will help you figure out where you are, what questions matter most, and how to answer them using the full range of tools available to you — including many that don't involve surveys at all.</p>
+      </div>
+
+      <!-- Four-step TOC flow: where are you in your measurement journey? -->
+      <div class="toc-flow" aria-label="Where are you in your measurement journey?">
+        <div class="toc-step">
+          <div class="toc-step-number">1</div>
+          <div class="toc-step-label">Scoping the problem</div>
+        </div>
+        <div class="toc-step">
+          <div class="toc-step-number">2</div>
+          <div class="toc-step-label">Testing your strategy</div>
+        </div>
+        <div class="toc-step">
+          <div class="toc-step-number">3</div>
+          <div class="toc-step-label">Testing assumptions</div>
+        </div>
+        <div class="toc-step">
+          <div class="toc-step-number">4</div>
+          <div class="toc-step-label">Measuring impact</div>
+        </div>
+      </div>
+
+      <!-- New modules notification -->
+      <p class="notify-line">
+        New modules are in development.
+        <!-- TODO: replace with real email signup when notification system is in place -->
+        <a href="mailto:greta@gretajames.ca?subject=Learning%20Resources%20Notifications">Sign up to be notified when new content is available →</a>
+      </p>
+
+      <!-- Quiet callout — inline italic, not a banner -->
+      <p class="quiet-callout">
+        Having trouble applying this content to your own program?
+        <a href="services.html#track3">Track 3 guided application support</a>
+        is designed for exactly that — or
+        <a href="mailto:greta@gretajames.ca">reach out directly</a>
+        if you'd like to talk it through.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- ────────────────────────────────────────────────────────────
+       RESOURCE CARDS
+  ─────────────────────────────────────────────────────────────── -->
+  <section class="resources-section">
+    <div class="container">
+
+      <!-- Getting Started with Impact Measurement — two-part series -->
+      <div class="resource-card">
+        <h2>Getting Started with Impact Measurement</h2>
+        <p class="card-attribution">In partnership with M4C — a working group of the Children and Youth Planning Table of Waterloo Region</p>
+        <p class="card-description">
+          A two-part introductory series covering the core concepts of measuring program impact for community organizations. Developed and delivered in collaboration with M4C.
+          <strong>Start with Session 1</strong> — Session 2 builds directly on the concepts introduced there.
+        </p>
+
+        <div class="session-list">
+
+          <div class="session-item">
+            <h3>Session 1 — Introduction to Impact Measurement</h3>
+            <p>An introduction to quantitative measurement, what it means to measure your impact, and a practical exercise to help you begin applying these concepts to your own programs.</p>
+            <a href="https://www.youtube.com/watch?v=6cg1kBsFIQA" target="_blank" rel="noopener noreferrer">Watch Session 1 →</a>
+          </div>
+
+          <div class="session-item">
+            <h3>Session 2 — Building an Evaluation Framework <em style="font-weight:normal; font-size:0.88rem;">(Requires Session 1)</em></h3>
+            <p>A hands-on session focused on developing an evaluation framework for your program — including how to articulate your program's goals, establish clear objectives, and build a framework to measure how effectively your program is achieving them.</p>
+            <a href="https://www.youtube.com/watch?v=NkPLikfO5gI" target="_blank" rel="noopener noreferrer">Watch Session 2 →</a>
+          </div>
+
+        </div>
+      </div><!-- /resource-card -->
+
+      <!-- Coming Soon — Common Survey Design Mistakes -->
+      <div class="resource-card-soon" aria-label="Coming soon">
+        <h2>
+          Common Survey Design Mistakes
+          <span class="badge-soon">Coming soon</span>
+        </h2>
+        <p>Learn the most common ways surveys go wrong — and how to avoid them. This module will help your organization assess whether an existing survey is giving you reliable data, and what to fix if it isn't.</p>
+      </div>
+
+      <!-- Coming Soon — Other Ways to Measure Your Impact -->
+      <div class="resource-card-soon" aria-label="Coming soon">
+        <h2>
+          Other Ways to Measure Your Impact
+          <span class="badge-soon">Coming soon</span>
+        </h2>
+        <p>Surveys are only one tool. This module walks through the rich sources of data most organizations already have — program records, service milestones, attendance patterns, case notes, administrative data, and more — and helps you identify which are most relevant to your program's key measurement questions.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ────────────────────────────────────────────────────────────
+       FOOTER
+  ─────────────────────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>
+        Get in touch:
+        <a href="mailto:greta@gretajames.ca">greta@gretajames.ca</a>
+        &nbsp;·&nbsp;
+        <a href="https://www.linkedin.com/in/greta-james/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>

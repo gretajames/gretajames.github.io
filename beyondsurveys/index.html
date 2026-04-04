@@ -7,112 +7,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet" />
+  <!-- Shared Beyond Surveys stylesheet: tokens, reset, nav, bio card, footer -->
+  <link rel="stylesheet" href="style.css" />
 
   <style>
     /* ─────────────────────────────────────────────────────────────
-       DESIGN TOKENS — parchment palette (matches hub page)
+       HOME PAGE — page-specific styles
     ───────────────────────────────────────────────────────────── */
-    :root {
-      --parchment:  #FAF6EE;
-      --cream:      #E8D9B5;
-      --amber:      #C8A96A;
-      --deep-brown: #7A5C2E;
-      --green:      #4A6B4A;
-      --ink:        #2C1F0E;
-    }
-
-    /* ─────────────────────────────────────────────────────────────
-       RESET & BASE
-    ───────────────────────────────────────────────────────────── */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: Georgia, 'Times New Roman', serif;
-      background: var(--parchment);
-      color: var(--ink);
-      line-height: 1.75;
-    }
-
-    a {
-      color: var(--deep-brown);
-      transition: color 0.2s;
-    }
-    a:hover { color: var(--green); }
-
-    /* ─────────────────────────────────────────────────────────────
-       LAYOUT CONTAINER
-    ───────────────────────────────────────────────────────────── */
-    .container {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 0 1.75rem;
-    }
-
-    /* ─────────────────────────────────────────────────────────────
-       NAVBAR
-       Left:  ← Greta James (subtle back-link to hub)
-       Right: Home | Services | Learning Resources | Portfolio | Work With Me
-    ───────────────────────────────────────────────────────────── */
-    .site-nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: var(--parchment);
-      border-bottom: 1px solid var(--cream);
-      padding: 0.9rem 1.75rem;
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
-
-    /* Back-link — secondary, muted, does not compete with main nav */
-    .nav-back {
-      font-size: 0.88rem;
-      color: var(--deep-brown);
-      text-decoration: none;
-      white-space: nowrap;
-      opacity: 0.65;
-      margin-right: auto;
-      letter-spacing: 0.01em;
-    }
-    .nav-back:hover {
-      color: var(--green);
-      opacity: 1;
-    }
-
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 1.75rem;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      font-size: 0.95rem;
-      color: var(--deep-brown);
-      white-space: nowrap;
-    }
-    .nav-links a:hover { color: var(--green); }
-
-    /* "Home" — static current-page indicator */
-    .nav-current {
-      font-size: 0.95rem;
-      color: var(--ink);
-      font-weight: bold;
-      border-bottom: 2px solid var(--amber);
-      padding-bottom: 2px;
-      cursor: default;
-      user-select: none;
-      white-space: nowrap;
-    }
 
     /* ─────────────────────────────────────────────────────────────
        INTRO SECTION
@@ -150,7 +51,6 @@
     .intro-section p {
       font-size: 1rem;
       margin-bottom: 1.2rem;
-      max-width: 680px;
     }
 
     /* ─────────────────────────────────────────────────────────────
@@ -197,118 +97,49 @@
     .approach-section p {
       font-size: 1rem;
       margin-bottom: 1.2rem;
-      max-width: 680px;
     }
 
     /* ─────────────────────────────────────────────────────────────
-       LIFECYCLE GRAPHIC PLACEHOLDER
-       Visible, clearly labelled — to be replaced with SVG next session.
+       LIFECYCLE GRAPHIC
+       Scrolls horizontally on small screens rather than shrinking
+       the SVG text to illegibility.
     ───────────────────────────────────────────────────────────── */
-    .lifecycle-placeholder {
+    .lifecycle-graphic {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
       margin: 2.5rem 0 1rem;
-      padding: 2.5rem 2rem;
-      border: 2px dashed var(--amber);
-      border-radius: 4px;
-      background: rgba(200, 169, 106, 0.06);
-      text-align: center;
     }
-
-    .lifecycle-placeholder p {
-      font-family: 'Patrick Hand', cursive;
-      font-size: 1rem;
-      color: var(--deep-brown);
-      margin: 0;
-      max-width: none;
+    .lifecycle-graphic svg {
+      display: block;
+      min-width: 640px;
+      width: 100%;
     }
 
     /* Resource links row — sits below the lifecycle graphic */
     .resource-links {
       margin: 1.5rem 0 3.5rem;
       display: flex;
+      justify-content: center;
       gap: 2.5rem;
       flex-wrap: wrap;
       font-size: 0.97rem;
+    }
+
+    /* Center the bio card on this page */
+    .bio-card-section .bio-card {
+      margin: 0 auto;
     }
 
     .resource-links a { color: var(--green); }
     .resource-links a:hover { color: var(--deep-brown); }
 
     /* ─────────────────────────────────────────────────────────────
-       MINI BIO CARD
-       Small headshot + two-line bio + back-link to hub page.
-       Visual treatment matches a content card (cream background,
-       consistent padding) — will align with portfolio card style.
+       RESPONSIVE — home page specific
     ───────────────────────────────────────────────────────────── */
-    .bio-card-section {
-      border-top: 1px solid var(--cream);
-      padding: 2.5rem 0 3.5rem;
-    }
-
-    .bio-card {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      background: var(--cream);
-      border-radius: 4px;
-      padding: 1.5rem 1.75rem;
-      max-width: 560px;
-      box-shadow: 2px 3px 12px rgba(44, 31, 14, 0.08);
-    }
-
-    .bio-card-photo {
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid var(--amber);
-      flex-shrink: 0;
-    }
-
-    .bio-card-text p {
-      font-size: 0.93rem;
-      color: var(--ink);
-      line-height: 1.6;
-      margin-bottom: 0.55rem;
-      margin-top: 0;
-    }
-
-    .bio-card-text a {
-      font-size: 0.92rem;
-      color: var(--green);
-      text-decoration: none;
-    }
-    .bio-card-text a:hover { color: var(--deep-brown); }
-
-    /* ─────────────────────────────────────────────────────────────
-       FOOTER
-    ───────────────────────────────────────────────────────────── */
-    .site-footer {
-      padding: 2rem 0;
-      border-top: 1px solid var(--cream);
-      text-align: center;
-      font-size: 0.87rem;
-      color: var(--deep-brown);
-    }
-
-    .site-footer a { color: var(--deep-brown); }
-    .site-footer a:hover { color: var(--green); }
-
-    /* ─────────────────────────────────────────────────────────────
-       RESPONSIVE
-    ───────────────────────────────────────────────────────────── */
-    @media (max-width: 760px) {
-      .nav-back { display: none; } /* back-link is reachable via hub page; saves nav space */
-      .nav-links { gap: 1.1rem; }
-      .nav-links a, .nav-current { font-size: 0.88rem; }
-    }
-
     @media (max-width: 560px) {
-      .nav-links { gap: 0.75rem; }
-      .nav-links a, .nav-current { font-size: 0.8rem; }
       .intro-section { padding: 2.5rem 0 2rem; }
       .intro-section h1 { font-size: 1.55rem; }
       .approach-section { padding: 2.5rem 0 1rem; }
-      .bio-card { flex-direction: column; text-align: center; max-width: 100%; }
       .resource-links { flex-direction: column; gap: 0.85rem; }
     }
   </style>
@@ -382,18 +213,151 @@
       <p>The goal is a measurement system you understand, you own, and you can grow without me.</p>
 
       <!-- ── LIFECYCLE GRAPHIC ──────────────────────────────────
-           TODO: Replace this placeholder with the SVG lifecycle
-           graphic (two circular diagrams) in the next session.
-           Full spec in project-notes.md Section 5:
-             Left circle  — "The usual story" (6 steps, #B06040 arcs)
-             Right circle — "A better way"    (5 steps, #5A8A5A arcs)
-             Divider: vertical dashed line (#C8B48A)
-             Captions: "familiar, exhausting, useless" /
-                       "grounded, light, and yours"
-             Font: Patrick Hand throughout; no boxes around labels
+           Two circular lifecycle diagrams side by side.
+           Left:  "The usual story"  — 6 steps, red-brown tones
+           Right: "A better way"    — 5 steps, green tones
+           Font: Patrick Hand throughout; no boxes around labels.
+           Scrollable on small screens via .lifecycle-graphic wrapper.
       ─────────────────────────────────────────────────────────── -->
-      <div class="lifecycle-placeholder" aria-hidden="true">
-        <p>[ Lifecycle graphic — to be built next session ]</p>
+      <div class="lifecycle-graphic">
+        <svg xmlns="http://www.w3.org/2000/svg"
+             viewBox="0 0 820 380"
+             role="img"
+             aria-label="Two circular lifecycle diagrams. Left: The usual story — a survey-heavy loop. Right: A better way — an adaptive measurement cycle.">
+          <title>Measurement lifecycle: The usual story vs. A better way</title>
+
+          <defs>
+            <!-- Open arrowheads at path ends, oriented to path direction -->
+            <marker id="arrow-red" markerWidth="9" markerHeight="7"
+                    refX="8" refY="3.5" orient="auto"
+                    markerUnits="userSpaceOnUse">
+              <path d="M 0 0.5 L 8 3.5 L 0 6.5 Z" fill="#B06040"/>
+            </marker>
+            <marker id="arrow-green" markerWidth="9" markerHeight="7"
+                    refX="8" refY="3.5" orient="auto"
+                    markerUnits="userSpaceOnUse">
+              <path d="M 0 0.5 L 8 3.5 L 0 6.5 Z" fill="#5A8A5A"/>
+            </marker>
+          </defs>
+
+
+          <!-- ═══════════════════════════════════════════════════
+               LEFT CIRCLE — "The usual story"
+               cx=215, cy=205, r=82
+               6 steps clockwise from top (-90°, -30°, 30°, 90°, 150°, 210°)
+               Arc gap: 14° each side of each step
+          ════════════════════════════════════════════════════ -->
+
+          <text x="215" y="42" text-anchor="middle"
+                font-family="'Patrick Hand', cursive"
+                font-size="14" font-weight="bold" fill="#3D1A08">The usual story</text>
+
+          <!-- Arcs (clockwise, red-brown) -->
+          <g stroke="#B06040" stroke-width="1.8" fill="none" marker-end="url(#arrow-red)">
+            <path d="M 234.8 125.4 A 82 82 0 0 1 274.0 148.0"/><!-- 1→2 -->
+            <path d="M 293.8 182.4 A 82 82 0 0 1 293.8 227.6"/><!-- 2→3 -->
+            <path d="M 274.0 262.0 A 82 82 0 0 1 234.8 284.6"/><!-- 3→4 -->
+            <path d="M 195.2 284.6 A 82 82 0 0 1 156.0 262.0"/><!-- 4→5 -->
+            <path d="M 136.2 227.6 A 82 82 0 0 1 136.2 182.4"/><!-- 5→6 -->
+            <path d="M 156.0 148.0 A 82 82 0 0 1 195.2 125.4"/><!-- 6→1 -->
+          </g>
+
+          <!-- Step labels -->
+          <g font-family="'Patrick Hand', cursive" font-size="12" fill="#3D1A08">
+            <!-- 1: top -->
+            <text x="215" y="82"  text-anchor="middle">Funder asks for</text>
+            <text x="215" y="96"  text-anchor="middle">impact data</text>
+            <!-- 2: upper right -->
+            <text x="314" y="143" text-anchor="start">Cobble a</text>
+            <text x="314" y="157" text-anchor="start">rushed survey</text>
+            <!-- 3: lower right -->
+            <text x="314" y="253" text-anchor="start">Staff don't</text>
+            <text x="314" y="267" text-anchor="start">see the point</text>
+            <!-- 4: bottom -->
+            <text x="215" y="308" text-anchor="middle">Bots &amp; silence.</text>
+            <text x="215" y="322" text-anchor="middle">Chase responses.</text>
+            <!-- 5: lower left -->
+            <text x="116" y="253" text-anchor="end">Data sits</text>
+            <text x="116" y="267" text-anchor="end">in a folder</text>
+            <!-- 6: upper left -->
+            <text x="116" y="143" text-anchor="end">No learning.</text>
+            <text x="116" y="157" text-anchor="end">Repeat.</text>
+          </g>
+
+          <!-- Center italic label -->
+          <text x="215" y="200" text-anchor="middle"
+                font-family="'Patrick Hand', cursive"
+                font-size="11" font-style="italic" fill="#3D1A08">every year,</text>
+          <text x="215" y="214" text-anchor="middle"
+                font-family="'Patrick Hand', cursive"
+                font-size="11" font-style="italic" fill="#3D1A08">unchanged</text>
+
+          <!-- Caption -->
+          <text x="215" y="356" text-anchor="middle"
+                font-family="'Patrick Hand', cursive"
+                font-size="11" font-style="italic" fill="#3D1A08">familiar, exhausting, useless</text>
+
+
+          <!-- ═══════════════════════════════════════════════════
+               VERTICAL DASHED DIVIDER
+          ════════════════════════════════════════════════════ -->
+          <line x1="397" y1="55" x2="397" y2="342"
+                stroke="#C8B48A" stroke-width="1" stroke-dasharray="4 4"/>
+
+
+          <!-- ═══════════════════════════════════════════════════
+               RIGHT CIRCLE — "A better way"
+               cx=580, cy=205, r=82
+               5 steps clockwise from top (-90°, -18°, 54°, 126°, 198°)
+               Arc gap: 14° each side of each step
+          ════════════════════════════════════════════════════ -->
+
+          <text x="580" y="42" text-anchor="middle"
+                font-family="'Patrick Hand', cursive"
+                font-size="14" font-weight="bold" fill="#1A3A1A">A better way</text>
+
+          <!-- Arcs (clockwise, green) -->
+          <g stroke="#5A8A5A" stroke-width="1.8" fill="none" marker-end="url(#arrow-green)">
+            <path d="M 599.8 125.4 A 82 82 0 0 1 649.5 161.5"/><!-- 1→2 -->
+            <path d="M 661.8 199.3 A 82 82 0 0 1 642.8 257.7"/><!-- 2→3 -->
+            <path d="M 610.7 281.0 A 82 82 0 0 1 549.3 281.0"/><!-- 3→4 -->
+            <path d="M 517.2 257.7 A 82 82 0 0 1 498.2 199.3"/><!-- 4→5 -->
+            <path d="M 510.5 161.5 A 82 82 0 0 1 560.2 125.4"/><!-- 5→1 -->
+          </g>
+
+          <!-- Step labels -->
+          <g font-family="'Patrick Hand', cursive" font-size="12" fill="#1A3A1A">
+            <!-- 1: top -->
+            <text x="580" y="82"  text-anchor="middle">Build a clear TOC</text>
+            <text x="580" y="96"  text-anchor="middle">for your program</text>
+            <!-- 2: upper right -->
+            <text x="686" y="164" text-anchor="start">What questions</text>
+            <text x="686" y="178" text-anchor="start">matter most?</text>
+            <!-- 3: lower right -->
+            <text x="647" y="287" text-anchor="start">Find data you</text>
+            <text x="647" y="301" text-anchor="start">already collect</text>
+            <!-- 4: lower left -->
+            <text x="513" y="287" text-anchor="end">Update your</text>
+            <text x="513" y="301" text-anchor="end">theory</text>
+            <!-- 5: upper left -->
+            <text x="474" y="164" text-anchor="end">A little smarter</text>
+            <text x="474" y="178" text-anchor="end">next year</text>
+          </g>
+
+          <!-- Center italic label -->
+          <text x="580" y="200" text-anchor="middle"
+                font-family="'Patrick Hand', cursive"
+                font-size="11" font-style="italic" fill="#1A3A1A">deepens</text>
+          <text x="580" y="214" text-anchor="middle"
+                font-family="'Patrick Hand', cursive"
+                font-size="11" font-style="italic" fill="#1A3A1A">over time</text>
+
+          <!-- Caption -->
+          <text x="580" y="356" text-anchor="middle"
+                font-family="'Patrick Hand', cursive"
+                font-size="11" font-style="italic" fill="#1A3A1A">grounded, useful and yours</text>
+
+        </svg>
       </div>
 
       <div class="resource-links">

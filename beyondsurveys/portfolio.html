@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — Beyond Surveys Consulting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet" />
+  <!-- Shared Beyond Surveys stylesheet: tokens, reset, nav, bio card, footer -->
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* ─────────────────────────────────────────────────────────────
+       PORTFOLIO PAGE — page-specific styles
+    ───────────────────────────────────────────────────────────── */
+
+    /* ─────────────────────────────────────────────────────────────
+       PAGE INTRO
+    ───────────────────────────────────────────────────────────── */
+    .page-intro {
+      padding: 4rem 0 2.5rem;
+    }
+
+    .page-intro h1 {
+      font-size: 1.9rem;
+      font-weight: normal;
+      color: var(--ink);
+      margin-bottom: 1rem;
+    }
+
+    .page-intro p {
+      font-size: 1rem;
+      color: var(--ink);
+      line-height: 1.75;
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       PORTFOLIO CARDS
+       Two columns on desktop, single column on mobile.
+       align-items: start prevents short cards stretching to match
+       a tall neighbour (e.g. the pull-quote card).
+    ───────────────────────────────────────────────────────────── */
+    .portfolio-section {
+      padding-bottom: 4rem;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .portfolio-card {
+      background: var(--cream);
+      border-left: 3px solid var(--amber);
+      border-radius: 0 4px 4px 0;
+      padding: 2rem 2rem 1.5rem;
+    }
+
+    .portfolio-card h2 {
+      font-size: 1.15rem;
+      font-weight: bold;
+      color: var(--ink);
+      margin-bottom: 0.3rem;
+      line-height: 1.3;
+    }
+
+    .portfolio-card .card-context {
+      font-size: 0.9rem;
+      font-style: italic;
+      color: var(--deep-brown);
+      margin-bottom: 1.25rem;
+    }
+
+    .portfolio-card p {
+      font-size: 0.97rem;
+      color: var(--ink);
+      line-height: 1.75;
+      margin-bottom: 1rem;
+      max-width: 680px;
+    }
+
+    /* "This is an example of:" tag line */
+    .example-tags {
+      font-size: 0.88rem;
+      font-style: italic;
+      color: var(--deep-brown);
+      margin-top: 1.25rem;
+      border-top: 1px solid rgba(200, 169, 106, 0.4);
+      padding-top: 0.9rem;
+    }
+
+    .example-tags a {
+      font-style: normal;
+      color: var(--green);
+      text-decoration: none;
+    }
+    .example-tags a:hover { color: var(--deep-brown); }
+
+    /* ─────────────────────────────────────────────────────────────
+       PERMISSION NOTICE — Example 3
+       Amber background, impossible to miss before publishing.
+    ───────────────────────────────────────────────────────────── */
+    .permission-notice {
+      background: #FFF3CD;
+      border: 2px solid var(--amber);
+      border-radius: 4px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.25rem;
+      font-size: 0.92rem;
+      color: var(--ink);
+    }
+
+    .permission-notice strong {
+      display: block;
+      margin-bottom: 0.3rem;
+      color: #7A5C2E;
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       VIDEO PLACEHOLDER — Example 2
+       Dashed amber border, centred label — consistent with
+       the lifecycle graphic placeholder on the home page.
+    ───────────────────────────────────────────────────────────── */
+    .media-placeholder {
+      margin: 0.5rem 0 1.25rem;
+      padding: 2rem 1.5rem;
+      border: 2px dashed var(--amber);
+      border-radius: 4px;
+      background: rgba(200, 169, 106, 0.06);
+      text-align: center;
+    }
+
+    .media-placeholder p {
+      font-family: 'Patrick Hand', cursive;
+      font-size: 0.95rem;
+      color: var(--deep-brown);
+      margin: 0;
+      max-width: none;
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       PULL QUOTES — Example 4
+       Visually distinct: indented, italic, quiet green left border.
+    ───────────────────────────────────────────────────────────── */
+    .pull-quotes {
+      margin: 1.25rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .pull-quote {
+      border-left: 3px solid var(--green);
+      padding: 0.6rem 0 0.6rem 1.25rem;
+      max-width: 620px;
+    }
+
+    .pull-quote p {
+      font-style: italic;
+      font-size: 0.97rem;
+      color: var(--ink);
+      line-height: 1.7;
+      margin-bottom: 0.35rem;
+    }
+
+    .pull-quote cite {
+      font-size: 0.85rem;
+      font-style: normal;
+      color: var(--deep-brown);
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       DASHBOARD IMAGE — Example 5
+    ───────────────────────────────────────────────────────────── */
+    .portfolio-image {
+      width: 100%;
+      max-width: 640px;
+      height: auto;
+      display: block;
+      border-radius: 4px;
+      border: 1px solid var(--amber);
+      margin: 0.5rem 0 1.25rem;
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────────────────────────── */
+    @media (max-width: 700px) {
+      .portfolio-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      .page-intro { padding: 2.5rem 0 2rem; }
+      .page-intro h1 { font-size: 1.55rem; }
+      .portfolio-card { padding: 1.5rem 1.25rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ────────────────────────────────────────────────────────────
+       NAVBAR
+       ← Greta James  (back-link, secondary)
+       Home | Services | Learning Resources | Portfolio | Work With Me
+  ─────────────────────────────────────────────────────────────── -->
+  <nav class="site-nav" aria-label="Beyond Surveys navigation">
+    <a href="../" class="nav-back">← Greta James</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="learning.html">Learning Resources</a></li>
+      <li>
+        <span class="nav-current" aria-current="page">Portfolio</span>
+      </li>
+      <li><a href="workwithme.html">Work With Me</a></li>
+    </ul>
+  </nav>
+
+  <!-- ────────────────────────────────────────────────────────────
+       PAGE INTRO
+  ─────────────────────────────────────────────────────────────── -->
+  <section class="page-intro">
+    <div class="container">
+      <h1>Portfolio</h1>
+      <p>The projects below are examples of the kinds of work I do. They span program scoping, KPI development, impact measurement, and capacity building — and are drawn from real organizations in Southern Ontario.</p>
+    </div>
+  </section>
+
+  <!-- ────────────────────────────────────────────────────────────
+       PORTFOLIO CARDS
+  ─────────────────────────────────────────────────────────────── -->
+  <section class="portfolio-section">
+    <div class="container">
+
+      <div class="portfolio-grid">
+
+      <!-- ── Row 1, col 1 ─────────────────────────────────────── -->
+      <div class="portfolio-card">
+        <h2>Building an Organization-Wide KPI System</h2>
+        <p class="card-context">Marillac Place, Waterloo Region | Program Development &amp; Evaluation Role</p>
+
+        <p>Marillac Place is a transitional shelter serving pregnant and parenting mothers experiencing homelessness. Over several years in a program development and evaluation role, I built the organization's first agency-wide KPI system — including client retention, task completion, housing outcomes, and mental health indicators — and automated data collection through interactive Power BI dashboards to support real-time decision making.</p>
+
+        <p>The results were measurable: evidence-based program changes led to an 84% reduction in warnings issued to participants and a 200% increase in housing plan completion rates.</p>
+
+        <p class="example-tags">
+          This is an example of:
+          <a href="services.html#track1">KPI development</a>,
+          <a href="services.html#track1">program evaluation</a>,
+          <a href="services.html#track1">data dashboards</a>
+        </p>
+      </div>
+
+      <!-- ── Row 1, col 2 ─────────────────────────────────────── -->
+      <div class="portfolio-card">
+        <h2>Community Needs Survey</h2>
+        <p class="card-context">Marillac Place, Camino Wellbeing + Mental Health, and The Pregnancy Centre | Community Needs Assessment</p>
+
+        <img
+          src="../assets/Community Needs Dashboard.jpg"
+          alt="Interactive dashboard showing community needs survey findings across partner organizations"
+          class="portfolio-image"
+        />
+
+        <p>The Community Needs Survey was a shared measurement tool developed across three organizations to measure the service needs of low-income families in Waterloo Region — including service access rates, prioritization of services, and barriers to access. I led all aspects of the project: stakeholder engagement, participant recruitment, ethics approval, survey design, data analysis, and final reporting. I also built interactive dashboards to share findings across partner organizations.</p>
+
+        <p class="example-tags">
+          This is an example of:
+          <a href="services.html#track1">community needs assessment</a>,
+          <a href="services.html#track1">multi-organization data collection</a>,
+          <a href="services.html#track1">dashboards</a>
+        </p>
+      </div>
+
+      <!-- ── Row 2, col 1 ─────────────────────────────────────── -->
+      <div class="portfolio-card">
+        <h2>Scoping a Housing Program: From Hub to TIP</h2>
+        <p class="card-context">Marillac Place &amp; the Side-by-Side Collaborative | Research to Support Program Design</p>
+
+        <!-- Coming soon: video presentation to be embedded here when ready -->
+        <div class="media-placeholder" aria-label="Video coming soon">
+          <p>[ Video presentation in development — check back soon ]</p>
+        </div>
+
+        <p>The Side-by-Side Collaborative — comprising Marillac Place, Camino Wellbeing + Mental Health, and The Pregnancy Centre — was exploring how to improve housing supply and supports for young parents in Waterloo Region. I led the literature review component of a feasibility study that evaluated three housing models, drawing on evidence from Housing First research, the Family Options Study, and analysis of the local housing market.</p>
+
+        <p>The research found that a centralized housing hub was less effective than a scattered permanent housing approach, and contributed to the decision to pursue the Transition to Independence Program (TIP) — a lower-cost, higher-impact model that uses rental subsidies to incentivize homeowners to develop accessory dwelling units, increasing housing supply while housing individual families.</p>
+
+        <p class="example-tags">
+          This is an example of:
+          <a href="services.html#track1">research to scope and support program design</a>,
+          <a href="services.html#track1">literature review</a>,
+          <a href="services.html#track1">housing and homelessness</a>
+        </p>
+      </div>
+
+      <!-- ── Row 2, col 2 ─────────────────────────────────────── -->
+      <div class="portfolio-card">
+        <h2>Building Measurement Capacity: Measurement 101</h2>
+        <p class="card-context">In partnership with M4C — a working group of the Children and Youth Planning Table of Waterloo Region</p>
+
+        <p>Measurement 101 was a pilot course designed to help small nonprofits build their own internal measurement capacity. I developed and delivered the course, which used a hybrid model: asynchronous learning modules paired with synchronous sessions where participants applied course content to real measurement projects with support from graduate student mentors.</p>
+
+        <p>Fourteen organizations participated, representing a range of sectors including mental health, food security, literacy, and community foundations. All participants said they would recommend the course. Participants rated the course content, instructor support, and mentorship highly across the board.</p>
+
+        <div class="pull-quotes">
+          <figure class="pull-quote">
+            <p>"[This course was] well paced and provided quality content and instruction that was very helpful to our agency and we left with a plan to move forward with."</p>
+            <figcaption><cite>— Project READ</cite></figcaption>
+          </figure>
+          <figure class="pull-quote">
+            <p>"I'm so grateful for this course — it sharpened my impact measurement skills and shifted my mindset, showing that data isn't just for reporting, but for learning, growth, and real change driven by the voices of those we serve."</p>
+            <figcaption><cite>— The Food Bank of Waterloo Region</cite></figcaption>
+          </figure>
+          <figure class="pull-quote">
+            <p>"Greta was very approachable and made the course content more accessible. She is very good at coming up with examples for new concepts."</p>
+            <figcaption><cite>— Waterloo Region Community Foundation</cite></figcaption>
+          </figure>
+        </div>
+
+        <p class="example-tags">
+          This is an example of:
+          <a href="services.html#track3">workshop design and delivery</a>,
+          <a href="services.html#track3">measurement capacity building</a>,
+          <a href="services.html#track2">graduate student mentorship model</a>
+        </p>
+      </div>
+
+      <!-- ── Row 3 (full width) ────────────────────────────────── -->
+      <div class="portfolio-card">
+        <h2>Measuring the Impact of the Market Dollars Program</h2>
+        <p class="card-context">The Food Bank of Waterloo Region | Graduate Student Supervision</p>
+
+        <!-- REMOVE THIS NOTICE before going live — confirm permission with Food Bank of Waterloo Region first -->
+        <div class="permission-notice">
+          <strong>⚠️ PERMISSION PENDING — DO NOT PUBLISH UNTIL CONFIRMED</strong>
+          Included with permission, pending final confirmation from the Food Bank of Waterloo Region. Remove this notice and the HTML comment above before going live.
+        </div>
+
+        <p>The Food Bank of Waterloo Region runs the Market Dollars Pilot Program, a collaborative initiative providing households experiencing food insecurity with $100/month to spend on fresh food at the Kitchener Market. I connected a graduate student researcher with the organization and provided oversight throughout the project.</p>
+
+        <p>The student designed an experimental study to evaluate program impact, coordinated data collection with the Food Bank, analyzed behavioral data alongside participant surveys, and produced a final report. Key findings showed strong program uptake compared to regular programming and increased participant satisfaction. It also increased consumption of fruits and vegetables and home cooking.</p>
+
+        <p class="example-tags">
+          This is an example of:
+          <a href="services.html#track2">graduate student facilitation</a>,
+          <a href="services.html#track2">program evaluation using behavioral data</a>,
+          <a href="services.html#track2">food security</a>
+        </p>
+      </div>
+
+    </div><!-- /portfolio-grid -->
+    </div>
+  </section>
+
+  <!-- ────────────────────────────────────────────────────────────
+       MINI BIO CARD
+  ─────────────────────────────────────────────────────────────── -->
+  <div class="bio-card-section">
+    <div class="container">
+      <div class="bio-card">
+        <img
+          src="../assets/Professional head shot.jpg"
+          alt="Greta James"
+          class="bio-card-photo"
+        />
+        <div class="bio-card-text">
+          <p>Greta James is a researcher and monitoring and evaluation consultant based in Southern Ontario, with a PhD in cognitive psychology from the University of Waterloo.</p>
+          <a href="../">Learn more about Greta →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ────────────────────────────────────────────────────────────
+       FOOTER
+  ─────────────────────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>
+        Get in touch:
+        <a href="mailto:greta@gretajames.ca">greta@gretajames.ca</a>
+        &nbsp;·&nbsp;
+        <a href="https://www.linkedin.com/in/greta-james/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>

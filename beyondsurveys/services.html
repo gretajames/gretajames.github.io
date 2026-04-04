@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — Beyond Surveys Consulting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet" />
+  <!-- Shared Beyond Surveys stylesheet: tokens, reset, nav, bio card, footer -->
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* ─────────────────────────────────────────────────────────────
+       SERVICES PAGE — page-specific styles
+    ───────────────────────────────────────────────────────────── */
+
+    /* ─────────────────────────────────────────────────────────────
+       PAGE INTRO
+    ───────────────────────────────────────────────────────────── */
+    .page-intro {
+      padding: 4rem 0 2.5rem;
+    }
+
+    .page-intro h1 {
+      font-size: 1.9rem;
+      font-weight: normal;
+      color: var(--ink);
+      margin-bottom: 1rem;
+    }
+
+    .page-intro p {
+      font-size: 1rem;
+      max-width: 680px;
+      color: var(--ink);
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       TRACK CARDS
+       Three equal cards side by side on desktop, stacked on mobile.
+       Each card: cream background, amber top border, consistent padding.
+    ───────────────────────────────────────────────────────────── */
+    .tracks-section {
+      padding: 0 0 2rem;
+    }
+
+    .tracks-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .track-card {
+      background: var(--cream);
+      border-top: 2px solid var(--amber);
+      border-radius: 0 0 4px 4px;
+      padding: 1.75rem 1.5rem 1.5rem;
+    }
+
+    .track-card h2 {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+      line-height: 1.3;
+    }
+
+    .track-card .best-for {
+      font-style: italic;
+      font-size: 0.92rem;
+      color: var(--deep-brown);
+      margin-bottom: 1rem;
+    }
+
+    .track-card p {
+      font-size: 0.95rem;
+      color: var(--ink);
+      margin-bottom: 1rem;
+      line-height: 1.7;
+    }
+
+    .track-card ul {
+      font-size: 0.95rem;
+      color: var(--ink);
+      padding-left: 1.2rem;
+      margin-bottom: 1.25rem;
+      line-height: 1.7;
+    }
+
+    .track-card ul li {
+      margin-bottom: 0.35rem;
+    }
+
+    .track-card .track-action {
+      display: block;
+      font-size: 0.93rem;
+      color: var(--green);
+      text-decoration: none;
+      margin-top: auto;
+    }
+    .track-card .track-action:hover { color: var(--deep-brown); }
+
+    /* ─────────────────────────────────────────────────────────────
+       "NOT SURE" CTA
+       Centred below the three cards, quiet separator above.
+    ───────────────────────────────────────────────────────────── */
+    .not-sure {
+      padding: 2rem 0 3rem;
+      border-top: 1px solid var(--cream);
+      text-align: center;
+      font-size: 1rem;
+      color: var(--ink);
+    }
+
+    .not-sure a {
+      color: var(--green);
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .not-sure a:hover { color: var(--deep-brown); }
+
+    /* ─────────────────────────────────────────────────────────────
+       IN-KIND SUPPORT
+       Visually prominent — cream background with amber borders,
+       matching the CTA block treatment on the home page.
+    ───────────────────────────────────────────────────────────── */
+    .inkind-section {
+      background: var(--cream);
+      border-top: 2px solid var(--amber);
+      border-bottom: 2px solid var(--amber);
+      padding: 2.5rem 0;
+    }
+
+    .inkind-section h2 {
+      font-size: 1.25rem;
+      font-weight: normal;
+      color: var(--ink);
+      margin-bottom: 0.85rem;
+    }
+
+    .inkind-section p {
+      font-size: 1rem;
+      color: var(--ink);
+      max-width: 640px;
+      margin-bottom: 1.25rem;
+    }
+
+    .inkind-section a {
+      color: var(--green);
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .inkind-section a:hover { color: var(--deep-brown); }
+
+    /* ─────────────────────────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────────────────────────── */
+    @media (max-width: 760px) {
+      .tracks-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .page-intro { padding: 2.5rem 0 2rem; }
+      .page-intro h1 { font-size: 1.55rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ────────────────────────────────────────────────────────────
+       NAVBAR
+       ← Greta James  (back-link, secondary)
+       Home | Services | Learning Resources | Portfolio | Work With Me
+  ─────────────────────────────────────────────────────────────── -->
+  <nav class="site-nav" aria-label="Beyond Surveys navigation">
+    <a href="../" class="nav-back">← Greta James</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li>
+        <span class="nav-current" aria-current="page">Services</span>
+      </li>
+      <li><a href="learning.html">Learning Resources</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="workwithme.html">Work With Me</a></li>
+    </ul>
+  </nav>
+
+  <!-- ────────────────────────────────────────────────────────────
+       PAGE INTRO
+  ─────────────────────────────────────────────────────────────── -->
+  <section class="page-intro">
+    <div class="container">
+      <h1>Services</h1>
+      <p>I offer multiple ways to work together depending on your organization's needs, budget, and capacity. All tracks are designed with the same goal: to leave your organization more capable than when we started.</p>
+    </div>
+  </section>
+
+  <!-- ────────────────────────────────────────────────────────────
+       TRACK CARDS
+       Each card has an anchor ID (track1, track2, track3) so the
+       Work With Me page can link directly to a specific track.
+  ─────────────────────────────────────────────────────────────── -->
+  <section class="tracks-section">
+    <div class="container">
+      <div class="tracks-grid">
+
+        <!-- Track 1 -->
+        <div class="track-card" id="track1">
+          <h2>Track 1 — Direct Consulting</h2>
+          <p class="best-for">Best for organizations ready for dedicated, customized support</p>
+          <p>Every organization's measurement challenges are different — and this track is designed to meet you where you are. Whether you're just starting to think about impact measurement or looking to strengthen an existing system, we'll scope the project together and build something that fits your context, your capacity, and your goals.</p>
+          <p>Past projects have included:</p>
+          <ul>
+            <li>Reviewing existing research to scope and design a new program</li>
+            <li>Measuring the impact of an existing program</li>
+            <li>Developing KPIs and dashboards for organization-wide performance tracking</li>
+            <li>Designing shared measurement initiatives across multiple organizations</li>
+          </ul>
+          <p>If you have something in mind that doesn't fit neatly into any of the above, reach out anyway — this track is built for flexibility and the best projects often start with an unusual question.</p>
+          <!-- TODO: replace with booking link when calendar integration is ready -->
+          <a href="mailto:greta@gretajames.ca?subject=Track%201%20Enquiry" class="track-action">Book a free consultation call →</a>
+        </div>
+
+        <!-- Track 2 -->
+        <div class="track-card" id="track2">
+          <h2>Track 2 — Graduate Student Support</h2>
+          <p class="best-for">Best for organizations with a defined project and a limited budget</p>
+          <p>For organizations with a clear, scoped project and a limited budget, I can facilitate a connection with a graduate student researcher who will lead the work. I provide oversight and supervision throughout — you get quality support at a significantly reduced cost.</p>
+          <ul>
+            <li>I match you with a suitable graduate student and supervise the work</li>
+            <li>The student works independently and sets their own fee or honorarium arrangement with your organization</li>
+            <li>My fee covers the time I spend on supervision, guidance, and quality review</li>
+            <li>Best suited to well-defined projects with realistic scope</li>
+          </ul>
+          <a href="workwithme.html?source=beyondsurveys-track2" class="track-action">Enquire about Track 2 →</a>
+        </div>
+
+        <!-- Track 3 -->
+        <div class="track-card" id="track3">
+          <h2>Track 3 — Self-Paced Workshops</h2>
+          <p class="best-for">Best for organizations with little to no budget that want to build lasting internal capacity</p>
+          <p>Free, openly available workshop content teaches evidence-based measurement methods you can apply directly to your own programs.</p>
+          <ul>
+            <li>All workshop content is free and openly available</li>
+            <li>Work through the material at your own pace and apply it to your programs as you go</li>
+            <li>Want support along the way? Guided application sessions are available to help you work through the content as it applies to your specific context (small cost)</li>
+            <li>Prefer to learn with others? I periodically offer synchronous cohort-based courses in partnership with M4C —
+              <!-- TODO: replace href with M4C mailing list link when available -->
+              <a href="#">join the M4C mailing list</a> to be notified of upcoming offerings
+            </li>
+            <li>Looking for a more tailored experience? Custom workshop delivery is available for organizations that want facilitated, team-based learning</li>
+          </ul>
+          <a href="learning.html" class="track-action">Browse learning resources →</a>
+        </div>
+
+      </div><!-- /tracks-grid -->
+    </div>
+  </section>
+
+  <!-- ────────────────────────────────────────────────────────────
+       "NOT SURE WHICH TRACK" CTA
+  ─────────────────────────────────────────────────────────────── -->
+  <div class="not-sure">
+    <div class="container">
+      <p>
+        Not sure which track is right for you?
+        <!-- TODO: replace with booking link when calendar integration is ready -->
+        <a href="mailto:greta@gretajames.ca?subject=Free%20Consultation%20Request">Book a free consultation call →</a>
+        and we'll help you figure it out.
+      </p>
+    </div>
+  </div>
+
+  <!-- ────────────────────────────────────────────────────────────
+       IN-KIND SUPPORT
+  ─────────────────────────────────────────────────────────────── -->
+  <div class="inkind-section">
+    <div class="container">
+      <h2>In-Kind Support</h2>
+      <p>I believe that the organizations that most need good measurement support are often the least able to pay for it. A limited number of in-kind engagements are available each year for organizations that cannot access any of the above tracks due to financial constraints.</p>
+      <a href="workwithme.html?source=beyondsurveys-inkind">Apply for in-kind support →</a>
+    </div>
+  </div>
+
+  <!-- ────────────────────────────────────────────────────────────
+       FOOTER
+  ─────────────────────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>
+        Get in touch:
+        <a href="mailto:greta@gretajames.ca">greta@gretajames.ca</a>
+        &nbsp;·&nbsp;
+        <a href="https://www.linkedin.com/in/greta-james/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>

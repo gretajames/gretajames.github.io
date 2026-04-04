@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work With Me — Beyond Surveys Consulting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet" />
+  <!-- Shared Beyond Surveys stylesheet: tokens, reset, nav, bio card, footer -->
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* ─────────────────────────────────────────────────────────────
+       WORK WITH ME PAGE — page-specific styles
+    ───────────────────────────────────────────────────────────── */
+
+    /* ─────────────────────────────────────────────────────────────
+       PAGE INTRO
+    ───────────────────────────────────────────────────────────── */
+    .page-intro {
+      padding: 4rem 0 2.5rem;
+    }
+
+    .page-intro h1 {
+      font-size: 1.9rem;
+      font-weight: normal;
+      color: var(--ink);
+      margin-bottom: 1rem;
+    }
+
+    .page-intro p {
+      font-size: 1rem;
+      color: var(--ink);
+      line-height: 1.75;
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       TRACK CARDS
+       Three columns on desktop, single column on mobile.
+       Compact: brief description + stacked action buttons.
+    ───────────────────────────────────────────────────────────── */
+    .tracks-section {
+      padding-bottom: 1rem;
+    }
+
+    .tracks-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      /* align-items defaults to stretch — all cards in a row match the tallest */
+    }
+
+    .track-card {
+      background: var(--cream);
+      border-top: 2px solid var(--amber);
+      border-radius: 0 0 4px 4px;
+      padding: 1.75rem 1.5rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .track-card h2 {
+      font-size: 1.05rem;
+      font-weight: bold;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+      line-height: 1.3;
+    }
+
+    .track-card p {
+      font-size: 0.93rem;
+      color: var(--ink);
+      line-height: 1.65;
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       STACKED ACTION BUTTONS
+       Three visual weights:
+         .btn-primary   — green fill, parchment text (main enquiry)
+         .btn-secondary — outlined brown (more detail)
+         .btn-tertiary  — outlined amber (learning resources)
+    ───────────────────────────────────────────────────────────── */
+    .track-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .btn-primary,
+    .btn-secondary,
+    .btn-tertiary {
+      display: block;
+      width: 100%;
+      padding: 0.6rem 1rem;
+      border-radius: 3px;
+      font-size: 0.88rem;
+      text-decoration: none;
+      text-align: center;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+
+    /* Primary — green fill */
+    .btn-primary {
+      background: var(--green);
+      color: var(--parchment);
+      border: 2px solid var(--green);
+    }
+    .btn-primary:hover {
+      background: #3a5a3a;
+      border-color: #3a5a3a;
+      color: var(--parchment);
+    }
+
+    /* Secondary — outlined brown */
+    .btn-secondary {
+      background: transparent;
+      color: var(--deep-brown);
+      border: 2px solid var(--deep-brown);
+    }
+    .btn-secondary:hover {
+      background: var(--deep-brown);
+      color: var(--parchment);
+    }
+
+    /* Tertiary — outlined amber */
+    .btn-tertiary {
+      background: transparent;
+      color: var(--deep-brown);
+      border: 2px solid var(--amber);
+    }
+    .btn-tertiary:hover {
+      background: var(--amber);
+      color: var(--ink);
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       "NOT SURE" CTA
+    ───────────────────────────────────────────────────────────── */
+    .not-sure {
+      padding: 2rem 0 3rem;
+      border-top: 1px solid var(--cream);
+      text-align: center;
+      font-size: 1rem;
+      color: var(--ink);
+    }
+
+    .not-sure a {
+      color: var(--green);
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .not-sure a:hover { color: var(--deep-brown); }
+
+    /* ─────────────────────────────────────────────────────────────
+       IN-KIND SUPPORT
+       Prominent — amber borders, cream background.
+    ───────────────────────────────────────────────────────────── */
+    .inkind-section {
+      background: var(--cream);
+      border-top: 2px solid var(--amber);
+      border-bottom: 2px solid var(--amber);
+      padding: 2.5rem 0;
+    }
+
+    .inkind-section h2 {
+      font-size: 1.25rem;
+      font-weight: normal;
+      color: var(--ink);
+      margin-bottom: 0.85rem;
+    }
+
+    .inkind-section p {
+      font-size: 1rem;
+      color: var(--ink);
+      max-width: 640px;
+      margin-bottom: 1.25rem;
+      line-height: 1.75;
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       FORMS
+       Shared enquiry form + in-kind application form.
+       Form containers are visually separated sections.
+    ───────────────────────────────────────────────────────────── */
+    .form-section {
+      padding: 3.5rem 0;
+      border-top: 1px solid var(--cream);
+    }
+
+    .form-section + .form-section {
+      border-top: 2px solid var(--cream);
+      padding-top: 3rem;
+    }
+
+    .form-section h2 {
+      font-size: 1.35rem;
+      font-weight: normal;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-section .form-intro {
+      font-size: 0.95rem;
+      color: var(--deep-brown);
+      font-style: italic;
+      margin-bottom: 2rem;
+    }
+
+    /* Form layout */
+    .enquiry-form {
+      max-width: 580px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .form-field label {
+      font-size: 0.9rem;
+      color: var(--deep-brown);
+      font-weight: bold;
+    }
+
+    .form-field input,
+    .form-field textarea {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 0.95rem;
+      color: var(--ink);
+      background: var(--parchment);
+      border: 1px solid var(--amber);
+      border-radius: 3px;
+      padding: 0.55rem 0.75rem;
+      width: 100%;
+      transition: border-color 0.2s;
+    }
+
+    .form-field input:focus,
+    .form-field textarea:focus {
+      outline: none;
+      border-color: var(--green);
+    }
+
+    .form-field textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    /* Radio group */
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-top: 0.15rem;
+    }
+
+    .radio-group label {
+      font-weight: normal;
+      font-size: 0.93rem;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+    }
+
+    .radio-group input[type="radio"] {
+      width: auto;
+      accent-color: var(--green);
+    }
+
+    /* Submit button */
+    .form-submit {
+      display: inline-block;
+      background: var(--green);
+      color: var(--parchment);
+      border: none;
+      border-radius: 3px;
+      padding: 0.7rem 1.75rem;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      align-self: flex-start;
+    }
+    .form-submit:hover { background: #3a5a3a; }
+
+    /* Confirmation message — hidden by default, shown on submission */
+    .form-confirmation {
+      display: none;
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--ink);
+      padding: 1.5rem;
+      background: var(--cream);
+      border-left: 3px solid var(--green);
+      border-radius: 0 4px 4px 0;
+      max-width: 580px;
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────────────────────────── */
+    @media (max-width: 760px) {
+      .tracks-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      .page-intro { padding: 2.5rem 0 2rem; }
+      .page-intro h1 { font-size: 1.55rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ────────────────────────────────────────────────────────────
+       NAVBAR
+       ← Greta James  (back-link, secondary)
+       Home | Services | Learning Resources | Portfolio | Work With Me
+  ─────────────────────────────────────────────────────────────── -->
+  <nav class="site-nav" aria-label="Beyond Surveys navigation">
+    <a href="../" class="nav-back">← Greta James</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="learning.html">Learning Resources</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li>
+        <span class="nav-current" aria-current="page">Work With Me</span>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- ────────────────────────────────────────────────────────────
+       PAGE INTRO
+  ─────────────────────────────────────────────────────────────── -->
+  <section class="page-intro">
+    <div class="container">
+      <h1>Work With Me</h1>
+      <p>There are three ways to work with me. Select the track that best fits your organization's needs and budget.</p>
+    </div>
+  </section>
+
+  <!-- ────────────────────────────────────────────────────────────
+       TRACK CARDS
+       Compact cards with stacked action buttons.
+       Enquiry links carry a source parameter so form submissions
+       are labelled by track in the email subject line.
+  ─────────────────────────────────────────────────────────────── -->
+  <section class="tracks-section">
+    <div class="container">
+      <div class="tracks-grid">
+
+        <!-- Track 1 -->
+        <div class="track-card">
+          <h2>Track 1 — Direct Consulting</h2>
+          <p>Dedicated, customized support for organizations ready to tackle a measurement challenge end-to-end.</p>
+          <div class="track-actions">
+            <a href="#enquire-form" class="btn-primary" data-source="beyondsurveys-track1">Enquire about Track 1 →</a>
+            <a href="services.html#track1" class="btn-secondary">More detail about this track →</a>
+          </div>
+        </div>
+
+        <!-- Track 2 -->
+        <div class="track-card">
+          <h2>Track 2 — Graduate Student Support</h2>
+          <p>Supervised graduate student support for organizations with a defined project and a limited budget.</p>
+          <div class="track-actions">
+            <a href="#enquire-form" class="btn-primary" data-source="beyondsurveys-track2">Enquire about Track 2 →</a>
+            <a href="services.html#track2" class="btn-secondary">More detail about this track →</a>
+          </div>
+        </div>
+
+        <!-- Track 3 -->
+        <div class="track-card">
+          <h2>Track 3 — Self-Paced Workshops</h2>
+          <p>Short 1:1 calls to provide extra support applying workshop content to your project. Also a good fit if you've attended M4C measurement training and want follow-up consulting support.</p>
+          <div class="track-actions">
+            <a href="learning.html" class="btn-tertiary">Go to Learning Resources →</a>
+            <a href="#enquire-form" class="btn-primary" data-source="beyondsurveys-track3">Enquire about Track 3 →</a>
+            <a href="services.html#track3" class="btn-secondary">More detail about this track →</a>
+          </div>
+        </div>
+
+      </div><!-- /tracks-grid -->
+    </div>
+  </section>
+
+  <!-- ────────────────────────────────────────────────────────────
+       "NOT SURE" CTA
+  ─────────────────────────────────────────────────────────────── -->
+  <div class="not-sure">
+    <div class="container">
+      <p>
+        Not sure which track is right for you?
+        <a href="#enquire-form" data-source="beyondsurveys-consult">Book a free consultation call →</a>
+        and we'll figure it out together.
+      </p>
+    </div>
+  </div>
+
+  <!-- ────────────────────────────────────────────────────────────
+       IN-KIND SUPPORT
+  ─────────────────────────────────────────────────────────────── -->
+  <div class="inkind-section">
+    <div class="container">
+      <h2>In-Kind Support</h2>
+      <p>I believe the organizations that most need good measurement support are often the least able to pay for it. A limited number of in-kind engagements are available each year for organizations that cannot access any of the above tracks due to financial constraints. If that's you, I'd still like to hear from you.</p>
+      <a href="inkind.html" class="btn-primary" style="display:inline-block; width:auto; padding: 0.6rem 1.5rem;">Apply for in-kind support →</a>
+    </div>
+  </div>
+
+  <!-- ────────────────────────────────────────────────────────────
+       ENQUIRY FORM
+       Shared form for Track 1, Track 2, Track 3, and free
+       consultation requests. The hidden _subject field is set
+       by JavaScript based on the ?source= URL parameter, or by
+       the data-source attribute on the button that was clicked.
+       TODO: Replace YOUR_FORMSPREE_ENDPOINT with real endpoint
+             once Formspree account is created before go-live.
+  ─────────────────────────────────────────────────────────────── -->
+  <section class="form-section" id="enquire-form">
+    <div class="container">
+      <h2>Get in touch</h2>
+      <p class="form-intro" id="form-intro-text">Fill in the form below and I'll be in touch within three to five business days.</p>
+
+      <form
+        class="enquiry-form"
+        action="https://formspree.io/YOUR_FORMSPREE_ENDPOINT"
+        method="POST"
+        id="enquiry-form-el"
+      >
+        <!-- Hidden subject field — set by JS from source parameter -->
+        <input type="hidden" name="_subject" id="enquiry-subject" value="Beyond Surveys — General Enquiry" />
+
+        <div class="form-field">
+          <label for="enquiry-name">Name <span aria-hidden="true">*</span></label>
+          <input type="text" id="enquiry-name" name="name" required autocomplete="name" />
+        </div>
+
+        <div class="form-field">
+          <label for="enquiry-email">Email <span aria-hidden="true">*</span></label>
+          <input type="email" id="enquiry-email" name="email" required autocomplete="email" />
+        </div>
+
+        <div class="form-field">
+          <label for="enquiry-org">Organization name <span aria-hidden="true">*</span></label>
+          <input type="text" id="enquiry-org" name="organization" required />
+        </div>
+
+        <div class="form-field">
+          <label for="enquiry-description">Brief project description <span aria-hidden="true">*</span></label>
+          <textarea id="enquiry-description" name="description" required></textarea>
+        </div>
+
+        <button type="submit" class="form-submit">Send →</button>
+      </form>
+
+      <div class="form-confirmation" id="enquiry-confirmation">
+        Thanks for reaching out. I'll be in touch within three to five business days.
+      </div>
+    </div>
+  </section>
+
+  <!-- ────────────────────────────────────────────────────────────
+       FOOTER
+  ─────────────────────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>
+        Get in touch:
+        <a href="mailto:greta@gretajames.ca">greta@gretajames.ca</a>
+        &nbsp;·&nbsp;
+        <a href="https://www.linkedin.com/in/greta-james/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- ────────────────────────────────────────────────────────────
+       JAVASCRIPT
+       1. On page load: read ?source= param and set the enquiry
+          form's hidden subject field + update the intro text.
+       2. On enquiry button click: set source before scrolling.
+       3. On form submit: replace form with confirmation message.
+  ─────────────────────────────────────────────────────────────── -->
+  <script>
+    // Map source parameter values to email subject lines and intro labels
+    const sourceMap = {
+      'beyondsurveys-track1':  { subject: 'Beyond Surveys — Track 1 Enquiry',              label: 'Track 1 — Direct Consulting' },
+      'beyondsurveys-track2':  { subject: 'Beyond Surveys — Track 2 Enquiry',              label: 'Track 2 — Graduate Student Support' },
+      'beyondsurveys-track3':  { subject: 'Beyond Surveys — Track 3 Enquiry',              label: 'Track 3 — Self-Paced Workshops' },
+      'beyondsurveys-consult': { subject: 'Beyond Surveys — Free Consultation Request',    label: 'Free Consultation' },
+    };
+
+    // Set the enquiry form subject from a source string
+    function applySource(source) {
+      const match = sourceMap[source];
+      if (!match) return;
+      document.getElementById('enquiry-subject').value = match.subject;
+      document.getElementById('form-intro-text').textContent =
+        'Enquiring about: ' + match.label + '. Fill in the form below and I\'ll be in touch within three to five business days.';
+    }
+
+    // On page load: read source from URL params
+    const params = new URLSearchParams(window.location.search);
+    const urlSource = params.get('source');
+    if (urlSource) applySource(urlSource);
+
+    // On enquiry button click: set source before anchor scroll
+    document.querySelectorAll('[data-source]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        applySource(btn.getAttribute('data-source'));
+      });
+    });
+
+    // Replace enquiry form with confirmation on submit
+    document.getElementById('enquiry-form-el').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var form = this;
+      var data = new FormData(form);
+      fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+        .then(function(res) {
+          if (res.ok) {
+            form.style.display = 'none';
+            document.getElementById('enquiry-confirmation').style.display = 'block';
+          }
+        });
+    });
+
+  </script>
+
+</body>
+</html>

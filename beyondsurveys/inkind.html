@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>In-Kind Support Application — Beyond Surveys Consulting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet" />
+  <!-- Shared Beyond Surveys stylesheet: tokens, reset, nav, bio card, footer -->
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* ─────────────────────────────────────────────────────────────
+       IN-KIND APPLICATION PAGE — page-specific styles
+       This page is not linked from the navbar. It is only
+       reachable via the "Apply for in-kind support" button on
+       the Work With Me page.
+    ───────────────────────────────────────────────────────────── */
+
+    .page-intro {
+      padding: 4rem 0 2.5rem;
+    }
+
+    .page-intro h1 {
+      font-size: 1.9rem;
+      font-weight: normal;
+      color: var(--ink);
+      margin-bottom: 1rem;
+    }
+
+    .page-intro p {
+      font-size: 1rem;
+      color: var(--ink);
+      line-height: 1.75;
+      max-width: 640px;
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       FORM
+    ───────────────────────────────────────────────────────────── */
+    .form-section {
+      padding-bottom: 4rem;
+    }
+
+    .enquiry-form {
+      max-width: 580px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .form-field label {
+      font-size: 0.9rem;
+      color: var(--deep-brown);
+      font-weight: bold;
+    }
+
+    .form-field input,
+    .form-field textarea {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 0.95rem;
+      color: var(--ink);
+      background: var(--parchment);
+      border: 1px solid var(--amber);
+      border-radius: 3px;
+      padding: 0.55rem 0.75rem;
+      width: 100%;
+      transition: border-color 0.2s;
+    }
+
+    .form-field input:focus,
+    .form-field textarea:focus {
+      outline: none;
+      border-color: var(--green);
+    }
+
+    .form-field textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-top: 0.15rem;
+    }
+
+    .radio-group label {
+      font-weight: normal;
+      font-size: 0.93rem;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+    }
+
+    .radio-group input[type="radio"] {
+      width: auto;
+      accent-color: var(--green);
+    }
+
+    .form-submit {
+      display: inline-block;
+      background: var(--green);
+      color: var(--parchment);
+      border: none;
+      border-radius: 3px;
+      padding: 0.7rem 1.75rem;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      align-self: flex-start;
+    }
+    .form-submit:hover { background: #3a5a3a; }
+
+    .form-confirmation {
+      display: none;
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--ink);
+      padding: 1.5rem;
+      background: var(--cream);
+      border-left: 3px solid var(--green);
+      border-radius: 0 4px 4px 0;
+      max-width: 580px;
+    }
+
+    @media (max-width: 560px) {
+      .page-intro { padding: 2.5rem 0 2rem; }
+      .page-intro h1 { font-size: 1.55rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ────────────────────────────────────────────────────────────
+       NAVBAR
+       Standard Beyond Surveys nav — no active item since this
+       page is not part of the main navigation.
+  ─────────────────────────────────────────────────────────────── -->
+  <nav class="site-nav" aria-label="Beyond Surveys navigation">
+    <a href="../" class="nav-back">← Greta James</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="learning.html">Learning Resources</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="workwithme.html">Work With Me</a></li>
+    </ul>
+  </nav>
+
+  <!-- ────────────────────────────────────────────────────────────
+       PAGE INTRO
+  ─────────────────────────────────────────────────────────────── -->
+  <section class="page-intro">
+    <div class="container">
+      <h1>In-Kind Support</h1>
+      <p>I believe the organizations that most need good measurement support are often the least able to pay for it. A limited number of in-kind engagements are available each year for organizations that cannot access any of the above tracks due to financial constraints. If that's you, I'd still like to hear from you.</p>
+    </div>
+  </section>
+
+  <!-- ────────────────────────────────────────────────────────────
+       IN-KIND APPLICATION FORM
+       TODO: Replace YOUR_FORMSPREE_ENDPOINT with real endpoint
+             once Formspree account is created before go-live.
+  ─────────────────────────────────────────────────────────────── -->
+  <section class="form-section">
+    <div class="container">
+
+      <form
+        class="enquiry-form"
+        action="https://formspree.io/YOUR_FORMSPREE_ENDPOINT"
+        method="POST"
+        id="inkind-form-el"
+      >
+        <input type="hidden" name="_subject" value="Beyond Surveys — In-Kind Application" />
+
+        <div class="form-field">
+          <label for="inkind-name">Name <span aria-hidden="true">*</span></label>
+          <input type="text" id="inkind-name" name="name" required autocomplete="name" />
+        </div>
+
+        <div class="form-field">
+          <label for="inkind-email">Email <span aria-hidden="true">*</span></label>
+          <input type="email" id="inkind-email" name="email" required autocomplete="email" />
+        </div>
+
+        <div class="form-field">
+          <label for="inkind-org">Organization name <span aria-hidden="true">*</span></label>
+          <input type="text" id="inkind-org" name="organization" required />
+        </div>
+
+        <div class="form-field">
+          <label for="inkind-org-description">Briefly describe your organization and the work you do <span aria-hidden="true">*</span></label>
+          <textarea id="inkind-org-description" name="org_description" required></textarea>
+        </div>
+
+        <div class="form-field">
+          <label for="inkind-support">Briefly describe the measurement support you're looking for <span aria-hidden="true">*</span></label>
+          <textarea id="inkind-support" name="support_needed" required></textarea>
+        </div>
+
+        <div class="form-field">
+          <label>Would your organization be open to support from a supervised graduate student if I am not available? <span aria-hidden="true">*</span></label>
+          <div class="radio-group">
+            <label><input type="radio" name="grad_student_ok" value="Yes" required /> Yes</label>
+            <label><input type="radio" name="grad_student_ok" value="No" /> No</label>
+            <label><input type="radio" name="grad_student_ok" value="Maybe" /> Maybe</label>
+          </div>
+        </div>
+
+        <button type="submit" class="form-submit">Submit application →</button>
+      </form>
+
+      <div class="form-confirmation" id="inkind-confirmation">
+        Thanks for applying. I review in-kind applications on a rolling basis and will be in touch if I'm able to help.
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ────────────────────────────────────────────────────────────
+       FOOTER
+  ─────────────────────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>
+        Get in touch:
+        <a href="mailto:greta@gretajames.ca">greta@gretajames.ca</a>
+        &nbsp;·&nbsp;
+        <a href="https://www.linkedin.com/in/greta-james/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Replace form with confirmation message on successful submission
+    document.getElementById('inkind-form-el').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var form = this;
+      var data = new FormData(form);
+      fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+        .then(function(res) {
+          if (res.ok) {
+            form.style.display = 'none';
+            document.getElementById('inkind-confirmation').style.display = 'block';
+          }
+        });
+    });
+  </script>
+
+</body>
+</html>

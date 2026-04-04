@@ -1,0 +1,187 @@
+/* ═══════════════════════════════════════════════════════════════
+   beyondsurveys/style.css
+   Shared stylesheet for all Beyond Surveys Consulting pages.
+   Load this first, then add page-specific styles in a <style>
+   block in <head> after this link.
+═══════════════════════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────────────────────────
+   DESIGN TOKENS — parchment palette
+─────────────────────────────────────────────────────────────── */
+:root {
+  --parchment:  #FAF6EE;
+  --cream:      #E8D9B5;
+  --amber:      #C8A96A;
+  --deep-brown: #7A5C2E;
+  --green:      #4A6B4A;
+  --ink:        #2C1F0E;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   RESET & BASE
+─────────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: Georgia, 'Times New Roman', serif;
+  background: var(--parchment);
+  color: var(--ink);
+  line-height: 1.75;
+}
+
+a {
+  color: var(--deep-brown);
+  transition: color 0.2s;
+}
+a:hover { color: var(--green); }
+
+/* ─────────────────────────────────────────────────────────────
+   LAYOUT CONTAINER
+─────────────────────────────────────────────────────────────── */
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 1.75rem;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   NAVBAR
+   Left:  ← Greta James (subtle back-link to hub)
+   Right: Home | Services | Learning Resources | Portfolio | Work With Me
+   Back-link hides at ≤ 760px to save space on tablet.
+─────────────────────────────────────────────────────────────── */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--parchment);
+  border-bottom: 1px solid var(--cream);
+  padding: 0.9rem 1.75rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* Back-link — secondary, muted, does not compete with main nav */
+.nav-back {
+  font-size: 0.88rem;
+  color: var(--deep-brown);
+  text-decoration: none;
+  white-space: nowrap;
+  opacity: 0.65;
+  margin-right: auto;
+  letter-spacing: 0.01em;
+}
+.nav-back:hover {
+  color: var(--green);
+  opacity: 1;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-size: 0.95rem;
+  color: var(--deep-brown);
+  white-space: nowrap;
+}
+.nav-links a:hover { color: var(--green); }
+
+/* Current-page indicator — static text, amber underline */
+.nav-current {
+  font-size: 0.95rem;
+  color: var(--ink);
+  font-weight: bold;
+  border-bottom: 2px solid var(--amber);
+  padding-bottom: 2px;
+  cursor: default;
+  user-select: none;
+  white-space: nowrap;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   MINI BIO CARD
+   Used at the bottom of pages that introduce Greta to visitors
+   who landed on an interior page (e.g. Home, Portfolio).
+─────────────────────────────────────────────────────────────── */
+.bio-card-section {
+  border-top: 1px solid var(--cream);
+  padding: 2.5rem 0 3.5rem;
+}
+
+.bio-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: var(--cream);
+  border-radius: 4px;
+  padding: 1.5rem 1.75rem;
+  max-width: 560px;
+  box-shadow: 2px 3px 12px rgba(44, 31, 14, 0.08);
+}
+
+.bio-card-photo {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--amber);
+  flex-shrink: 0;
+}
+
+.bio-card-text p {
+  font-size: 0.93rem;
+  color: var(--ink);
+  line-height: 1.6;
+  margin-bottom: 0.55rem;
+  margin-top: 0;
+}
+
+.bio-card-text a {
+  font-size: 0.92rem;
+  color: var(--green);
+  text-decoration: none;
+}
+.bio-card-text a:hover { color: var(--deep-brown); }
+
+/* ─────────────────────────────────────────────────────────────
+   FOOTER
+─────────────────────────────────────────────────────────────── */
+.site-footer {
+  padding: 2rem 0;
+  border-top: 1px solid var(--cream);
+  text-align: center;
+  font-size: 0.87rem;
+  color: var(--deep-brown);
+}
+
+.site-footer a { color: var(--deep-brown); }
+.site-footer a:hover { color: var(--green); }
+
+/* ─────────────────────────────────────────────────────────────
+   RESPONSIVE — navbar breakpoints (shared across all pages)
+─────────────────────────────────────────────────────────────── */
+@media (max-width: 760px) {
+  .nav-back { display: none; }
+  .nav-links { gap: 1.1rem; }
+  .nav-links a, .nav-current { font-size: 0.88rem; }
+}
+
+@media (max-width: 560px) {
+  .nav-links { gap: 0.75rem; }
+  .nav-links a, .nav-current { font-size: 0.8rem; }
+  /* Bio card stacks vertically on small screens */
+  .bio-card { flex-direction: column; text-align: center; max-width: 100%; }
+}

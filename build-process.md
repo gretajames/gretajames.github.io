@@ -44,6 +44,10 @@ The site files live in a GitHub repository (`gretajames.github.io`). GitHub Page
 
 ```
 Consulting Website/
+├── CLAUDE.md                      ← Session instructions for Claude Code (auto-loaded)
+├── project-notes.md               ← Build log only
+├── project-spec.md                ← Full content and styling spec (sections 1–13)
+├── build-process.md               ← This file
 ├── index.html                     ← gretajames.ca hub/About page  [BUILT]
 ├── assets/
 │   ├── Professional head shot.jpg ← Greta's headshot
@@ -51,11 +55,13 @@ Consulting Website/
 ├── grantersacademy/
 │   └── index.html                 ← Coming soon stub page  [TO BUILD]
 └── beyondsurveys/
-    ├── index.html                 ← Beyond Surveys home page  [TO BUILD]
-    ├── services.html              [TO BUILD]
-    ├── learning.html              [TO BUILD]
-    ├── portfolio.html             [TO BUILD]
-    └── workwithme.html            [TO BUILD]
+    ├── style.css                  ← Shared stylesheet for all consulting pages  [BUILT]
+    ├── index.html                 ← Beyond Surveys home page  [BUILT]
+    ├── services.html              [BUILT]
+    ├── learning.html              [BUILT]
+    ├── portfolio.html             [BUILT]
+    ├── workwithme.html            [BUILT]
+    └── inkind.html                ← In-kind application (not in navbar)  [BUILT]
 ```
 
 ---
@@ -73,7 +79,7 @@ All visual decisions are driven by a consistent set of values defined at the top
 | `--green` | `#4A6B4A` | Call-to-action links, blockquote accent |
 | `--ink` | `#2C1F0E` | Body text and headings |
 
-If you ever want to adjust a colour, you change it in one place (the `:root` block at the top of the CSS) and it updates everywhere on that page.
+If you ever want to adjust a colour, change it in `beyondsurveys/style.css` (for the consulting site) or in the `:root` block at the top of `index.html` (for the hub page). One change updates that colour everywhere it is used.
 
 **Fonts:** Two typefaces are used throughout:
 - **Patrick Hand** (loaded from Google Fonts) — used for anything that should feel hand-drawn or informal: the notebook labels, card titles, the belief callout, pull quotes, and the lifecycle diagrams in the consulting site
@@ -213,14 +219,66 @@ Three visually distinct sections, plus a mini bio card and footer.
 **3 — Our Approach section**
 
 - Four paragraphs explaining the theory-of-change approach and the limits of survey-only measurement
-- Followed by a **lifecycle graphic placeholder** — a dashed amber box marking where the SVG diagram will go (to be built in a future session). The placeholder contains an HTML comment with the full diagram spec so the next developer can build it without hunting through the project notes
-- Two resource links at the bottom ("Common survey design mistakes →" and "Other ways to measure your impact →") use `href="#"` as placeholders until the corresponding learning module pages exist
+- Followed by the **lifecycle graphic** — an inline SVG showing two circular diagrams side by side: "The usual story" (six-step survey-heavy loop, red-brown) and "A better way" (five-step adaptive cycle, green). The SVG is embedded directly in the HTML — no external image file. On screens narrower than 640px it scrolls horizontally rather than shrinking the text to an unreadable size. If you need to adjust a label, find the SVG in the `<!-- LIFECYCLE GRAPHIC -->` comment block and edit the `<text>` element for that label.
+- Two resource links ("Common survey design mistakes →" and "Other ways to measure your impact →") use `href="#"` as placeholders until the corresponding learning module pages are ready. When the modules are built, update these `href` values to the relevant `learning.html` anchors.
 
 **Mini bio card**
 
 - Sits below the main content, above the footer, separated by a hairline rule
 - Circular-cropped headshot (72×72px), two lines of bio text, and a "Learn more about Greta →" link back to the hub page
 - Uses a cream card background with a subtle shadow — the same card treatment used elsewhere in the consulting site
+
+### Services page (`beyondsurveys/services.html`)
+
+Three track cards in a CSS Grid (three columns on desktop, one on mobile). All three cards are identical in visual weight — same amber top border, cream background, padding. Cards are the same height using `align-items: stretch` on the grid, with the description paragraph set to `flex-grow: 1` so buttons always sit at the bottom regardless of how much text each card has.
+
+Each card has an `id` attribute (`id="track1"`, `id="track2"`, `id="track3"`) so the Work With Me page can link directly to a specific track using anchor links (e.g. `services.html#track1`).
+
+The In-Kind Support section below the cards uses the same amber-border cream-background treatment as the CTA block on the home page — visually prominent so it reads as an important option, not a footnote.
+
+**To add or edit a track:** Find the relevant `<div class="track-card" id="trackN">` block and edit the heading, best-for line, paragraph, bullet list, or action links inside it.
+
+### Learning Resources page (`beyondsurveys/learning.html`)
+
+**Framing section:** The introductory paragraphs have a quiet green left border to signal that this is contextual philosophy content, not a clickable resource. This is a purely visual distinction.
+
+**Four-step TOC flow:** A simple horizontal indicator showing the four stages of measurement readiness (Scoping → Strategy → Assumptions → Impact). On mobile it rotates to a vertical layout (number + label side by side). This is decorative — it is not linked or interactive.
+
+**Resource cards:** Existing content uses a cream card with amber left border. Coming-soon content uses the same shape but at 65% opacity with a "Coming soon" badge replacing the watch link. When a new module is ready to publish, change `resource-card-soon` to `resource-card` and replace the badge with a real link.
+
+**Adding a new learning module:** Copy the structure of an existing `<div class="resource-card">` block, paste it before the coming-soon cards, and fill in the title, description, and link. The page is designed to grow — new cards stack naturally below.
+
+### Portfolio page (`beyondsurveys/portfolio.html`)
+
+Cards sit in a two-column CSS Grid on desktop, single column on mobile (below 700px). Cards use `align-items: start` so shorter cards do not stretch to match their taller neighbours.
+
+Current card order (by grid position): Row 1 — KPI System, Community Needs Survey. Row 2 — Scoping Housing Program, Measurement 101. Row 3 — Market Dollars (full width, alone as the fifth card).
+
+**Permission notice (Market Dollars card):** A visible amber warning box and an HTML comment both mark this card as pending permission confirmation. Before publishing, confirm permission with the Food Bank of Waterloo Region, then remove the `<div class="permission-notice">` block and the HTML comment above it.
+
+**Video placeholder (Scoping Housing card):** A dashed amber placeholder marks where a video will be embedded. When the video is ready, replace the `<div class="media-placeholder">` with a standard `<iframe>` embed.
+
+**Adding a new portfolio item:** Copy any existing `<div class="portfolio-card">` block, paste it inside the `.portfolio-grid` div, and fill in the content. The grid will automatically place it in the next available cell.
+
+### Work With Me page (`beyondsurveys/workwithme.html`)
+
+**Track cards:** More compact than the Services page — one short description sentence per track, then stacked action buttons. Three button visual weights: green fill (primary enquiry action), outlined brown (more detail → services page), outlined amber (learning resources, Track 3 only).
+
+**Source parameter routing:** Every enquiry button carries a `data-source` attribute (e.g. `data-source="beyondsurveys-track1"`). When clicked, JavaScript reads this value and sets the hidden `_subject` field in the enquiry form below, so Greta receives an email with the correct subject line for that track. The same routing happens automatically when arriving from another page with a `?source=` URL parameter.
+
+**Enquiry form:** A shared form handles Track 1, Track 2, Track 3, and free consultation requests. The hidden `_subject` field changes based on which track button was clicked. On successful submission, the form is replaced in-place with a confirmation message — no page redirect.
+
+**Before go-live:** Replace `YOUR_FORMSPREE_ENDPOINT` in the form `action` attribute with the real Formspree endpoint URL.
+
+### In-Kind Application page (`beyondsurveys/inkind.html`)
+
+A separate page for in-kind support applications — not linked from the navbar. It is only reachable by clicking "Apply for in-kind support" on the Work With Me page. This is intentional: the in-kind application is a distinct process from the three standard service tracks.
+
+The page has the full standard Beyond Surveys navbar (so visitors can navigate elsewhere if they land here), but no nav item is shown as "active" since this page is not part of the main site navigation.
+
+The form has more fields than the standard enquiry form: organization description, support needed, and a radio button asking about openness to graduate student support.
+
+**Before go-live:** Replace `YOUR_FORMSPREE_ENDPOINT` in the form `action` attribute with the real Formspree endpoint URL.
 
 ---
 
@@ -257,7 +315,19 @@ In `beyondsurveys/index.html`, find the comment `<!-- TODO: replace with booking
 In `beyondsurveys/index.html`, find `<div class="bio-card-text">`. Edit the `<p>` tag content for the bio text.
 
 ### Add a new nav link to the consulting site
-Open the relevant consulting page, find `<ul class="nav-links">`, and add `<li><a href="newpage.html">Page Name</a></li>`. Remember to add the same link to every consulting page so the navbar stays consistent across the site.
+Open the relevant consulting page, find `<ul class="nav-links">`, and add `<li><a href="newpage.html">Page Name</a></li>`. Remember to add the same link to **every** consulting page's navbar (including `inkind.html`) so the navbar stays consistent.
+
+### Add a new portfolio item
+Open `beyondsurveys/portfolio.html`, find `</div><!-- /portfolio-grid -->`, and paste a new `<div class="portfolio-card">` block before that closing tag. Copy the structure from an existing card. The grid places cards automatically — no layout changes needed.
+
+### Publish a coming-soon learning module
+In `beyondsurveys/learning.html`, find the `<div class="resource-card-soon">` for the module you're publishing. Change `resource-card-soon` to `resource-card` on the opening div. Remove the `<span class="badge-soon">Coming soon</span>` from the heading. Add a link (`<a href="...">Watch →</a>`) where the badge was.
+
+### Replace the Formspree placeholder
+In both `beyondsurveys/workwithme.html` and `beyondsurveys/inkind.html`, find `YOUR_FORMSPREE_ENDPOINT` in the `<form action="...">` attribute and replace it with the real endpoint from your Formspree account.
+
+### Add a calendar booking link
+Search for `TODO: replace with booking link` across the consulting pages. Each TODO comment sits directly above a `mailto:` link. Replace the `href="mailto:..."` value with your calendar URL.
 
 ---
 
@@ -292,4 +362,5 @@ Before the site goes live, you will need to:
 |---|---|---|
 | 1 | 2026-04-01 | Hub page (`index.html`) — navbar, about section, blockquote callout, notebook graphic |
 | 2 | 2026-04-01 | Hub page revisions: Granter's Academy added to navbar; back card raised to show title tab; belief callout moved under photo and set in Patrick Hand; notebook scaled 50% larger; build docs updated |
-| 3 | 2026-04-02 | Notebook graphic redesigned (new rotation scheme, cards fan from bottom pivot); belief callout stretches to match bio height; `beyondsurveys/index.html` built (navbar, intro, CTA block, Our Approach, mini bio card); SVG lifecycle graphic deferred to next session |
+| 3 | 2026-04-02 | Notebook graphic redesigned (new rotation scheme, cards fan from bottom pivot); belief callout stretches to match bio height; `beyondsurveys/index.html` built (navbar, intro, CTA block, Our Approach, mini bio card); SVG lifecycle graphic deferred |
+| 4 | 2026-04-03/04 | Session infrastructure: `CLAUDE.md`, `project-spec.md`, `beyondsurveys/style.css` created; `project-notes.md` trimmed to log only. All remaining consulting pages built: `services.html`, `learning.html`, `portfolio.html`, `workwithme.html`, `inkind.html`. SVG lifecycle graphic built in `beyondsurveys/index.html`. |
