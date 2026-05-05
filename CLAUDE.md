@@ -48,7 +48,7 @@ All Beyond Surveys pages load `beyondsurveys/style.css` as their first styleshee
 
 > **Sync warning:** Update this section during every session wrap-up. It mirrors the most recent BUILD LOG entry in `project-notes.md` — keep them in sync.
 
-As of Session 4 (2026-04-03/04):
+As of Session 5 (2026-05-05):
 
 | File | Status |
 |------|--------|

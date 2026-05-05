@@ -6,6 +6,47 @@ All project spec, content, and styling notes are in `project-spec.md`.
 
 ## BUILD LOG
 
+### Session 5 — 2026-05-05
+
+**Completed**
+
+* `beyondsurveys/index.html` — Beyond Surveys home page substantially reworked:
+  * Intro section restructured as a 50/50 two-column flex layout: new condensed text (two paragraphs) on the left, `assets/generic consulting image.png` on the right
+  * h1 heading enlarged from 1.9rem to 2.5rem, forced line break removed, word "actually" removed — now reads "Build measurement capacity your organization owns"
+  * CTA/pricing banner: Patrick Hand bold tagline added above pricing links — "Let's build a measurement system you understand, you own, and you can grow independently!"
+  * Approach section replaced "Our approach" h2 + four prose paragraphs with a two-column layout:
+    * Left (~40%): CSS circle (cream background, amber border, `aspect-ratio: 1`, `border-radius: 50%`) containing "I help organizations:" bullet list in Patrick Hand
+    * Right (~60%): new "Why Beyond Surveys?" heading with rewritten survey-problem text and bullet list
+
+* `beyondsurveys/style.css` — container `max-width` widened from 860px to 1040px; applies to all Beyond Surveys pages
+
+* `beyondsurveys/learning.html` — Learning Resources page rebuilt:
+  * Intro text reduced to one sentence plus "I am always building new content."
+  * Four-step TOC flow removed entirely
+  * Page intro restructured as two-column flex: heading + framing + notify-link on the left; callout on the right
+  * Callout went through several iterations this session (green text block → teal typography → terracotta → burgundy/circle → banner). Final design: left-pointing ribbon banner using CSS `clip-path: polygon()`, burgundy background (#7A3048, chosen by Greta), white Patrick Hand heading, white body text
+  * Resource cards replaced with a 3-column CSS Grid video layout:
+    * Sessions 1 and 2: 16:9 YouTube thumbnails fetched from `img.youtube.com/vi/[ID]/hqdefault.jpg` (no API key needed); circular play button overlay with hover animation; clicking thumbnail opens YouTube video
+    * "Common Survey Design Mistakes" and "Other Ways to Measure Your Impact": matching 16:9 parchment placeholder with "Coming soon" in Patrick Hand; not clickable; slight opacity reduction
+    * M4C partnership attributed with a live link in both active cards
+  * Grid is responsive: 3 columns → 2 columns (≤ 760px) → 1 column (≤ 480px)
+
+**Design decisions made (not previously in spec)**
+
+* Container widened to 1040px globally — two-column layouts on the home page felt cramped at 860px; all Beyond Surveys pages benefit from more breathing room
+* CSS circle on home page approach section uses `aspect-ratio: 1` + `border-radius: 50%` + 17% internal padding to keep text within the safe circular area; converts to a rounded box on mobile (≤ 680px)
+* YouTube thumbnails: `hqdefault.jpg` (480×360, 4:3) is displayed in a 16:9 wrapper with `object-fit: cover` — slight crop but reliable without API access
+* Callout banner shape implemented with `clip-path: polygon(28px 0, 100% 0, 100% 100%, 28px 100%, 0 50%)` — a left-pointing arrow that visually "points back" at the content it references
+* Burgundy (#7A3048) added as a fourth accent colour — used only for the Learning Resources callout banner; provides contrast against the amber/brown/green palette without clashing
+
+**Still in progress / needs attention**
+
+* `grantersacademy/index.html` — not yet built; deferred (content still in progress)
+* Two resource link placeholders on home page (`href="#"` below the lifecycle graphic) still need updating once learning module anchors are confirmed
+* All pre-go-live checklist items remain open (see Section 12 of `project-spec.md`)
+
+---
+
 ### Session 4 — 2026-04-03/04
 
 **Completed**

@@ -51,7 +51,8 @@ Consulting Website/
 ├── index.html                     ← gretajames.ca hub/About page  [BUILT]
 ├── assets/
 │   ├── Professional head shot.jpg ← Greta's headshot
-│   └── Community Needs Dashboard.jpg
+│   ├── Community Needs Dashboard.jpg
+│   └── generic consulting image.png ← used on Beyond Surveys home page intro
 ├── grantersacademy/
 │   └── index.html                 ← Coming soon stub page  [TO BUILD]
 └── beyondsurveys/
@@ -205,22 +206,28 @@ Three visually distinct sections, plus a mini bio card and footer.
 
 **1 — Intro section**
 
-- A small all-caps brand label ("Beyond Surveys Consulting") in Patrick Hand sits above the main heading — acts as a visual anchor so visitors who land directly at this URL know where they are
-- The `h1` heading ("Build measurement capacity your organization actually owns") is the primary SEO heading for the page
-- The tagline "Measure. Learn. Grow." is in Patrick Hand italic — same hand-drawn quality as the hub page's belief callout
-- Two paragraphs of positioning copy follow; "free resources" links to `learning.html`
+- A small all-caps brand label ("Beyond Surveys Consulting") in Patrick Hand sits above the main heading
+- The `h1` heading ("Build measurement capacity your organization owns") spans the full width of the section at 2.5rem
+- The tagline "Measure. Learn. Grow." is in Patrick Hand italic
+- Below the tagline, the section uses a **50/50 two-column flex layout**: two short paragraphs of positioning copy on the left; `assets/generic consulting image.png` on the right. On screens ≤ 680px the columns stack vertically (text above image).
+- To update the intro text, find the `<div class="intro-text">` block and edit the two `<p>` tags inside it. To swap the image, replace `generic consulting image.png` with a different file in the `assets/` folder and update the `src` attribute in the `<img>` tag.
 
 **2 — Pricing / CTA block**
 
-- Cream background with amber borders top and bottom — visually separates it from the sections above and below
-- Italic surrounding text with bold green links draws the eye to the two actions: see pricing (→ `services.html`) and book a consultation call
-- The consultation booking link currently uses `mailto:greta@gretajames.ca` as a placeholder. There is an HTML comment directly on this link marking where a calendar booking link should replace it when one is set up
+- Cream background with amber borders top and bottom
+- A bold Patrick Hand tagline ("Let's build a measurement system you understand, you own, and you can grow independently!") sits above the pricing links — styled with class `cta-tagline`
+- Two action links follow: see pricing (→ `services.html`) and book a consultation call. The consultation booking link currently uses `mailto:greta@gretajames.ca` as a placeholder with an HTML comment marking where a calendar booking link should go.
 
-**3 — Our Approach section**
+**3 — Approach section**
 
-- Four paragraphs explaining the theory-of-change approach and the limits of survey-only measurement
-- Followed by the **lifecycle graphic** — an inline SVG showing two circular diagrams side by side: "The usual story" (six-step survey-heavy loop, red-brown) and "A better way" (five-step adaptive cycle, green). The SVG is embedded directly in the HTML — no external image file. On screens narrower than 640px it scrolls horizontally rather than shrinking the text to an unreadable size. If you need to adjust a label, find the SVG in the `<!-- LIFECYCLE GRAPHIC -->` comment block and edit the `<text>` element for that label.
-- Two resource links ("Common survey design mistakes →" and "Other ways to measure your impact →") use `href="#"` as placeholders until the corresponding learning module pages are ready. When the modules are built, update these `href` values to the relevant `learning.html` anchors.
+This section uses a **two-column flex layout**:
+
+- **Left column (~40%):** A CSS circle containing the "I help organizations:" bullet list in Patrick Hand. The circle is created by making a square div (`aspect-ratio: 1`) with `border-radius: 50%`, a cream background, and an amber border. Internal padding of 17% keeps the text away from the curved edges. On screens ≤ 680px the circle converts to a rounded rectangle. To edit the bullet list, find `<div class="approach-circle">` and edit the `<li>` elements inside it.
+- **Right column (~60%):** The "Why Beyond Surveys?" heading and three paragraphs explaining the limits of surveys and the value of existing data sources. To edit this text, find `<div class="approach-why">` and edit the content inside.
+
+Below the two-column section, the **lifecycle SVG graphic** remains unchanged — two circular diagrams ("The usual story" / "A better way") embedded directly as inline SVG. On screens narrower than 640px it scrolls horizontally. To adjust a label, find the `<!-- LIFECYCLE GRAPHIC -->` comment block and edit the relevant `<text>` element.
+
+Two resource links at the bottom ("Common survey design mistakes →", "Other ways to measure your impact →") still use `href="#"` — update these to real `learning.html` anchors when the modules are published.
 
 **Mini bio card**
 
@@ -240,13 +247,38 @@ The In-Kind Support section below the cards uses the same amber-border cream-bac
 
 ### Learning Resources page (`beyondsurveys/learning.html`)
 
-**Framing section:** The introductory paragraphs have a quiet green left border to signal that this is contextual philosophy content, not a clickable resource. This is a purely visual distinction.
+**Page intro — two-column layout**
 
-**Four-step TOC flow:** A simple horizontal indicator showing the four stages of measurement readiness (Scoping → Strategy → Assumptions → Impact). On mobile it rotates to a vertical layout (number + label side by side). This is decorative — it is not linked or interactive.
+The top of the page uses a flex row with two columns:
 
-**Resource cards:** Existing content uses a cream card with amber left border. Coming-soon content uses the same shape but at 65% opacity with a "Coming soon" badge replacing the watch link. When a new module is ready to publish, change `resource-card-soon` to `resource-card` and replace the badge with a real link.
+- **Left column (58%):** The "Learning Resources" h1, a short framing paragraph with a green left border, and a "Sign up to be notified" email link.
+- **Right column (42%):** A callout banner pointing visitors to Track 3 if they need guided support. The banner is a left-pointing arrow shape created with CSS `clip-path: polygon(28px 0, 100% 0, 100% 100%, 28px 100%, 0 50%)`. It has a burgundy background (#7A3048) with white text — the heading is large Patrick Hand, the body text is smaller Georgia. On screens ≤ 680px the columns stack vertically.
 
-**Adding a new learning module:** Copy the structure of an existing `<div class="resource-card">` block, paste it before the coming-soon cards, and fill in the title, description, and link. The page is designed to grow — new cards stack naturally below.
+To edit the callout text, find `<div class="callout-block">` and edit the `<p class="callout-heading">` and `<p class="callout-body">` inside it.
+
+**Video grid**
+
+Below the intro, all learning content lives in a **3-column CSS Grid** (`class="video-grid"`). Each card shows a 16:9 thumbnail, a title, and a description.
+
+*Active video cards* (`class="video-card"`): The thumbnail is fetched directly from YouTube's CDN using the video ID — no API key required. The format is `https://img.youtube.com/vi/[VIDEO-ID]/hqdefault.jpg`. The thumbnail is wrapped in an `<a>` tag linking to the YouTube video. A circular play button (white circle with a ▶ character) sits centred over the thumbnail and animates on hover.
+
+*Coming soon cards* (`class="video-card video-card-soon"`): The thumbnail area is replaced with a parchment-coloured placeholder the same 16:9 size, with "Coming soon" written in Patrick Hand. These cards are not clickable and are shown at 70% opacity.
+
+**Adding a new video when it's ready:**
+1. Find a `<div class="video-card video-card-soon">` block for that module
+2. Change the class to `video-card` (remove `video-card-soon`)
+3. Replace the `<div class="video-thumb-soon">` block with:
+```html
+<a href="https://www.youtube.com/watch?v=VIDEO-ID" target="_blank" rel="noopener noreferrer" class="video-thumb-link">
+  <div class="video-thumb">
+    <img src="https://img.youtube.com/vi/VIDEO-ID/hqdefault.jpg" alt="Video title" />
+    <span class="play-btn" aria-hidden="true">▶</span>
+  </div>
+</a>
+```
+4. Replace `VIDEO-ID` in both the `href` and `src` with the real YouTube video ID (the part after `?v=` in the YouTube URL)
+
+**Adding a brand new module card:** Copy any existing `<div class="video-card">` block and paste it inside `<div class="video-grid">`. The grid places cards left to right, wrapping to a new row every three cards.
 
 ### Portfolio page (`beyondsurveys/portfolio.html`)
 
