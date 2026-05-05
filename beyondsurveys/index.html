@@ -33,10 +33,10 @@
     }
 
     .intro-section h1 {
-      font-size: 1.9rem;
+      font-size: 2.5rem;
       font-weight: normal;
       color: var(--ink);
-      line-height: 1.3;
+      line-height: 1.25;
       margin-bottom: 0.6rem;
     }
 
@@ -134,11 +134,111 @@
     .resource-links a:hover { color: var(--deep-brown); }
 
     /* ─────────────────────────────────────────────────────────────
+       INTRO TWO-COLUMN LAYOUT
+       Text left (~50%), image right (~50%)
+    ───────────────────────────────────────────────────────────── */
+    .intro-layout {
+      display: flex;
+      gap: 2.5rem;
+      align-items: flex-start;
+      margin-top: 1.5rem;
+    }
+    .intro-text {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+    .intro-image {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+    .intro-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      display: block;
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       CTA TAGLINE — Patrick Hand bold, above the pricing links
+    ───────────────────────────────────────────────────────────── */
+    .cta-tagline {
+      font-family: 'Patrick Hand', cursive;
+      font-size: 1.25rem;
+      font-weight: bold;
+      font-style: normal;
+      color: var(--ink);
+      margin-bottom: 0.9rem;
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       APPROACH TWO-COLUMN LAYOUT
+       Circle left (~40%), "Why Beyond Surveys?" right (~60%)
+    ───────────────────────────────────────────────────────────── */
+    .approach-layout {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+      margin-bottom: 2.5rem;
+    }
+    .approach-circle-col {
+      flex: 0 0 40%;
+    }
+    .approach-circle {
+      width: 100%;
+      aspect-ratio: 1;
+      background: var(--cream);
+      border: 2px solid var(--amber);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 17%;
+      box-sizing: border-box;
+      font-family: 'Patrick Hand', cursive;
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+    .approach-circle strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 0.65rem;
+      color: var(--ink);
+    }
+    .approach-circle ul {
+      margin: 0;
+      padding-left: 1.1rem;
+    }
+    .approach-circle li {
+      margin-bottom: 0.4rem;
+    }
+    .approach-why {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+    .approach-why ul {
+      margin: 0.4rem 0 1.2rem 1.4rem;
+      line-height: 1.55;
+    }
+    .approach-why li {
+      margin-bottom: 0.3rem;
+    }
+
+    /* ─────────────────────────────────────────────────────────────
        RESPONSIVE — home page specific
     ───────────────────────────────────────────────────────────── */
+    @media (max-width: 680px) {
+      .intro-layout { flex-direction: column; }
+      .approach-layout { flex-direction: column; align-items: stretch; }
+      .approach-circle {
+        border-radius: 14px;
+        aspect-ratio: auto;
+        padding: 1.5rem 1.75rem;
+      }
+    }
     @media (max-width: 560px) {
       .intro-section { padding: 2.5rem 0 2rem; }
-      .intro-section h1 { font-size: 1.55rem; }
+      .intro-section h1 { font-size: 1.8rem; }
       .approach-section { padding: 2.5rem 0 1rem; }
       .resource-links { flex-direction: column; gap: 0.85rem; }
     }
@@ -171,12 +271,18 @@
     <div class="container">
 
       <p class="intro-brand">Beyond Surveys Consulting</p>
-      <h1>Build measurement capacity<br>your organization actually owns</h1>
+      <h1>Build measurement capacity your organization owns</h1>
       <p class="intro-tagline">Measure. Learn. Grow.</p>
 
-      <p>Impact measurement matters. It helps you make better daily programming decisions, strengthens your grant applications, and keeps your organization growing. But for small organizations, accessing quality support has historically meant expensive consultants or going it alone.</p>
-
-      <p>I work specifically with small social service organizations in Southern Ontario — housing, mental health, harm reduction, food services, trauma-informed care, and basic needs — to build practical, affordable impact measurement systems. My goal isn't to make you dependent on me. It's to build your internal capacity so you can do this work yourselves. In fact, you can start for free right now by checking out my <a href="learning.html">free resources</a>.</p>
+      <div class="intro-layout">
+        <div class="intro-text">
+          <p>Impact measurement matters. But for small organizations, accessing quality support has historically meant expensive consultants or going it alone.</p>
+          <p>I work specifically with small social service organizations in Southern Ontario to build practical, affordable impact measurement systems. My goal isn't to make you dependent on me. It's to build your internal capacity so you can do this work yourselves. In fact, you can start for free right now by checking out my <a href="learning.html">free resources</a>.</p>
+        </div>
+        <div class="intro-image">
+          <img src="../assets/generic consulting image.png" alt="Consulting support for small social service organizations" />
+        </div>
+      </div>
 
     </div>
   </section>
@@ -186,6 +292,7 @@
   ─────────────────────────────────────────────────────────────── -->
   <div class="cta-block">
     <div class="container">
+      <p class="cta-tagline">Let's build a measurement system you understand, you own, and you can grow independently!</p>
       <p>
         <a href="services.html">See my pricing tiers</a>
         &nbsp;—&nbsp; or &nbsp;
@@ -202,15 +309,34 @@
   <section class="approach-section">
     <div class="container">
 
-      <h2>Our approach</h2>
+      <div class="approach-layout">
 
-      <p>I help organizations build measurement around a program-focused theory of change: starting with what your program is actually trying to do, identifying the key questions you need to answer to know if it's working, and then choosing the right tools to answer those questions.</p>
+        <!-- Left: circle with "I help organizations" list (Patrick Hand) -->
+        <div class="approach-circle-col">
+          <div class="approach-circle">
+            <strong>I help organizations:</strong>
+            <ul>
+              <li>build a <em>program-focused</em> theory of change that</li>
+              <li>Outline what their program is actually trying to do</li>
+              <li>identify key questions they need to answer</li>
+              <li>choose the right tools to answer those questions.</li>
+            </ul>
+          </div>
+        </div>
 
-      <p>Most organizations default to surveys when they think about impact measurement — and surveys have their place. But they're only one tool, and often not the most useful one. Poorly designed surveys produce data that looks useful but isn't. Survey fatigue is real: many people choose not to finish — or not to start. And the rise of online bots makes it increasingly difficult to tell valid responses from fake ones.</p>
+        <!-- Right: "Why Beyond Surveys?" -->
+        <div class="approach-why">
+          <h2>Why Beyond Surveys?</h2>
+          <p>Most organizations default to surveys when they think about impact measurement — and surveys have their place. But maybe while using surveys you've experienced:</p>
+          <ul>
+            <li>Poor response rates</li>
+            <li>Online bots submitting fake data</li>
+            <li>Data that looks useful, but isn't.</li>
+          </ul>
+          <p>The good news is that most organizations are already sitting on rich sources of data they aren't fully using. You probably already have program records, attendance patterns, referral rates, case notes, service milestones — these can tell you a great deal about your operations and impact, often with less burden on the people you serve. Beyond Surveys is all about helping you turn this existing data into insights.</p>
+        </div>
 
-      <p>The good news is that most organizations are already sitting on rich sources of data they aren't fully using. Program records, attendance patterns, referral rates, case notes, service milestones — these can tell you a great deal about your operations and impact, often with less burden on the people you serve.</p>
-
-      <p>The goal is a measurement system you understand, you own, and you can grow without me.</p>
+      </div>
 
       <!-- ── LIFECYCLE GRAPHIC ──────────────────────────────────
            Two circular lifecycle diagrams side by side.
