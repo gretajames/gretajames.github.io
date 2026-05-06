@@ -19,20 +19,24 @@
        PAGE INTRO
     ───────────────────────────────────────────────────────────── */
     .page-intro {
-      padding: 4rem 0 2.5rem;
+      padding: 2rem 0 1.6rem;
+      background:
+        linear-gradient(rgba(74, 107, 74, 0.65), rgba(74, 107, 74, 0.65)),
+        url('../assets/banner path in woods.png') center / cover no-repeat;
+      border-bottom: 2px solid rgba(0, 0, 0, 0.1);
     }
 
     .page-intro h1 {
       font-size: 1.9rem;
       font-weight: normal;
-      color: var(--ink);
+      color: #ffffff;
       margin-bottom: 1rem;
     }
 
     .page-intro p {
-      font-size: 1rem;
-      max-width: 680px;
-      color: var(--ink);
+      font-size: 1.4rem;
+      color: rgba(255, 255, 255, 0.92);
+      line-height: 1.5;
     }
 
     /* ─────────────────────────────────────────────────────────────
@@ -41,7 +45,7 @@
        Each card: cream background, amber top border, consistent padding.
     ───────────────────────────────────────────────────────────── */
     .tracks-section {
-      padding: 0 0 2rem;
+      padding: 1.5rem 0 2.5rem;
     }
 
     .tracks-grid {
@@ -52,10 +56,82 @@
     }
 
     .track-card {
-      background: var(--cream);
-      border-top: 2px solid var(--amber);
-      border-radius: 0 0 4px 4px;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(180, 140, 80, 0.3);
+      border-radius: 6px;
+      box-shadow: 0 3px 14px rgba(122, 92, 46, 0.13);
       padding: 1.75rem 1.5rem 1.5rem;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      max-height: 165px;
+      cursor: pointer;
+      transition: max-height 0.45s ease;
+    }
+
+    .track-card.expanded {
+      overflow: visible;
+      transition: max-height 0.45s ease, overflow 0s 0.45s;
+    }
+
+    .expand-hint {
+      font-size: 0.85rem;
+      color: var(--deep-brown);
+      font-style: italic;
+      margin-top: 0.25rem;
+      margin-bottom: 0;
+    }
+
+    .track-card.expanded .expand-hint { display: none; }
+
+    /* Scroll rolls only visible when expanded; overflow:hidden clips them when collapsed */
+    .track-card:not(.expanded)::before,
+    .track-card:not(.expanded)::after { display: none; }
+
+    /* Scroll rolls — oval pseudo-elements peek above and below each card.
+       z-index: -1 puts them behind the card face but visible where they
+       extend outside the card bounds. */
+    .track-card::before,
+    .track-card::after {
+      content: '';
+      position: absolute;
+      left: 8px;
+      right: 8px;
+      height: 20px;
+      border-radius: 50%;
+      z-index: -1;
+    }
+    .track-card::before { top: -10px; }
+    .track-card::after  {
+      bottom: -10px;
+      box-shadow: 0 5px 8px rgba(122, 92, 46, 0.2);
+    }
+
+    /* Graduated parchment — Path 1 freshest, Path 3 most aged */
+    .tracks-grid .track-card:nth-child(1) {
+      background: radial-gradient(ellipse at 55% 35%, #FAF2E2 0%, #F0E6CB 60%, #E2D4AE 100%);
+    }
+    .tracks-grid .track-card:nth-child(2) {
+      background: radial-gradient(ellipse at 55% 35%, #F0E3C5 0%, #E8D9B5 60%, #D8C898 100%);
+    }
+    .tracks-grid .track-card:nth-child(3) {
+      background: radial-gradient(ellipse at 55% 35%, #E6D5A8 0%, #DCC99A 60%, #CCBA80 100%);
+    }
+
+    /* Roll colors — slightly darker than each card's aged edge, with a
+       radial gradient suggesting a rounded surface catching light */
+    .tracks-grid .track-card:nth-child(1)::before,
+    .tracks-grid .track-card:nth-child(1)::after {
+      background: radial-gradient(ellipse at center, #D8C8A4 0%, #C4B080 80%);
+    }
+    .tracks-grid .track-card:nth-child(2)::before,
+    .tracks-grid .track-card:nth-child(2)::after {
+      background: radial-gradient(ellipse at center, #CCBC90 0%, #B8A870 80%);
+    }
+    .tracks-grid .track-card:nth-child(3)::before,
+    .tracks-grid .track-card:nth-child(3)::after {
+      background: radial-gradient(ellipse at center, #C0AA78 0%, #A89460 80%);
     }
 
     .track-card h2 {
@@ -94,10 +170,12 @@
 
     .track-card .track-action {
       display: block;
-      font-size: 0.93rem;
+      font-size: 1.15rem;
       color: var(--green);
       text-decoration: none;
       margin-top: auto;
+      padding-top: 1rem;
+      white-space: nowrap;
     }
     .track-card .track-action:hover { color: var(--deep-brown); }
 
@@ -153,13 +231,47 @@
     }
     .inkind-section a:hover { color: var(--deep-brown); }
 
+    /* In-kind layout: image left, text right */
+    .inkind-layout {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .inkind-image {
+      flex: 0 0 auto;
+      width: 220px;
+    }
+
+    .inkind-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 4px;
+    }
+
+    .inkind-text {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+
+    .inkind-text p {
+      max-width: none;
+    }
+
     /* ─────────────────────────────────────────────────────────────
        RESPONSIVE
     ───────────────────────────────────────────────────────────── */
     @media (max-width: 760px) {
-      .tracks-grid {
-        grid-template-columns: 1fr;
+      .tracks-grid { grid-template-columns: 1fr; }
+      /* Hide scroll rolls on mobile — stacked cards would cause overlapping rolls */
+      .track-card::before,
+      .track-card::after { display: none; }
+      .inkind-layout {
+        flex-direction: column;
+        align-items: flex-start;
       }
+      .inkind-image { width: 100%; max-width: 320px; }
     }
 
     @media (max-width: 560px) {
@@ -194,64 +306,65 @@
   <section class="page-intro">
     <div class="container">
       <h1>Services</h1>
-      <p>I offer multiple ways to work together depending on your organization's needs, budget, and capacity. All tracks are designed with the same goal: to leave your organization more capable than when we started.</p>
+      <p>Choose one of the following 3 paths depending on our needs, budget and capacity:</p>
     </div>
   </section>
 
   <!-- ────────────────────────────────────────────────────────────
-       TRACK CARDS
+       PATH CARDS
        Each card has an anchor ID (track1, track2, track3) so the
-       Work With Me page can link directly to a specific track.
+       Work With Me page can link directly to a specific path.
   ─────────────────────────────────────────────────────────────── -->
   <section class="tracks-section">
     <div class="container">
       <div class="tracks-grid">
 
-        <!-- Track 1 -->
+        <!-- Path 1 -->
         <div class="track-card" id="track1">
-          <h2>Track 1 — Direct Consulting</h2>
+          <h2>Path 1 — Direct Consulting</h2>
           <p class="best-for">Best for organizations ready for dedicated, customized support</p>
-          <p>Every organization's measurement challenges are different — and this track is designed to meet you where you are. Whether you're just starting to think about impact measurement or looking to strengthen an existing system, we'll scope the project together and build something that fits your context, your capacity, and your goals.</p>
+          <p class="expand-hint">Tap to read more ▼</p>
+          <p>This path is totally customizable.  Tell me what you need and we will build it!</p>
           <p>Past projects have included:</p>
           <ul>
             <li>Reviewing existing research to scope and design a new program</li>
             <li>Measuring the impact of an existing program</li>
             <li>Developing KPIs and dashboards for organization-wide performance tracking</li>
             <li>Designing shared measurement initiatives across multiple organizations</li>
+	    <li>Building a custom measurement training program</li>
           </ul>
-          <p>If you have something in mind that doesn't fit neatly into any of the above, reach out anyway — this track is built for flexibility and the best projects often start with an unusual question.</p>
           <!-- TODO: replace with booking link when calendar integration is ready -->
           <a href="mailto:greta@gretajames.ca?subject=Track%201%20Enquiry" class="track-action">Book a free consultation call →</a>
         </div>
 
-        <!-- Track 2 -->
+        <!-- Path 2 -->
         <div class="track-card" id="track2">
-          <h2>Track 2 — Graduate Student Support</h2>
+          <h2>Path 2 — Student Support</h2>
           <p class="best-for">Best for organizations with a defined project and a limited budget</p>
-          <p>For organizations with a clear, scoped project and a limited budget, I can facilitate a connection with a graduate student researcher who will lead the work. I provide oversight and supervision throughout — you get quality support at a significantly reduced cost.</p>
+          <p class="expand-hint">Tap to read more ▼</p>
+          <p>Customizable like Path 1, but work with a graduate student instead at a significantly reduced cost.</p>
           <ul>
             <li>I match you with a suitable graduate student and supervise the work</li>
             <li>The student works independently and sets their own fee or honorarium arrangement with your organization</li>
             <li>My fee covers the time I spend on supervision, guidance, and quality review</li>
-            <li>Best suited to well-defined projects with realistic scope</li>
           </ul>
-          <a href="workwithme.html?source=beyondsurveys-track2" class="track-action">Enquire about Track 2 →</a>
+          <a href="workwithme.html?source=beyondsurveys-track2" class="track-action">Enquire about Path 2 →</a>
         </div>
 
-        <!-- Track 3 -->
+        <!-- Path 3 -->
         <div class="track-card" id="track3">
-          <h2>Track 3 — Self-Paced Workshops</h2>
-          <p class="best-for">Best for organizations with little to no budget that want to build lasting internal capacity</p>
-          <p>Free, openly available workshop content teaches evidence-based measurement methods you can apply directly to your own programs.</p>
+          <h2>Path 3 — Workshops</h2>
+          <p class="best-for">Best for organizations with little to no budget but some internal capacity</p>
+          <p class="expand-hint">Tap to read more ▼</p>
+          <p>Access my free workshop content and apply it to your organization yourself.  Reach out to me for support if and when you need it.</p>
           <ul>
             <li>All workshop content is free and openly available</li>
             <li>Work through the material at your own pace and apply it to your programs as you go</li>
-            <li>Want support along the way? Guided application sessions are available to help you work through the content as it applies to your specific context (small cost)</li>
+            <li>Want support along the way? Reach out to me to help you work through the content as it applies to your specific context (small cost)</li>
             <li>Prefer to learn with others? I periodically offer synchronous cohort-based courses in partnership with M4C —
               <!-- TODO: replace href with M4C mailing list link when available -->
               <a href="#">join the M4C mailing list</a> to be notified of upcoming offerings
             </li>
-            <li>Looking for a more tailored experience? Custom workshop delivery is available for organizations that want facilitated, team-based learning</li>
           </ul>
           <a href="learning.html" class="track-action">Browse learning resources →</a>
         </div>
@@ -261,12 +374,12 @@
   </section>
 
   <!-- ────────────────────────────────────────────────────────────
-       "NOT SURE WHICH TRACK" CTA
+       "NOT SURE WHICH PATH" CTA
   ─────────────────────────────────────────────────────────────── -->
   <div class="not-sure">
     <div class="container">
       <p>
-        Not sure which track is right for you?
+        Not sure which path is right for you?
         <!-- TODO: replace with booking link when calendar integration is ready -->
         <a href="mailto:greta@gretajames.ca?subject=Free%20Consultation%20Request">Book a free consultation call →</a>
         and we'll help you figure it out.
@@ -279,9 +392,16 @@
   ─────────────────────────────────────────────────────────────── -->
   <div class="inkind-section">
     <div class="container">
-      <h2>In-Kind Support</h2>
-      <p>I believe that the organizations that most need good measurement support are often the least able to pay for it. A limited number of in-kind engagements are available each year for organizations that cannot access any of the above tracks due to financial constraints.</p>
-      <a href="workwithme.html?source=beyondsurveys-inkind">Apply for in-kind support →</a>
+      <div class="inkind-layout">
+        <div class="inkind-image">
+          <img src="../assets/Path in the woods.png" alt="A path through the woods" />
+        </div>
+        <div class="inkind-text">
+          <h2>In-Kind Support</h2>
+          <p>I believe that the organizations that most need good measurement support are often the least able to pay for it. A limited number of in-kind engagements are available each year for organizations that cannot access any of the above paths due to financial constraints.</p>
+          <a href="workwithme.html?source=beyondsurveys-inkind">Apply for in-kind support →</a>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -298,6 +418,34 @@
       </p>
     </div>
   </footer>
+
+  <script>
+    var cards = Array.from(document.querySelectorAll('.track-card'));
+
+    cards.forEach(function(card) {
+      /* Links follow their href; don't let the click bubble up and toggle the cards */
+      card.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function(e) { e.stopPropagation(); });
+      });
+
+      card.addEventListener('click', function() {
+        if (this.classList.contains('expanded')) {
+          /* Collapse all */
+          cards.forEach(function(c) {
+            c.style.maxHeight = '165px';
+            c.classList.remove('expanded');
+          });
+        } else {
+          /* Expand all to the tallest card's height so they stay equal */
+          var maxH = Math.max.apply(null, cards.map(function(c) { return c.scrollHeight; }));
+          cards.forEach(function(c) {
+            c.classList.add('expanded');
+            c.style.maxHeight = maxH + 'px';
+          });
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>

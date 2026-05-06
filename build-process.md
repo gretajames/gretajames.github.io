@@ -237,13 +237,23 @@ Two resource links at the bottom ("Common survey design mistakes →", "Other wa
 
 ### Services page (`beyondsurveys/services.html`)
 
-Three track cards in a CSS Grid (three columns on desktop, one on mobile). All three cards are identical in visual weight — same amber top border, cream background, padding. Cards are the same height using `align-items: stretch` on the grid, with the description paragraph set to `flex-grow: 1` so buttons always sit at the bottom regardless of how much text each card has.
+**Hero banner**
 
-Each card has an `id` attribute (`id="track1"`, `id="track2"`, `id="track3"`) so the Work With Me page can link directly to a specific track using anchor links (e.g. `services.html#track1`).
+The "Services" heading sits inside a full-width banner that uses `assets/banner path in woods.png` as a background image. A semi-transparent green overlay (`linear-gradient(rgba(74,107,74,0.65), rgba(74,107,74,0.65))`) is layered on top of the image using CSS's multi-layer background shorthand, keeping the white text readable regardless of which part of the photo is behind it. To swap the photo, replace `banner path in woods.png` in the `assets/` folder and update the filename in the `.page-intro` CSS `background` property.
 
-The In-Kind Support section below the cards uses the same amber-border cream-background treatment as the CTA block on the home page — visually prominent so it reads as an important option, not a footnote.
+**Path cards**
 
-**To add or edit a track:** Find the relevant `<div class="track-card" id="trackN">` block and edit the heading, best-for line, paragraph, bullet list, or action links inside it.
+Three cards in a CSS Grid (three columns on desktop, one on mobile). Each card uses a parchment aesthetic — a radial gradient background that graduates from fresh cream (Path 1) to aged amber (Path 3). CSS `::before` and `::after` pseudo-elements create scroll-roll ovals that peek above and below each card when expanded.
+
+Cards start collapsed (showing only the path title, "Best for…" line, and a "Tap to read more ▼" hint). Tapping any card expands all three simultaneously to equal height; tapping again collapses all three. The collapse/expand logic is in a `<script>` block at the bottom of the file.
+
+Each card has an `id` attribute (`id="track1"`, `id="track2"`, `id="track3"`) so the Work With Me page can link directly to a specific path using anchor links (e.g. `services.html#track1`). These IDs are kept as "track" (not "path") to avoid breaking existing links.
+
+**In-Kind Support section**
+
+Below the cards, the In-Kind Support section uses a flex layout: `assets/Path in the woods.png` on the left (220px wide), text and link on the right. On mobile the image sits above the text. The section has amber borders top and bottom to signal it as a visually distinct option.
+
+**To edit a path card:** Find the relevant `<div class="track-card" id="trackN">` block. Edit the `<h2>` (title), `<p class="best-for">` (subtitle line), `<p>` / `<ul>` (body), or `<a class="track-action">` (link) inside it. Do not edit `<p class="expand-hint">` — that is the "Tap to read more" cue text managed by CSS/JS.
 
 ### Learning Resources page (`beyondsurveys/learning.html`)
 

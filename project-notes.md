@@ -6,6 +6,34 @@ All project spec, content, and styling notes are in `project-spec.md`.
 
 ## BUILD LOG
 
+### Session 6 — 2026-05-06
+
+**Completed**
+
+* `beyondsurveys/services.html` — Services page substantially redesigned:
+  * Opening paragraph text enlarged to 1.4rem to fill full container width
+  * All visible "Track" terminology replaced with "Path" (card IDs and URL params kept as track1/track2/track3 for anchor link compatibility)
+  * Track card boxes replaced with a parchment/scroll aesthetic: graduated radial-gradient backgrounds (freshest parchment on Path 1, most aged on Path 3), amber border, and CSS scroll roll pseudo-elements (::before/::after ovals peeking above and below each card, z-index: -1)
+  * Full-width hero banner behind "Services" heading: "banner path in woods.png" as a CSS background image with a 65%-opacity green linear-gradient overlay — text remains white and legible
+  * "Path in the woods.png" added to the In-Kind Support section as a left-side image with text floated right
+  * Tap-to-expand cards: cards start collapsed at 165px showing only the path title, "Best for…" subtitle, and "Tap to read more ▼" hint; tapping any card expands all three simultaneously to equal height (measured via scrollHeight); tapping again collapses all three; scroll rolls appear only when expanded; link clicks do not bubble up to the card toggle
+  * Path 2 h2 shortened to "Path 2 — Student Support"; Path 3 shortened to "Path 3 — Workshops" so all three titles fit on one line and the expand hint is consistently visible
+
+**Design decisions made (not previously in spec)**
+
+* Hero banner uses CSS multi-layer background shorthand: `linear-gradient(rgba…) url(…) center / cover` — the gradient sits on top as a colour wash, the image behind it. This technique requires no extra HTML elements.
+* Tap-to-expand uses `scrollHeight` (not a fixed large max-height) so the animation runs only as far as the content actually extends; tallest card's scrollHeight is applied to all three so they stay equal when open
+* Scroll rolls (::before/::after) use `display: none` on non-expanded cards — while overflow:hidden would clip them anyway, being explicit avoids any rendering edge cases
+* Collapse/expand is group behaviour: one tap affects all three cards, keeping the page tidy and the cards visually consistent at all times
+
+**Still in progress / needs attention**
+
+* **Next session prompt:** Consider merging the Work With Me page and the Services page — they currently have substantially overlapping content (both describe the three paths and offer ways to get in touch). A combined page would reduce redundancy and simplify navigation.
+* `grantersacademy/index.html` — not yet built; deferred (content still in progress)
+* All pre-go-live checklist items remain open (see Section 12 of `project-spec.md`)
+
+---
+
 ### Session 5 — 2026-05-05
 
 **Completed**

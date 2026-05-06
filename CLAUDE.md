@@ -48,7 +48,7 @@ All Beyond Surveys pages load `beyondsurveys/style.css` as their first styleshee
 
 > **Sync warning:** Update this section during every session wrap-up. It mirrors the most recent BUILD LOG entry in `project-notes.md` — keep them in sync.
 
-As of Session 5 (2026-05-05):
+As of Session 6 (2026-05-06):
 
 | File | Status |
 |------|--------|
@@ -61,6 +61,12 @@ As of Session 5 (2026-05-05):
 | `beyondsurveys/workwithme.html` | Complete |
 | `beyondsurveys/inkind.html` | Complete (standalone, not in navbar) |
 | `grantersacademy/index.html` | Not yet built (deferred — content still in progress) |
+
+---
+
+## Next Session Prompt
+
+- Consider merging `beyondsurveys/services.html` and `beyondsurveys/workwithme.html` — the two pages currently have substantially overlapping content (both describe the three paths and offer ways to get in touch). A combined page would reduce redundancy and simplify navigation.
 
 ---
 
