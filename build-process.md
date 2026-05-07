@@ -13,7 +13,7 @@ Two connected websites, both living in the same folder:
 | Hub page | `gretajames.ca` | Personal landing page — introduces Greta and routes visitors to her projects |
 | Consulting site | `gretajames.ca/beyondsurveys` | Full Beyond Surveys Consulting site — five pages |
 
-There is also a stub (placeholder) page planned at `gretajames.ca/grantersacademy` for the Granter's Academy project.
+There is also a coming soon page at `gretajames.ca/grantersacademy` for the Granter's Academy project (built in Session 7). The full Granter's Academy site is a future project.
 
 ---
 
@@ -406,3 +406,6 @@ Before the site goes live, you will need to:
 | 2 | 2026-04-01 | Hub page revisions: Granter's Academy added to navbar; back card raised to show title tab; belief callout moved under photo and set in Patrick Hand; notebook scaled 50% larger; build docs updated |
 | 3 | 2026-04-02 | Notebook graphic redesigned (new rotation scheme, cards fan from bottom pivot); belief callout stretches to match bio height; `beyondsurveys/index.html` built (navbar, intro, CTA block, Our Approach, mini bio card); SVG lifecycle graphic deferred |
 | 4 | 2026-04-03/04 | Session infrastructure: `CLAUDE.md`, `project-spec.md`, `beyondsurveys/style.css` created; `project-notes.md` trimmed to log only. All remaining consulting pages built: `services.html`, `learning.html`, `portfolio.html`, `workwithme.html`, `inkind.html`. SVG lifecycle graphic built in `beyondsurveys/index.html`. |
+| 5 | 2026-05-05 | Beyond Surveys home page reworked (two-column intro, enlarged heading, CTA banner, approach section redesigned). Container widened to 1040px. Learning Resources page rebuilt (ribbon banner, video grid). |
+| 6 | 2026-05-06 | Services page redesigned: parchment/scroll card aesthetic, hero banner, tap-to-expand cards, Path terminology, In-Kind image. |
+| 7 | 2026-05-07 | Granter's Academy coming soon page built. Hub and GA container widened to 1040px. Services page links, intro, and card equal-height JS updated. Work With Me stripped to form only with new checkbox question. |

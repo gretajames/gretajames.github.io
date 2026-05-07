@@ -34,7 +34,7 @@
     }
 
     .page-intro p {
-      font-size: 1.4rem;
+      font-size: 1.05rem;
       color: rgba(255, 255, 255, 0.92);
       line-height: 1.5;
     }
@@ -306,7 +306,7 @@
   <section class="page-intro">
     <div class="container">
       <h1>Services</h1>
-      <p>Choose one of the following 3 paths depending on our needs, budget and capacity:</p>
+      <p>There are three ways to work with me. Select the path that best fits your organization's needs and budget.</p>
     </div>
   </section>
 
@@ -333,8 +333,7 @@
             <li>Designing shared measurement initiatives across multiple organizations</li>
 	    <li>Building a custom measurement training program</li>
           </ul>
-          <!-- TODO: replace with booking link when calendar integration is ready -->
-          <a href="mailto:greta@gretajames.ca?subject=Track%201%20Enquiry" class="track-action">Book a free consultation call →</a>
+          <a href="workwithme.html#enquire-form" class="track-action">Book a free consultation call →</a>
         </div>
 
         <!-- Path 2 -->
@@ -348,7 +347,7 @@
             <li>The student works independently and sets their own fee or honorarium arrangement with your organization</li>
             <li>My fee covers the time I spend on supervision, guidance, and quality review</li>
           </ul>
-          <a href="workwithme.html?source=beyondsurveys-track2" class="track-action">Enquire about Path 2 →</a>
+          <a href="workwithme.html#enquire-form" class="track-action">Match me with a student →</a>
         </div>
 
         <!-- Path 3 -->
@@ -366,7 +365,8 @@
               <a href="#">join the M4C mailing list</a> to be notified of upcoming offerings
             </li>
           </ul>
-          <a href="learning.html" class="track-action">Browse learning resources →</a>
+          <a href="workwithme.html#enquire-form" class="track-action">Get extra support →</a>
+          <a href="learning.html" class="track-action" style="margin-top: 0.75rem; padding-top: 0;">Browse learning resources →</a>
         </div>
 
       </div><!-- /tracks-grid -->
@@ -380,9 +380,8 @@
     <div class="container">
       <p>
         Not sure which path is right for you?
-        <!-- TODO: replace with booking link when calendar integration is ready -->
-        <a href="mailto:greta@gretajames.ca?subject=Free%20Consultation%20Request">Book a free consultation call →</a>
-        and we'll help you figure it out.
+        <a href="https://gretajames.github.io/beyondsurveys/workwithme.html#enquire-form">Book a free consultation call →</a>
+        and we'll figure it out together.
       </p>
     </div>
   </div>
@@ -399,7 +398,7 @@
         <div class="inkind-text">
           <h2>In-Kind Support</h2>
           <p>I believe that the organizations that most need good measurement support are often the least able to pay for it. A limited number of in-kind engagements are available each year for organizations that cannot access any of the above paths due to financial constraints.</p>
-          <a href="workwithme.html?source=beyondsurveys-inkind">Apply for in-kind support →</a>
+          <a href="inkind.html">Apply for in-kind support →</a>
         </div>
       </div>
     </div>
@@ -430,16 +429,19 @@
 
       card.addEventListener('click', function() {
         if (this.classList.contains('expanded')) {
-          /* Collapse all */
+          /* Collapse all — clear min-height so cards shrink back */
           cards.forEach(function(c) {
+            c.style.minHeight = '';
             c.style.maxHeight = '165px';
             c.classList.remove('expanded');
           });
         } else {
-          /* Expand all to the tallest card's height so they stay equal */
+          /* Expand all: set both min and max to tallest scrollHeight so every
+             card is exactly the same height and flex pushes links to the bottom */
           var maxH = Math.max.apply(null, cards.map(function(c) { return c.scrollHeight; }));
           cards.forEach(function(c) {
             c.classList.add('expanded');
+            c.style.minHeight = maxH + 'px';
             c.style.maxHeight = maxH + 'px';
           });
         }

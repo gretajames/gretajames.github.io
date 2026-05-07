@@ -38,6 +38,10 @@ This file is automatically read at the start of every session. Follow all instru
 - **Hub navbar:** `About | Beyond Surveys Consulting | Granter's Academy`
 - **Beyond Surveys navbar:** `← Greta James` (back-link, left, hides at ≤ 760px) + `Home | Services | Learning Resources | Portfolio | Work With Me` (right)
 
+### Layout Container
+
+All pages use `.container { max-width: 1040px; margin: 0 auto; padding: 0 1.75rem; }`. Never use a narrower max-width — earlier sessions used 740px or 860px but all pages have since been updated to 1040px.
+
 ### Shared CSS
 
 All Beyond Surveys pages load `beyondsurveys/style.css` as their first stylesheet. Page-specific styles go in a `<style>` block in `<head>` after the shared stylesheet link.
@@ -48,7 +52,7 @@ All Beyond Surveys pages load `beyondsurveys/style.css` as their first styleshee
 
 > **Sync warning:** Update this section during every session wrap-up. It mirrors the most recent BUILD LOG entry in `project-notes.md` — keep them in sync.
 
-As of Session 6 (2026-05-06):
+As of Session 7 (2026-05-07):
 
 | File | Status |
 |------|--------|
@@ -58,15 +62,17 @@ As of Session 6 (2026-05-06):
 | `beyondsurveys/services.html` | Complete |
 | `beyondsurveys/learning.html` | Complete |
 | `beyondsurveys/portfolio.html` | Complete |
-| `beyondsurveys/workwithme.html` | Complete |
+| `beyondsurveys/workwithme.html` | Stripped to form only — may want a brief intro line above the form heading |
 | `beyondsurveys/inkind.html` | Complete (standalone, not in navbar) |
-| `grantersacademy/index.html` | Not yet built (deferred — content still in progress) |
+| `grantersacademy/index.html` | Complete (coming soon stub) — tagline placeholder left in code |
 
 ---
 
 ## Next Session Prompt
 
-- Consider merging `beyondsurveys/services.html` and `beyondsurveys/workwithme.html` — the two pages currently have substantially overlapping content (both describe the three paths and offer ways to get in touch). A combined page would reduce redundancy and simplify navigation.
+- `beyondsurveys/workwithme.html` is now just the Get in Touch form. Consider whether to add a brief title or intro sentence above the form heading to orient visitors who land there directly.
+- Granter's Academy tagline: add `<p class="hero-tagline">` in `grantersacademy/index.html` when a tagline is ready (CSS stub already commented in the file).
+- All pre-go-live checklist items remain open (Formspree endpoint, domain purchase, email setup, M4C mailing list link, calendar booking link).
 
 ---
 

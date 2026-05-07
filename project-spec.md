@@ -646,9 +646,41 @@ Additional images will be added to assets/ as the site develops. File paths are 
 
 ---
 
-## 13. FUTURE ADDITIONS (not in scope for initial build)
+## 13. GRANTER'S ACADEMY — DESIGN SPEC
 
-- Granter's Academy project at gretajames.ca/grantersacademy — stub "coming soon" page is in scope for initial build; full site is a separate future project
+Granter's Academy lives at `gretajames.ca/grantersacademy`. It uses its own colour palette (slate blue accents) to distinguish it from Beyond Surveys, while sharing the parchment background and ink/deep-brown text so it reads as part of the same personal brand.
+
+### Audience
+Grantmakers, foundations, and funders — not non-profits.
+
+### Colour Palette
+
+| CSS variable | Role | Hex |
+|---|---|---|
+| `--parchment` | Page background (shared with hub) | `#FAF6EE` |
+| `--linen` | Surface / card background | `#DDE4ED` |
+| `--steel` | Accent / highlight | `#5B7B9A` |
+| `--teal` | CTA / active accent | `#2E6B6B` |
+| `--deep-brown` | Primary text / borders (shared) | `#7A5C2E` |
+| `--ink` | Body text / headings (shared) | `#2C1F0E` |
+
+### Typography
+Same as hub and Beyond Surveys: Patrick Hand (display/accent), Georgia (body/headings).
+
+### Navigation
+Back-link only (`← Greta James`) until the full Granter's Academy site is built. No sub-page nav on the coming soon stub.
+
+### Mailing list
+Google Form: https://docs.google.com/forms/d/e/1FAIpQLSdKaW1pP4r-7bMNSxTxy89xDtkpKDXdKCNVglt3CjvsPl6NRQ/viewform?usp=header — use this URL anywhere a mailing list signup is linked.
+
+### Current build status
+`grantersacademy/index.html` — Coming soon stub page, built in Session 7. Full site is a separate future project.
+
+---
+
+## 14. FUTURE ADDITIONS (not in scope for initial build)
+
+- Full Granter's Academy site — additional pages beyond the coming soon stub
 - Learning modules as they are completed — slot into Learning Resources page
 - Article on social service sector incentives — link from belief paragraph on About page
 - Additional portfolio examples as projects are completed

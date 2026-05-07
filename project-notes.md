@@ -6,6 +6,55 @@ All project spec, content, and styling notes are in `project-spec.md`.
 
 ## BUILD LOG
 
+### Session 7 — 2026-05-07
+
+**Completed**
+
+* `grantersacademy/index.html` — Coming soon stub page built from scratch:
+  * Distinct slate blue palette (see Section 13 of `project-spec.md` for all hex values) while sharing parchment background and ink/deep-brown text with the rest of the site
+  * Layout: minimal navbar (← Greta James back-link only), hero with "Coming Soon" eyebrow + title (no tagline — commented placeholder left in code), about paragraph, "Up first" callout card for the Lunch & Learn, mailing list CTA button (links to Google Form), footer
+  * Two-column about section: program description text left, `assets/Lunch and learn.png` right (50/50 grid, stacks on mobile)
+  * Hero banner padding reduced to `3rem 0 2rem` after review
+  * Mailing list link saved: Google Form URL used on the page and saved to memory for future sessions
+  * HTML comment left for tagline — add `<p class="hero-tagline">` when ready; CSS stub also commented in
+
+* `index.html` (hub About page) — container `max-width` widened from 860px → 1040px to match Beyond Surveys
+
+* `CLAUDE.md` — Layout Container spec added to Design Cheat-Sheet (all pages use `max-width: 1040px`)
+
+* `project-spec.md` — Section 13 added: full Granter's Academy design spec (palette, audience, navigation, mailing list link)
+
+* `beyondsurveys/services.html` — Several updates:
+  * Hero intro text changed to "There are three ways to work with me. Select the path that best fits your organization's needs and budget."
+  * Intro paragraph font size reduced from 1.4rem → 1.05rem so text sits on one line
+  * Path 1 action link now goes to `workwithme.html#enquire-form` (was a mailto)
+  * Path 2 action link renamed to "Match me with a student →", also goes to `workwithme.html#enquire-form`
+  * Path 3: "Get extra support →" link added above "Browse learning resources →"; both link correctly
+  * In-Kind Support link now goes directly to `inkind.html` (was routing through workwithme.html with a source param)
+  * "Not sure" CTA updated: new wording and link to `workwithme.html#enquire-form`
+  * Card expand JS fixed: now sets both `min-height` and `max-height` to the tallest card's scrollHeight so all three cards are exactly equal height when expanded and flex pushes links to the bottom
+
+* `beyondsurveys/workwithme.html` — Stripped to navbar + Get in Touch form + footer only:
+  * Page intro, track cards, "not sure" CTA, and in-kind section all removed
+  * Unused CSS removed (~120 lines)
+  * Form updated: static `_subject` field replaces the old dynamic path-tracking hidden field; "Which services are you interested in?" checkbox question added (Direct Consulting, Student Support, Workshops, Undecided — multi-select)
+  * Source-tracking JavaScript removed; only the form submit/confirmation handler remains
+
+**Design decisions**
+
+* Granter's Academy uses a distinct slate blue accent palette to signal it's a different project from Beyond Surveys, while sharing enough tokens (parchment, ink, deep-brown) to feel part of the same personal brand
+* "Lunch and learn.png" is an AI-generated overhead table shot — chosen because it directly depicts what the Lunch & Learn format looks like and crops cleanly into the 50/50 grid layout
+* Services page links all now route to the Work With Me form rather than mailto or source-param URLs, as source-param tracking was removed by design
+
+**Still in progress / needs attention**
+
+* Work With Me page is currently just the form — may want to add a brief title or intro line above the form heading in a future session
+* All pre-go-live checklist items remain open (see Section 12 of `project-spec.md`)
+* `grantersacademy/index.html` — tagline placeholder left for when a tagline is ready
+* Full Granter's Academy site is a future project; only the stub is in scope for now
+
+---
+
 ### Session 6 — 2026-05-06
 
 **Completed**
