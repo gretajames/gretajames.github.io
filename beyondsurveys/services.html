@@ -421,6 +421,20 @@
   <script>
     var cards = Array.from(document.querySelectorAll('.track-card'));
 
+    // Auto-expand and center when arriving via a #track anchor (e.g. from learning page)
+    if (window.location.hash && /^#track\d+$/.test(window.location.hash)) {
+      var maxH = Math.max.apply(null, cards.map(function(c) { return c.scrollHeight; }));
+      cards.forEach(function(c) {
+        c.classList.add('expanded');
+        c.style.minHeight = maxH + 'px';
+        c.style.maxHeight = maxH + 'px';
+      });
+      setTimeout(function() {
+        var target = document.querySelector(window.location.hash);
+        if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+      }, 80);
+    }
+
     cards.forEach(function(card) {
       /* Links follow their href; don't let the click bubble up and toggle the cards */
       card.querySelectorAll('a').forEach(function(link) {

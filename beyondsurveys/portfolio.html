@@ -36,10 +36,7 @@
     }
 
     /* ─────────────────────────────────────────────────────────────
-       PORTFOLIO CARDS
-       Two columns on desktop, single column on mobile.
-       align-items: start prevents short cards stretching to match
-       a tall neighbour (e.g. the pull-quote card).
+       PORTFOLIO GRID
     ───────────────────────────────────────────────────────────── */
     .portfolio-section {
       padding-bottom: 4rem;
@@ -52,11 +49,17 @@
       align-items: start;
     }
 
+    /* ─────────────────────────────────────────────────────────────
+       PORTFOLIO CARDS — expand/collapse
+       Collapsed shows: title, context, image, example tag, hint.
+       Expanded reveals: .card-detail with full description content.
+    ───────────────────────────────────────────────────────────── */
     .portfolio-card {
       background: var(--cream);
       border-left: 3px solid var(--amber);
       border-radius: 0 4px 4px 0;
       padding: 2rem 2rem 1.5rem;
+      cursor: pointer;
     }
 
     .portfolio-card h2 {
@@ -71,25 +74,32 @@
       font-size: 0.9rem;
       font-style: italic;
       color: var(--deep-brown);
-      margin-bottom: 1.25rem;
-    }
-
-    .portfolio-card p {
-      font-size: 0.97rem;
-      color: var(--ink);
-      line-height: 1.75;
       margin-bottom: 1rem;
-      max-width: 680px;
     }
 
-    /* "This is an example of:" tag line */
+    /* Card image — consistent 215px crop; presenter-zoom shifts focus upward */
+    .card-image {
+      width: 100%;
+      height: 215px;
+      object-fit: cover;
+      object-position: center center;
+      border-radius: 4px;
+      border: 1px solid var(--amber);
+      margin: 0 0 1rem;
+      display: block;
+    }
+
+    .card-image.presenter-zoom {
+      object-position: center 15%;
+    }
+
+    /* "This is an example of Path X: …" tag */
     .example-tags {
       font-size: 0.88rem;
       font-style: italic;
       color: var(--deep-brown);
-      margin-top: 1.25rem;
-      border-top: 1px solid rgba(200, 169, 106, 0.4);
-      padding-top: 0.9rem;
+      margin-top: 0.25rem;
+      margin-bottom: 0;
     }
 
     .example-tags a {
@@ -99,9 +109,50 @@
     }
     .example-tags a:hover { color: var(--deep-brown); }
 
+    /* Expand hint — hidden when card is open */
+    .expand-hint {
+      font-size: 0.85rem;
+      color: var(--deep-brown);
+      font-style: italic;
+      margin-top: 0.6rem;
+      margin-bottom: 0;
+    }
+    .portfolio-card.expanded .expand-hint { display: none; }
+
+    /* Expandable detail — max-height transition for smooth open/close */
+    .card-detail {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.45s ease;
+    }
+
+    .portfolio-card.expanded .card-detail {
+      max-height: 2000px;
+    }
+
+    .card-detail p {
+      font-size: 0.97rem;
+      color: var(--ink);
+      line-height: 1.75;
+      margin-bottom: 1rem;
+      max-width: 680px;
+      margin-top: 1rem;
+    }
+
+    .card-detail p:first-child {
+      padding-top: 0.9rem;
+      border-top: 1px solid rgba(200, 169, 106, 0.4);
+      margin-top: 1rem;
+    }
+
+    .card-detail a {
+      color: var(--green);
+      text-decoration: none;
+    }
+    .card-detail a:hover { color: var(--deep-brown); }
+
     /* ─────────────────────────────────────────────────────────────
-       PERMISSION NOTICE — Example 3
-       Amber background, impossible to miss before publishing.
+       PERMISSION NOTICE
     ───────────────────────────────────────────────────────────── */
     .permission-notice {
       background: #FFF3CD;
@@ -120,17 +171,17 @@
     }
 
     /* ─────────────────────────────────────────────────────────────
-       VIDEO PLACEHOLDER — Example 2
-       Dashed amber border, centred label — consistent with
-       the lifecycle graphic placeholder on the home page.
+       VIDEO PLACEHOLDER
     ───────────────────────────────────────────────────────────── */
     .media-placeholder {
-      margin: 0.5rem 0 1.25rem;
-      padding: 2rem 1.5rem;
+      margin: 0 0 1rem;
+      height: 215px;
       border: 2px dashed var(--amber);
       border-radius: 4px;
       background: rgba(200, 169, 106, 0.06);
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .media-placeholder p {
@@ -142,11 +193,10 @@
     }
 
     /* ─────────────────────────────────────────────────────────────
-       PULL QUOTES — Example 4
-       Visually distinct: indented, italic, quiet green left border.
+       PULL QUOTES
     ───────────────────────────────────────────────────────────── */
     .pull-quotes {
-      margin: 1.25rem 0;
+      margin: 0.25rem 0 1rem;
       display: flex;
       flex-direction: column;
       gap: 1rem;
@@ -164,25 +214,14 @@
       color: var(--ink);
       line-height: 1.7;
       margin-bottom: 0.35rem;
+      border-top: none;
+      padding-top: 0;
     }
 
     .pull-quote cite {
       font-size: 0.85rem;
       font-style: normal;
       color: var(--deep-brown);
-    }
-
-    /* ─────────────────────────────────────────────────────────────
-       DASHBOARD IMAGE — Example 5
-    ───────────────────────────────────────────────────────────── */
-    .portfolio-image {
-      width: 100%;
-      max-width: 640px;
-      height: auto;
-      display: block;
-      border-radius: 4px;
-      border: 1px solid var(--amber);
-      margin: 0.5rem 0 1.25rem;
     }
 
     /* ─────────────────────────────────────────────────────────────
@@ -197,14 +236,17 @@
       .page-intro h1 { font-size: 1.55rem; }
       .portfolio-card { padding: 1.5rem 1.25rem 1.25rem; }
     }
+
+    /* Center the bio card to match other pages */
+    .bio-card-section .bio-card {
+      margin: 0 auto;
+    }
   </style>
 </head>
 <body>
 
   <!-- ────────────────────────────────────────────────────────────
        NAVBAR
-       ← Greta James  (back-link, secondary)
-       Home | Services | Learning Resources | Portfolio | Work With Me
   ─────────────────────────────────────────────────────────────── -->
   <nav class="site-nav" aria-label="Beyond Surveys navigation">
     <a href="../" class="nav-back">← Greta James</a>
@@ -225,7 +267,7 @@
   <section class="page-intro">
     <div class="container">
       <h1>Portfolio</h1>
-      <p>The projects below are examples of the kinds of work I do. They span program scoping, KPI development, impact measurement, and capacity building — and are drawn from real organizations in Southern Ontario.</p>
+      <p>The projects below are examples of work I've done with non-profits in Southern Ontario. They include examples from each of my services. Click each card for more details.</p>
     </div>
   </section>
 
@@ -234,125 +276,108 @@
   ─────────────────────────────────────────────────────────────── -->
   <section class="portfolio-section">
     <div class="container">
-
       <div class="portfolio-grid">
 
-      <!-- ── Row 1, col 1 ─────────────────────────────────────── -->
-      <div class="portfolio-card">
-        <h2>Building an Organization-Wide KPI System</h2>
-        <p class="card-context">Marillac Place, Waterloo Region | Program Development &amp; Evaluation Role</p>
-
-        <p>Marillac Place is a transitional shelter serving pregnant and parenting mothers experiencing homelessness. Over several years in a program development and evaluation role, I built the organization's first agency-wide KPI system — including client retention, task completion, housing outcomes, and mental health indicators — and automated data collection through interactive Power BI dashboards to support real-time decision making.</p>
-
-        <p>The results were measurable: evidence-based program changes led to an 84% reduction in warnings issued to participants and a 200% increase in housing plan completion rates.</p>
-
-        <p class="example-tags">
-          This is an example of:
-          <a href="services.html#track1">KPI development</a>,
-          <a href="services.html#track1">program evaluation</a>,
-          <a href="services.html#track1">data dashboards</a>
-        </p>
-      </div>
-
-      <!-- ── Row 1, col 2 ─────────────────────────────────────── -->
-      <div class="portfolio-card">
-        <h2>Community Needs Survey</h2>
-        <p class="card-context">Marillac Place, Camino Wellbeing + Mental Health, and The Pregnancy Centre | Community Needs Assessment</p>
-
-        <img
-          src="../assets/Community Needs Dashboard.jpg"
-          alt="Interactive dashboard showing community needs survey findings across partner organizations"
-          class="portfolio-image"
-        />
-
-        <p>The Community Needs Survey was a shared measurement tool developed across three organizations to measure the service needs of low-income families in Waterloo Region — including service access rates, prioritization of services, and barriers to access. I led all aspects of the project: stakeholder engagement, participant recruitment, ethics approval, survey design, data analysis, and final reporting. I also built interactive dashboards to share findings across partner organizations.</p>
-
-        <p class="example-tags">
-          This is an example of:
-          <a href="services.html#track1">community needs assessment</a>,
-          <a href="services.html#track1">multi-organization data collection</a>,
-          <a href="services.html#track1">dashboards</a>
-        </p>
-      </div>
-
-      <!-- ── Row 2, col 1 ─────────────────────────────────────── -->
-      <div class="portfolio-card">
-        <h2>Scoping a Housing Program: From Hub to TIP</h2>
-        <p class="card-context">Marillac Place &amp; the Side-by-Side Collaborative | Research to Support Program Design</p>
-
-        <!-- Coming soon: video presentation to be embedded here when ready -->
-        <div class="media-placeholder" aria-label="Video coming soon">
-          <p>[ Video presentation in development — check back soon ]</p>
+        <!-- ── Card 1: KPI System ────────────────────────────── -->
+        <div class="portfolio-card">
+          <h2>Building an Organization-Wide KPI System</h2>
+          <p class="card-context">Marillac Place, Waterloo Region | Program Development &amp; Evaluation Role</p>
+          <img
+            src="../assets/Housing dashboard.png"
+            alt="Power BI dashboard showing KPI metrics for Marillac Place"
+            class="card-image"
+          />
+          <p class="example-tags">This is an example of <a href="services.html#track1">Path 1</a>: KPI development, program evaluation, data dashboards</p>
+          <p class="expand-hint">Tap for details ▼</p>
+          <div class="card-detail">
+            <p>Marillac Place is a transitional shelter serving pregnant and parenting mothers experiencing homelessness. Over several years in a program development and evaluation role, I built the organization's first agency-wide KPI system — including client retention, task completion, housing outcomes, and mental health indicators — and automated data collection through interactive Power BI dashboards to support real-time decision making.</p>
+            <p>The results were measurable: evidence-based program changes led to an 84% reduction in warnings issued to participants and a 200% increase in housing plan completion rates.</p>
+          </div>
         </div>
 
-        <p>The Side-by-Side Collaborative — comprising Marillac Place, Camino Wellbeing + Mental Health, and The Pregnancy Centre — was exploring how to improve housing supply and supports for young parents in Waterloo Region. I led the literature review component of a feasibility study that evaluated three housing models, drawing on evidence from Housing First research, the Family Options Study, and analysis of the local housing market.</p>
-
-        <p>The research found that a centralized housing hub was less effective than a scattered permanent housing approach, and contributed to the decision to pursue the Transition to Independence Program (TIP) — a lower-cost, higher-impact model that uses rental subsidies to incentivize homeowners to develop accessory dwelling units, increasing housing supply while housing individual families.</p>
-
-        <p class="example-tags">
-          This is an example of:
-          <a href="services.html#track1">research to scope and support program design</a>,
-          <a href="services.html#track1">literature review</a>,
-          <a href="services.html#track1">housing and homelessness</a>
-        </p>
-      </div>
-
-      <!-- ── Row 2, col 2 ─────────────────────────────────────── -->
-      <div class="portfolio-card">
-        <h2>Building Measurement Capacity: Measurement 101</h2>
-        <p class="card-context">In partnership with M4C — a working group of the Children and Youth Planning Table of Waterloo Region</p>
-
-        <p>Measurement 101 was a pilot course designed to help small nonprofits build their own internal measurement capacity. I developed and delivered the course, which used a hybrid model: asynchronous learning modules paired with synchronous sessions where participants applied course content to real measurement projects with support from graduate student mentors.</p>
-
-        <p>Fourteen organizations participated, representing a range of sectors including mental health, food security, literacy, and community foundations. All participants said they would recommend the course. Participants rated the course content, instructor support, and mentorship highly across the board.</p>
-
-        <div class="pull-quotes">
-          <figure class="pull-quote">
-            <p>"[This course was] well paced and provided quality content and instruction that was very helpful to our agency and we left with a plan to move forward with."</p>
-            <figcaption><cite>— Project READ</cite></figcaption>
-          </figure>
-          <figure class="pull-quote">
-            <p>"I'm so grateful for this course — it sharpened my impact measurement skills and shifted my mindset, showing that data isn't just for reporting, but for learning, growth, and real change driven by the voices of those we serve."</p>
-            <figcaption><cite>— The Food Bank of Waterloo Region</cite></figcaption>
-          </figure>
-          <figure class="pull-quote">
-            <p>"Greta was very approachable and made the course content more accessible. She is very good at coming up with examples for new concepts."</p>
-            <figcaption><cite>— Waterloo Region Community Foundation</cite></figcaption>
-          </figure>
+        <!-- ── Card 2: Community Needs Survey ───────────────── -->
+        <div class="portfolio-card">
+          <h2>Community Needs Survey</h2>
+          <p class="card-context">Marillac Place, Camino Wellbeing + Mental Health, and The Pregnancy Centre | Community Needs Assessment</p>
+          <img
+            src="../assets/Community Needs Dashboard.jpg"
+            alt="Interactive dashboard showing community needs survey findings across partner organizations"
+            class="card-image"
+          />
+          <p class="example-tags">This is an example of <a href="services.html#track1">Path 1</a>: community needs assessment, multi-organization data collection, data dashboards</p>
+          <p class="expand-hint">Tap for details ▼</p>
+          <div class="card-detail">
+            <p>The Community Needs Survey was a shared measurement tool developed across three organizations to measure the service needs of low-income families in Waterloo Region — including service access rates, prioritization of services, and barriers to access. I led all aspects of the project: stakeholder engagement, participant recruitment, ethics approval, survey design, data analysis, and final reporting. I also built interactive dashboards to share findings across partner organizations.</p>
+          </div>
         </div>
 
-        <p class="example-tags">
-          This is an example of:
-          <a href="services.html#track3">workshop design and delivery</a>,
-          <a href="services.html#track3">measurement capacity building</a>,
-          <a href="services.html#track2">graduate student mentorship model</a>
-        </p>
-      </div>
-
-      <!-- ── Row 3 (full width) ────────────────────────────────── -->
-      <div class="portfolio-card">
-        <h2>Measuring the Impact of the Market Dollars Program</h2>
-        <p class="card-context">The Food Bank of Waterloo Region | Graduate Student Supervision</p>
-
-        <!-- REMOVE THIS NOTICE before going live — confirm permission with Food Bank of Waterloo Region first -->
-        <div class="permission-notice">
-          <strong>⚠️ PERMISSION PENDING — DO NOT PUBLISH UNTIL CONFIRMED</strong>
-          Included with permission, pending final confirmation from the Food Bank of Waterloo Region. Remove this notice and the HTML comment above before going live.
+        <!-- ── Card 3: Market Dollars ─────────────────────────── -->
+        <div class="portfolio-card">
+          <h2>Measuring the Impact of the Market Dollars Program</h2>
+          <p class="card-context">The Food Bank of Waterloo Region | This project was lead by a Graduate Student (Hamaz Tariq) and facilitated by Greta.</p>
+          <img
+            src="../assets/Market dollars report.png"
+            alt="Cover page of the Market Dollars Program evaluation report"
+            class="card-image"
+          />
+          <p class="example-tags">This is an example of <a href="services.html#track2">Path 2</a>: graduate student support with facilitation by me</p>
+          <p class="expand-hint">Tap for details ▼</p>
+          <div class="card-detail">
+            <!-- REMOVE THIS NOTICE before going live — confirm permission with Food Bank of Waterloo Region first -->
+            <div class="permission-notice">
+              <strong>⚠️ PERMISSION PENDING — DO NOT PUBLISH UNTIL CONFIRMED</strong>
+              Included with permission, pending final confirmation from the Food Bank of Waterloo Region. Remove this notice and the HTML comment above before going live.
+            </div>
+            <p>The Food Bank of Waterloo Region runs the Market Dollars Pilot Program, a collaborative initiative providing households experiencing food insecurity with $100/month to spend on fresh food at the Kitchener Market. I connected a graduate student researcher with the organization and provided oversight throughout the project.</p>
+            <p>The student designed an experimental study to evaluate program impact, coordinated data collection with the Food Bank, analyzed behavioral data alongside participant surveys, and produced a final report. Key findings showed strong program uptake compared to regular programming and increased participant satisfaction. It also increased consumption of fruits and vegetables and home cooking.</p>
+          </div>
         </div>
 
-        <p>The Food Bank of Waterloo Region runs the Market Dollars Pilot Program, a collaborative initiative providing households experiencing food insecurity with $100/month to spend on fresh food at the Kitchener Market. I connected a graduate student researcher with the organization and provided oversight throughout the project.</p>
+        <!-- ── Card 4: Measurement 101 ────────────────────────── -->
+        <div class="portfolio-card">
+          <h2>Measurement 101 Workshop: Content creator and facilitator</h2>
+          <p class="card-context">In partnership with M4C — a working group of the Children and Youth Planning Table of Waterloo Region</p>
+          <img
+            src="../assets/measurement 101 presentation.jpg"
+            alt="Greta James presenting at the Measurement 101 workshop"
+            class="card-image presenter-zoom"
+          />
+          <p class="example-tags">This is an example of <a href="services.html#track3">Path 3</a>: Workshop design and delivery</p>
+          <p class="expand-hint">Tap for details ▼</p>
+          <div class="card-detail">
+            <p>Measurement 101 was a pilot course designed to help small nonprofits build their own internal measurement capacity. I developed and delivered the course, which used a hybrid model: asynchronous learning modules paired with synchronous sessions where participants applied course content to real measurement projects with support from graduate student mentors.</p>
+            <p>Fourteen organizations participated, representing a range of sectors including mental health, food security, literacy, and community foundations. All participants said they would recommend the course. Participants rated the course content, instructor support, and mentorship highly across the board.</p>
+            <div class="pull-quotes">
+              <figure class="pull-quote">
+                <p>"[This course was] well paced and provided quality content and instruction that was very helpful to our agency and we left with a plan to move forward with."</p>
+                <figcaption><cite>— Project READ</cite></figcaption>
+              </figure>
+              <figure class="pull-quote">
+                <p>"Greta was very approachable and made the course content more accessible. She is very good at coming up with examples for new concepts."</p>
+                <figcaption><cite>— Waterloo Region Community Foundation</cite></figcaption>
+              </figure>
+            </div>
+            <p><a href="https://sites.google.com/view/m4ctrainingmodules/home" target="_blank" rel="noopener noreferrer">Browse the Measurement 101 workshop content →</a></p>
+          </div>
+        </div>
 
-        <p>The student designed an experimental study to evaluate program impact, coordinated data collection with the Food Bank, analyzed behavioral data alongside participant surveys, and produced a final report. Key findings showed strong program uptake compared to regular programming and increased participant satisfaction. It also increased consumption of fruits and vegetables and home cooking.</p>
+        <!-- ── Card 5: Scoping a Housing Program ────────────── -->
+        <div class="portfolio-card">
+          <h2>Scoping a Housing Program</h2>
+          <p class="card-context">Marillac Place &amp; the Side-by-Side Collaborative | Research to Support Program Design</p>
+          <!-- Video presentation to be embedded here when ready -->
+          <div class="media-placeholder" aria-label="Video coming soon">
+            <p>[ Video presentation in development — check back soon ]</p>
+          </div>
+          <p class="example-tags">This is an example of <a href="services.html#track1">Path 1</a>: research to scope and support program design, literature review</p>
+          <p class="expand-hint">Tap for details ▼</p>
+          <div class="card-detail">
+            <p>The Side-by-Side Collaborative — comprising Marillac Place, Camino Wellbeing + Mental Health, and The Pregnancy Centre — was exploring how to improve housing supply and supports for young parents in Waterloo Region. I led the literature review component of a feasibility study that evaluated three housing models, drawing on evidence from Housing First research, the Family Options Study, and analysis of the local housing market.</p>
+            <p>The research found that a centralized housing hub was less effective than a scattered permanent housing approach, and contributed to the decision to pursue the Transition to Independence Program (TIP) — a lower-cost, higher-impact model that uses rental subsidies to incentivize homeowners to develop accessory dwelling units, increasing housing supply while housing individual families.</p>
+          </div>
+        </div>
 
-        <p class="example-tags">
-          This is an example of:
-          <a href="services.html#track2">graduate student facilitation</a>,
-          <a href="services.html#track2">program evaluation using behavioral data</a>,
-          <a href="services.html#track2">food security</a>
-        </p>
-      </div>
-
-    </div><!-- /portfolio-grid -->
+      </div><!-- /portfolio-grid -->
     </div>
   </section>
 
@@ -388,6 +413,27 @@
       </p>
     </div>
   </footer>
+
+  <script>
+    var cards = Array.from(document.querySelectorAll('.portfolio-card'));
+
+    cards.forEach(function(card) {
+      /* Links follow their href without toggling the card */
+      card.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function(e) { e.stopPropagation(); });
+      });
+
+      card.addEventListener('click', function() {
+        this.classList.toggle('expanded');
+      });
+    });
+
+    /* Equalize collapsed card heights after images have loaded */
+    window.addEventListener('load', function() {
+      var maxH = Math.max.apply(null, cards.map(function(c) { return c.offsetHeight; }));
+      cards.forEach(function(c) { c.style.minHeight = maxH + 'px'; });
+    });
+  </script>
 
 </body>
 </html>
