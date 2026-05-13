@@ -109,7 +109,7 @@
        Right column: name + bio paragraphs (flexible)
     ───────────────────────────────────────────────────────────── */
     .about-section {
-      padding: 4rem 0 3rem;
+      padding: 4rem 0 0;
     }
 
     .about-grid {
@@ -136,8 +136,6 @@
 
     /* ─────────────────────────────────────────────────────────────
        BLOCKQUOTE CALLOUT — positioned under photo, Patrick Hand font
-       Background (faint green tint) and left border retained from
-       original design. Font changed to Patrick Hand.
     ───────────────────────────────────────────────────────────── */
     .belief-callout {
       font-family: 'Patrick Hand', cursive;
@@ -152,6 +150,16 @@
     }
 
     .belief-callout p { margin: 0; }
+    .belief-callout p + p { margin-top: 0.6rem; }
+
+    .belief-callout ul {
+      margin: 0.4rem 0 0.4rem 1.4rem;
+      padding: 0;
+    }
+    .belief-callout li { margin-bottom: 0.25rem; }
+
+    .belief-callout a { color: var(--green); text-decoration: none; }
+    .belief-callout a:hover { color: var(--deep-brown); }
 
     /* Bio text — right column */
     .about-text h1 {
@@ -168,13 +176,34 @@
     }
 
     /* ─────────────────────────────────────────────────────────────
-       PROJECTS SECTION — heading
+       PROJECTS SECTION
+       Flush against the about section (padding-top: 0) so the green
+       callout extension continues without a gap.
+       Same 260px | 1fr grid as the about section keeps columns aligned.
     ───────────────────────────────────────────────────────────── */
     .projects-section {
-      padding: 3.5rem 0 5rem;
+      padding: 0 0 5rem;
     }
 
-    .projects-section h2 {
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 3rem;
+      align-items: stretch;   /* makes callout-extension fill full row height */
+    }
+
+    /* Empty left column — continues the green callout visually */
+    .callout-extension {
+      border-left: 4px solid var(--green);
+      background: rgba(74, 107, 74, 0.045);
+    }
+
+    /* Right column — heading + notebook, centered within the column */
+    .projects-right {
+      padding-top: 2rem;      /* cinch up: small gap between bio text and heading */
+    }
+
+    .projects-right h2 {
       font-size: 0.85rem;
       font-weight: normal;
       color: var(--deep-brown);
@@ -202,7 +231,7 @@
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      padding: 20px 0 2rem;   /* cards no longer extend above wrapper top */
+      padding: 20px 0 2rem;
     }
 
     .notebook-wrapper {
@@ -295,7 +324,7 @@
      * bottom stays tucked behind the cover.
      *
      * Card 1 (Beyond Surveys)    — front,  +8°,  top:  25px
-     * Card 2 (Granter's Academy) — behind, +14°, top: -12px (raised so title clears card-1)
+     * Card 2 (Granter's Academy) — behind, +14°, top: -55px (raised so title clears card-1)
      *
      * FUTURE EXPANSION: when a third project is ready, uncomment .card-3
      * and add its HTML element before .card-2.
@@ -312,7 +341,7 @@
       color: var(--ink);
       display: flex;
       flex-direction: column;
-      transform-origin: left bottom;  /* bottom tucks into book, top fans away */
+      transform-origin: left bottom;
       transition: transform 0.22s ease, box-shadow 0.22s ease;
       border-top: 4px solid var(--amber);
     }
@@ -329,7 +358,7 @@
       box-shadow: 6px 5px 22px rgba(44, 31, 14, 0.28);
     }
 
-    /* Card 2 — Granter's Academy (behind, raised so title clears card-1's top edge) */
+    /* Card 2 — Granter's Academy (behind, raised so title tab is visible) */
     .card-2 {
       top: -55px;
       background: #F4EDE0;
@@ -494,8 +523,13 @@
         max-width: 250px;
         margin: 0 auto;
       }
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      .callout-extension { display: none; }  /* no empty column on mobile */
       .about-section { padding: 2.5rem 0 2rem; }
-      .projects-section { padding: 2.5rem 0 3.5rem; }
+      .projects-section { padding: 1rem 0 3.5rem; }
+      .projects-right { padding-top: 0; }
     }
 
     @media (max-width: 480px) {
@@ -545,9 +579,13 @@
             />
           </div>
 
-          <!-- TODO: link belief paragraph to article on social service sector incentives when ready -->
           <blockquote class="belief-callout">
-            <p>A well-functioning social service sector needs two things: affordable measurement and evaluation supports so organizations can learn from what they do, and financial incentives that reward innovation and honest learning rather than punishing uncertainty. That's what I'm working toward.</p>
+            <p>A well-functioning social service sector needs two things:</p>
+            <ul>
+              <li>Effective impact evaluation (check out <a href="beyondsurveys/">Beyond Surveys Consulting</a>)</li>
+              <li>Financial incentives that reward innovation and honest learning (check out <a href="grantersacademy/">Granter's Academy</a>)</li>
+            </ul>
+            <p>That is what I am working towards.</p>
           </blockquote>
 
         </div>
@@ -572,6 +610,13 @@
   ─────────────────────────────────────────────────────────────── -->
   <section class="projects-section" id="projects">
     <div class="container">
+      <div class="projects-grid">
+
+        <!-- Left col: empty green extension of the callout above -->
+        <div class="callout-extension" aria-hidden="true"></div>
+
+        <!-- Right col: heading + notebook, centered within the about-text column -->
+        <div class="projects-right">
 
       <h2>Current Projects</h2>
 
@@ -648,9 +693,12 @@
           </a>
 
         </div>
-      </div>
+        </div><!-- /mobile-projects -->
 
-    </div>
+        </div><!-- /projects-right -->
+
+      </div><!-- /projects-grid -->
+    </div><!-- /container -->
   </section>
 
   <!-- ────────────────────────────────────────────────────────────
