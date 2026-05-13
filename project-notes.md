@@ -6,6 +6,34 @@ All project spec, content, and styling notes are in `project-spec.md`.
 
 ## BUILD LOG
 
+### Session 8 — 2026-05-13
+
+**Completed**
+
+* `beyondsurveys/portfolio.html` — Several card and UX improvements:
+  * Removed the permission-pending warning card from the Food Bank of Waterloo Region entry (permission confirmed)
+  * Hid the Scoping a Housing Program card by wrapping it in an HTML comment — will uncomment when the video presentation is ready
+  * Changed all expand hints from "Tap for details ▼" → "Click for details ▼"
+  * Added a "Click to collapse ▲" hint that appears at the bottom of each card when expanded — injected via JS so it applies to all cards automatically (including the housing card when it's restored)
+
+* `index.html` (hub About page) — Two changes:
+  * Belief callout text rewritten to a two-bullet format with links to both projects: "A well-functioning social service sector needs two things: [bullet: Effective impact evaluation → Beyond Surveys Consulting] [bullet: Financial incentives → Granter's Academy] That is what I am working towards."
+  * Current Projects section repositioned: now uses the same `260px | 1fr` column grid as the about section above it, so the notebook sits directly under the bio text column rather than centred on the full page. An empty div in the left column carries the green callout border and background downward, making the green sidebar appear to run continuously from the callout all the way to the bottom of the notebook. The two sections are flush (no vertical gap between them) to keep the green seamless.
+
+**Design decisions**
+
+* The green callout extension is a purely decorative empty div — it has no text and no semantic role (`aria-hidden="true"`). It is hidden on mobile via CSS (`display: none` at ≤660px) since the single-column mobile layout doesn't benefit from it.
+* The collapse hint on portfolio cards is created in JavaScript rather than added to each card's HTML, so it automatically applies to any card added in the future (including the housing card when uncommented).
+
+**Still in progress / needs attention**
+
+* Scoping a Housing Program portfolio card is hidden — uncomment when video is ready (search for "Card 5: Scoping" in `beyondsurveys/portfolio.html`)
+* Work With Me page still just the form — may want a brief intro line above the form heading
+* All pre-go-live checklist items remain open (Formspree endpoint, domain, email, M4C link, calendar booking link)
+* Granter's Academy tagline placeholder still in `grantersacademy/index.html`
+
+---
+
 ### Session 7 — 2026-05-07
 
 **Completed**

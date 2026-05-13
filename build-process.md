@@ -172,6 +172,27 @@ On screens ≤ 660px, JavaScript hides the desktop notebook scene and shows a co
 - Tapping slides down a drawer containing the two project cards stacked vertically
 - Tapping again collapses the drawer
 
+### Current Projects section
+
+The notebook sits in its own `<section class="projects-section">` directly below the about section. The two sections are intentionally flush (no vertical padding between them) so the green callout sidebar reads as one continuous visual element down the left side of the page.
+
+**How the visual continuity works:**
+
+The about section and projects section both use an identical `260px | 1fr` CSS Grid. The left column of the projects grid contains an empty `<div class="callout-extension">` (with `aria-hidden="true"`) that carries the same green left border and faint green background as the belief callout above it. Because `align-items: stretch` is set on the grid, this div expands to fill the full height of the row — visually extending the callout sidebar down to the bottom of the notebook.
+
+On screens ≤ 660px the `.callout-extension` div is hidden and both sections revert to single-column layout.
+
+**Layout summary:**
+
+- `projects-section` padding: `0 0 5rem` (no top padding — flush with about section above)
+- `projects-grid` mirrors `about-grid`: `grid-template-columns: 260px 1fr; gap: 3rem; align-items: stretch`
+- Left cell: `.callout-extension` — empty div, green border + faint green background only
+- Right cell: `.projects-right` with `padding-top: 2rem`, contains the "Current Projects" label and the notebook scene
+- The "Current Projects" label is small-caps, centred, upper case (`text-align: center; text-transform: uppercase`)
+- The notebook scene is centred within `.projects-right` using `justify-content: center` on a flex container
+
+**To change the notebook position:** The notebook is centred under the bio text by design. If you want it left-aligned, remove `justify-content: center` from `.notebook-scene`.
+
 ### Footer
 
 A single centred line with a quiet email link and a LinkedIn link. No prominent button or call-to-action styling — intentionally low-key.
@@ -294,11 +315,15 @@ Below the intro, all learning content lives in a **3-column CSS Grid** (`class="
 
 Cards sit in a two-column CSS Grid on desktop, single column on mobile (below 700px). Cards use `align-items: start` so shorter cards do not stretch to match their taller neighbours.
 
-Current card order (by grid position): Row 1 — KPI System, Community Needs Survey. Row 2 — Scoping Housing Program, Measurement 101. Row 3 — Market Dollars (full width, alone as the fifth card).
+Current visible cards: KPI System, Community Needs Survey, Market Dollars, Measurement 101. The Scoping a Housing Program card is currently hidden (commented out) until a video is ready.
 
-**Permission notice (Market Dollars card):** A visible amber warning box and an HTML comment both mark this card as pending permission confirmation. Before publishing, confirm permission with the Food Bank of Waterloo Region, then remove the `<div class="permission-notice">` block and the HTML comment above it.
+**Expand/collapse behaviour:** Clicking any card toggles an `expanded` class. The "Click for details ▼" hint hides when expanded; a "Click to collapse ▲" hint appears at the bottom. The collapse hint is injected by JavaScript (not in the HTML directly), so it automatically applies to all cards including any added in the future.
 
-**Video placeholder (Scoping Housing card):** A dashed amber placeholder marks where a video will be embedded. When the video is ready, replace the `<div class="media-placeholder">` with a standard `<iframe>` embed.
+**Unhiding the Scoping a Housing Program card:** Search for `Card 5: Scoping a Housing Program` in the file. The card is wrapped in an HTML comment (`<!-- ... -->`). Remove the comment delimiters and replace the `<div class="media-placeholder">` block with an `<iframe>` video embed when the video is ready.
+
+**Video placeholder (Scoping Housing card):** A dashed amber placeholder marks where the video will go. When ready, replace `<div class="media-placeholder">` with a standard `<iframe>` embed.
+
+**Permission notice (Market Dollars card):** The warning card has been removed — permission is confirmed. If you ever need a similar notice on another card, use `<div class="permission-notice">` (the CSS class is still defined in the shared stylesheet).
 
 **Adding a new portfolio item:** Copy any existing `<div class="portfolio-card">` block, paste it inside the `.portfolio-grid` div, and fill in the content. The grid will automatically place it in the next available cell.
 

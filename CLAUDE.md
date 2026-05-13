@@ -52,16 +52,16 @@ All Beyond Surveys pages load `beyondsurveys/style.css` as their first styleshee
 
 > **Sync warning:** Update this section during every session wrap-up. It mirrors the most recent BUILD LOG entry in `project-notes.md` — keep them in sync.
 
-As of Session 7 (2026-05-07):
+As of Session 8 (2026-05-13):
 
 | File | Status |
 |------|--------|
-| `index.html` | Complete (hub page) |
+| `index.html` | Complete (hub page) — belief callout updated to two-bullet format with project links; green callout visually extends into projects section via callout-extension div |
 | `beyondsurveys/style.css` | Complete (shared stylesheet) |
 | `beyondsurveys/index.html` | Complete including SVG lifecycle graphic |
 | `beyondsurveys/services.html` | Complete |
 | `beyondsurveys/learning.html` | Complete |
-| `beyondsurveys/portfolio.html` | Complete |
+| `beyondsurveys/portfolio.html` | Complete — permission notice removed from Food Bank card; Housing card hidden (video pending); expand/collapse click hints added |
 | `beyondsurveys/workwithme.html` | Stripped to form only — may want a brief intro line above the form heading |
 | `beyondsurveys/inkind.html` | Complete (standalone, not in navbar) |
 | `grantersacademy/index.html` | Complete (coming soon stub) — tagline placeholder left in code |
