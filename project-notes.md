@@ -6,6 +6,19 @@ All project spec, content, and styling notes are in `project-spec.md`.
 
 ## BUILD LOG
 
+### Session 9 — 2026-05-14
+
+**Completed**
+
+* Diagnosed and resolved missing Session 8 changes on live site: two commits had been made locally but never pushed to GitHub.
+* GitHub had auto-created a `CNAME` file when the custom domain `gretajames.ca` was configured — pulled that commit, merged, and pushed all local commits. Site now live at gretajames.ca.
+
+**Still in progress / needs attention**
+
+* (Same as Session 8 — no new items)
+
+---
+
 ### Session 8 — 2026-05-13
 
 **Completed**
