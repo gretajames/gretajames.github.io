@@ -6,6 +6,21 @@ All project spec, content, and styling notes are in `project-spec.md`.
 
 ## BUILD LOG
 
+### Session 10 — 2026-05-22
+
+**Completed**
+
+* Added GoatCounter analytics tracking to all 8 HTML files (`index.html`, `beyondsurveys/index.html`, `beyondsurveys/services.html`, `beyondsurveys/learning.html`, `beyondsurveys/portfolio.html`, `beyondsurveys/workwithme.html`, `beyondsurveys/inkind.html`, `grantersacademy/index.html`). The GoatCounter snippet is placed just before `</body>` in each file.
+* GoatCounter account: `gretajames.goatcounter.com` — tracks page views, unique visitors, referrers, browser/OS, screen size, and country. No cookies, no consent banner required.
+* To ignore your own visits: visit `https://gretajames.ca/#toggle-goatcounter` once in each browser you use. Sets a cookie that tells GoatCounter to skip you sitewide.
+* To reset stats (e.g. after testing): go to GoatCounter dashboard → Settings → delete all pageviews.
+
+**Still in progress / needs attention**
+
+* (Same as Session 9 — no new items)
+
+---
+
 ### Session 9 — 2026-05-14
 
 **Completed**

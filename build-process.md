@@ -67,6 +67,30 @@ Consulting Website/
 
 ---
 
+## Analytics — GoatCounter
+
+The site uses [GoatCounter](https://goatcounter.com) for privacy-friendly traffic tracking. It is free, uses no cookies, and requires no consent banner.
+
+**Account:** `gretajames.goatcounter.com`
+
+**How it works:** A small JavaScript snippet loads on each page and sends a page view ping to GoatCounter's servers when a visitor arrives. No personal data is collected — GoatCounter estimates unique visitors using browser characteristics rather than cookies.
+
+**What it tracks:** page views, unique visitors, referrers (how people found the site), browser, operating system, screen size, and country.
+
+**The snippet** is placed just before `</body>` in all 8 HTML files:
+```html
+<script data-goatcounter="https://gretajames.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+```
+
+**Adding a new page:** paste the snippet above into any new HTML file, just before `</body>`.
+
+**Ignoring your own visits:** visit `https://gretajames.ca/#toggle-goatcounter` once in each browser you use. This sets a cookie that tells GoatCounter to skip you across the whole site. You do not need to do this per page.
+
+**Resetting stats:** GoatCounter dashboard → Settings → delete all pageviews. Useful if you want to wipe test data before going live.
+
+---
+
 ## Design system
 
 All visual decisions are driven by a consistent set of values defined at the top of each CSS file as **design tokens** — named variables that store the colours:
