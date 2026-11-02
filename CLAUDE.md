@@ -60,7 +60,7 @@ As of Session 11 (2026-11-02):
 | `beyondsurveys/style.css` | Complete (shared stylesheet) |
 | `beyondsurveys/index.html` | Complete including SVG lifecycle graphic |
 | `beyondsurveys/services.html` | Complete |
-| `beyondsurveys/learning.html` | Complete — old Measurement 101 card replaced with an announcement linking to `measurement101.html` (old Google Sites link intentionally removed, outdated) |
+| `beyondsurveys/learning.html` | Complete — old Measurement 101 card replaced with an announcement linking to `measurement101.html` (old Google Sites link intentionally removed, outdated); thumbnail is a screenshot of the new page (`assets/Measurement101Page.png`) |
 | `beyondsurveys/measurement101.html` | Draft complete (Session 11) — standalone page for the Jan–Apr 2027 workshop, URL printed on the M4C poster; not in navbar. Update after Nov 23, 2026 info session (recording link) |
 | `beyondsurveys/portfolio.html` | Complete — permission notice removed from Food Bank card; Housing card hidden (video pending); expand/collapse click hints added |
 | `beyondsurveys/workwithme.html` | Stripped to form only — may want a brief intro line above the form heading |

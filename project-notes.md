@@ -23,12 +23,17 @@ All project spec, content, and styling notes are in `project-spec.md`.
 * Eyebrow label sits above the two hero columns so the photo's top lines up with the h1.
 * Attribution reads "Offered by Greta James in collaboration with Measurement 4 Change".
 
+**Later in Session 11 (after the first push)**
+
+* Learning Resources card thumbnail replaced: `assets/Measurement101Page.png` is a 16:9 screenshot of the top of the new workshop page (replaces `Measurement101Web.png`, the old Google Sites screenshot, which is no longer used).
+* Past-participants photo at the bottom of the workshop page replaced with `assets/presenting program design 101 - web.jpg` (1400px web copy of the 8.8MB original, which is not committed). Alt text is generic ("presenting to a room of workshop participants") because the photo shows a Program Design 101 slide, not Measurement 101.
+
 **Still in progress / needs attention**
 
+* The new presenting photo shows a slide with a visible QR code (MOU feedback document). Confirm Greta is comfortable with that being public.
 * After November 23: change the buttons to "Watch the recording" (or point them at the recording link) and update the info-session wording to past tense.
 * When the new Measurement 101 content is ready, restore a link to it on `learning.html`.
 * Poster typos for Greta to fix: "willl" and "Organizations Impact" (should be "Organization's").
-* `Measurement101Web.png` (learning card thumbnail) is a screenshot of the old Google Sites welcome page — consider replacing it.
 * `index.html` (hub) and `impactdashboard.html` have uncommitted changes from a separate piece of work (impact dashboard teaser) and were not included in this session's commit.
 * All earlier pre-go-live checklist items remain open (Formspree endpoint, email, calendar booking link, M4C mailing list link).
 

@@ -387,9 +387,9 @@ A standalone page announcing the Jan–Apr 2027 Measurement 101 workshop. Its ad
 
 **Wording rule:** every button says "Register for the info session", never "Join", so nobody thinks it is a meeting link. The one Google Form handles both the live info session and the recording request.
 
-**Photos:** `assets/working with laptop.jpg` (hero, a 1400px-wide web copy) and `assets/measurement 101 presentation.jpg` (past participants). Large photos slow the page down. Shrink them to about 1400px wide before adding them to `assets/`.
+**Photos:** `assets/working with laptop.jpg` (hero) and `assets/presenting program design 101 - web.jpg` (past participants, bottom of page). Both are 1400px-wide web copies of much larger originals (5.9MB and 8.8MB), which are kept in `assets/` locally but not committed. Large photos slow the page down, so shrink any new photo to about 1400px wide before adding it.
 
-**Learning Resources link:** the first card on `learning.html` used to point at the old Measurement 101 content on Google Sites. That content is outdated, so the card now announces the workshop and links to this page. The old address is saved in an HTML comment above the card, ready to restore when new content is ready.
+**Learning Resources link and thumbnail:** the first card on `learning.html` used to point at the old Measurement 101 content on Google Sites. That content is outdated, so the card now announces the workshop and links to this page. The old address is saved in an HTML comment above the card, ready to restore when new content is ready. The card's thumbnail, `assets/Measurement101Page.png`, is a 16:9 screenshot of the top of this page (navbar hidden for the capture). If the hero text, photo or button changes noticeably, retake the screenshot so the thumbnail still matches the page.
 
 **Page-specific styles** live in the `<style>` block at the top of the file, after the shared `style.css` link.
 
