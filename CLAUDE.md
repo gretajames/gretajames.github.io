@@ -52,7 +52,7 @@ All Beyond Surveys pages load `beyondsurveys/style.css` as their first styleshee
 
 > **Sync warning:** Update this section during every session wrap-up. It mirrors the most recent BUILD LOG entry in `project-notes.md` — keep them in sync.
 
-As of Session 10 (2026-05-22):
+As of Session 11 (2026-11-02):
 
 | File | Status |
 |------|--------|
@@ -60,7 +60,8 @@ As of Session 10 (2026-05-22):
 | `beyondsurveys/style.css` | Complete (shared stylesheet) |
 | `beyondsurveys/index.html` | Complete including SVG lifecycle graphic |
 | `beyondsurveys/services.html` | Complete |
-| `beyondsurveys/learning.html` | Complete |
+| `beyondsurveys/learning.html` | Complete — old Measurement 101 card replaced with an announcement linking to `measurement101.html` (old Google Sites link intentionally removed, outdated) |
+| `beyondsurveys/measurement101.html` | Draft complete (Session 11) — standalone page for the Jan–Apr 2027 workshop, URL printed on the M4C poster; not in navbar. Update after Nov 23, 2026 info session (recording link) |
 | `beyondsurveys/portfolio.html` | Complete — permission notice removed from Food Bank card; Housing card hidden (video pending); expand/collapse click hints added |
 | `beyondsurveys/workwithme.html` | Stripped to form only — may want a brief intro line above the form heading |
 | `beyondsurveys/inkind.html` | Complete (standalone, not in navbar) |
@@ -70,6 +71,8 @@ As of Session 10 (2026-05-22):
 
 ## Next Session Prompt
 
+- After the Nov 23, 2026 info session: update `beyondsurveys/measurement101.html` (recording link / past tense). When new Measurement 101 content exists, restore a link to it on `learning.html`.
+- `index.html` (hub) and `impactdashboard.html` have uncommitted changes from separate work — check with Greta before committing them.
 - `beyondsurveys/workwithme.html` is now just the Get in Touch form. Consider whether to add a brief title or intro sentence above the form heading to orient visitors who land there directly.
 - Granter's Academy tagline: add `<p class="hero-tagline">` in `grantersacademy/index.html` when a tagline is ready (CSS stub already commented in the file).
 - All pre-go-live checklist items remain open (Formspree endpoint, domain purchase, email setup, M4C mailing list link, calendar booking link).

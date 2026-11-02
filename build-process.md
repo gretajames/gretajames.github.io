@@ -62,7 +62,8 @@ Consulting Website/
     ├── learning.html              [BUILT]
     ├── portfolio.html             [BUILT]
     ├── workwithme.html            [BUILT]
-    └── inkind.html                ← In-kind application (not in navbar)  [BUILT]
+    ├── inkind.html                ← In-kind application (not in navbar)  [BUILT]
+    └── measurement101.html        ← Measurement 101 workshop page (not in navbar)  [BUILT]
 ```
 
 ---
@@ -371,9 +372,42 @@ The form has more fields than the standard enquiry form: organization descriptio
 
 **Before go-live:** Replace `YOUR_FORMSPREE_ENDPOINT` in the form `action` attribute with the real Formspree endpoint URL.
 
+### Measurement 101 workshop page (`beyondsurveys/measurement101.html`)
+
+A standalone page announcing the Jan–Apr 2027 Measurement 101 workshop. Its address, `gretajames.ca/beyondsurveys/measurement101.html`, is printed on the M4C poster, so **do not rename or move this file**. Like `inkind.html`, it is not in the navbar. Visitors arrive from the poster or from the "Upcoming: Measurement 101 Workshop" card on the Learning Resources page. It has the normal navbar (no item highlighted) and a "← Back to Beyond Surveys home" link.
+
+**Sections, top to bottom**
+
+- **Hero:** a two-column row (`.hero-layout`) with the heading, dates and intro text on the left and a photo on the right. The small "Measurement for Change · Online workshop" label sits above the row so the top of the photo lines up with the heading. Below the row is a full-width green button (`.btn.btn-wide`) that links to the Google Form.
+- **How the workshop works:** three cream cards (`.steps`) copied from the poster: hands-on training, apply the learnings, 1:1 graduate student guidance.
+- **Info session band:** a cream band with amber borders (`.info-band`) containing the date and time, what the session covers, a second register button, and the "Important" box (`.important`, burgundy left border).
+- **The details:** four short facts (`.facts`): when, time commitment, cost, what you leave with.
+- **Past participants:** the pilot summary, two pull quotes (`blockquote.quote`) and a classroom photo.
+- **Questions:** the M4C email and the "Offered by Greta James in collaboration with Measurement 4 Change" line.
+
+**Wording rule:** every button says "Register for the info session", never "Join", so nobody thinks it is a meeting link. The one Google Form handles both the live info session and the recording request.
+
+**Photos:** `assets/working with laptop.jpg` (hero, a 1400px-wide web copy) and `assets/measurement 101 presentation.jpg` (past participants). Large photos slow the page down. Shrink them to about 1400px wide before adding them to `assets/`.
+
+**Learning Resources link:** the first card on `learning.html` used to point at the old Measurement 101 content on Google Sites. That content is outdated, so the card now announces the workshop and links to this page. The old address is saved in an HTML comment above the card, ready to restore when new content is ready.
+
+**Page-specific styles** live in the `<style>` block at the top of the file, after the shared `style.css` link.
+
 ---
 
 ## How to make common changes
+
+### Update the Measurement 101 workshop details
+Open `beyondsurveys/measurement101.html`. The info session date and time are in `<p class="info-when">`. The cost, time commitment and eligibility text are inside the `.facts` block under "The details". The eligibility sentence also appears in the hero (`.hero-text`), so change it in both places. Search for "UTC" to find the time zone wording.
+
+### Change the Google Form link on the Measurement 101 page
+Search for `docs.google.com/forms` in `beyondsurveys/measurement101.html`. The link appears twice (hero button and info session band). Change both.
+
+### After the November 23 info session
+In `beyondsurveys/measurement101.html`, change the two button labels and the "Register for the info session" heading to point at the recording (or the workshop registration link, once it is shared), and update the date line to past tense.
+
+### Restore a link to the new Measurement 101 content
+In `beyondsurveys/learning.html`, find the comment "Measurement 101 Workshop — announcement of the upcoming workshop". Update the card text and add the new content's link. The old Google Sites address is saved in that comment.
 
 ### Update the bio text
 Open `index.html`, find `<div class="about-text">`. The bio is in three `<p>` tags. Edit the text directly between the tags.
@@ -458,3 +492,4 @@ Before the site goes live, you will need to:
 | 5 | 2026-05-05 | Beyond Surveys home page reworked (two-column intro, enlarged heading, CTA banner, approach section redesigned). Container widened to 1040px. Learning Resources page rebuilt (ribbon banner, video grid). |
 | 6 | 2026-05-06 | Services page redesigned: parchment/scroll card aesthetic, hero banner, tap-to-expand cards, Path terminology, In-Kind image. |
 | 7 | 2026-05-07 | Granter's Academy coming soon page built. Hub and GA container widened to 1040px. Services page links, intro, and card equal-height JS updated. Work With Me stripped to form only with new checkbox question. |
+| 11 | 2026-11-02 | Measurement 101 workshop page (`measurement101.html`) built for the M4C poster URL. Old Measurement 101 card on Learning Resources replaced with an announcement linking to it. |

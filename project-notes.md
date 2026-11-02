@@ -6,6 +6,34 @@ All project spec, content, and styling notes are in `project-spec.md`.
 
 ## BUILD LOG
 
+### Session 11 — 2026-11-02
+
+**Completed**
+
+* `beyondsurveys/measurement101.html` — new standalone page for the Winter 2027 Measurement 101 workshop. This is the URL printed on the M4C poster (`gretajames.ca/beyondsurveys/measurement101.html`). Not in the navbar (same pattern as `inkind.html`); has the standard navbar with no "current" item plus a "← Back to Beyond Surveys home" link under it. Sections: hero (text left, photo right, full-width register button below), "How the workshop works" (three cards mirroring the poster), info-session band (cream, amber borders) with the Important banner, "The details" (when, time commitment, cost, deliverables), past participants (pilot facts, two quotes, classroom photo), questions/attribution, footer, GoatCounter snippet.
+* `beyondsurveys/learning.html` — the old Measurement 101 card (which linked to the outdated Google Sites content) is now an announcement: "Upcoming: Measurement 101 Workshop (Jan–Apr 2027)" linking to the new page. The old Google Sites link is removed on purpose; the URL is kept in an HTML comment so it can be restored when the new content is ready.
+* `assets/working with laptop.jpg` — 1400px-wide, ~170KB web copy of the hero photo (original 5.9MB `working with laptop - promo video.JPG` was deliberately NOT committed).
+
+**Design decisions**
+
+* Wording rule: the Google Form button says "Register for the info session", never "Join", so visitors don't think it is a meeting link. One form covers both the live info session and the recording request.
+* Workshop facts on the page (from Greta): $350 per organization with unlimited staff; end of January to mid April 2027; 2–3 hours per week for the 12-week duration; deliverable is a measurement framework or tool; open to non-profits globally with significant overlap with Toronto's time zone (UTC−5 winter, UTC−4 daylight saving); workshop registration link is shared at the info session, and organizations must attend the info session or watch the recording before registering.
+* Info session: November 23, 2026 at 12:00pm EST (UTC−5), 30 minutes, online.
+* Register button is full width, 2.2rem bold, directly under the hero text and photo. The CSS rule is `.btn.btn-wide` (two classes) so it overrides the base `.btn` size.
+* Eyebrow label sits above the two hero columns so the photo's top lines up with the h1.
+* Attribution reads "Offered by Greta James in collaboration with Measurement 4 Change".
+
+**Still in progress / needs attention**
+
+* After November 23: change the buttons to "Watch the recording" (or point them at the recording link) and update the info-session wording to past tense.
+* When the new Measurement 101 content is ready, restore a link to it on `learning.html`.
+* Poster typos for Greta to fix: "willl" and "Organizations Impact" (should be "Organization's").
+* `Measurement101Web.png` (learning card thumbnail) is a screenshot of the old Google Sites welcome page — consider replacing it.
+* `index.html` (hub) and `impactdashboard.html` have uncommitted changes from a separate piece of work (impact dashboard teaser) and were not included in this session's commit.
+* All earlier pre-go-live checklist items remain open (Formspree endpoint, email, calendar booking link, M4C mailing list link).
+
+---
+
 ### Session 10 — 2026-05-22
 
 **Completed**

@@ -678,7 +678,15 @@ Google Form: https://docs.google.com/forms/d/e/1FAIpQLSdKaW1pP4r-7bMNSxTxy89xDtk
 
 ---
 
-## 14. FUTURE ADDITIONS (not in scope for initial build)
+## 14. MEASUREMENT 101 WORKSHOP PAGE
+
+`beyondsurveys/measurement101.html` — added Session 11. Standalone page (not in navbar) at the URL printed on the M4C Winter 2027 poster; do not rename. Announces the Jan–Apr 2027 online Measurement 101 workshop and sends visitors to a Google Form to register for the Nov 23, 2026 info session (or request the recording). Uses the shared palette and `style.css`. Full content and decisions are in the Session 11 entry of `project-notes.md`; component notes are in `build-process.md`.
+
+Key rules: buttons say "Register for the info session" (never "Join"); the workshop registration link is shared at the info session, so the page does not link to it; the old Google Sites Measurement 101 content is intentionally not linked anywhere.
+
+---
+
+## 15. FUTURE ADDITIONS (not in scope for initial build)
 
 - Full Granter's Academy site — additional pages beyond the coming soon stub
 - Learning modules as they are completed — slot into Learning Resources page
